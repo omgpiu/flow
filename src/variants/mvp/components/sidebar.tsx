@@ -32,6 +32,9 @@ export const SideBar = memo(({addNode, generateNodes}: any) => {
             <div className="dndnode output" onDragStart={(event) => onDragStart(event, 'output')} draggable>
                 Output Node
             </div>
+            <div className="dndnode output" onDragStart={(event) => onDragStart(event, 'textUpdater')} draggable>
+                TextUpdater
+            </div>
             <button onClick={addNode}>Add Node</button>
             <button style={{marginLeft: '10px'}} onClick={genNodes}>Generate nodes</button>
             <p>xNodesAmount</p>

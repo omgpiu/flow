@@ -13,7 +13,7 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 import { v4 as uuidv4 } from 'uuid';
 
-import { CustomNode, SideBar } from './components';
+import { CustomNode, SideBar, TextUpdaterNode } from './components';
 
 import './index.css';
 import { createNodesAndEdges } from "../utils";
@@ -29,6 +29,7 @@ const initialNodes = [
 
 const nodeTypes = {
     custom: CustomNode,
+    textUpdater: TextUpdaterNode
 };
 
 

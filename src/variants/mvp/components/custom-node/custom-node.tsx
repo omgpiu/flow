@@ -1,5 +1,6 @@
 import { CSSProperties, FC, memo } from 'react';
 import { Handle, NodeProps, Position } from 'reactflow';
+import { LOREM } from "../../../../constants";
 
 const sourceHandleStyleA: CSSProperties = {left: 40};
 const sourceHandleStyleB: CSSProperties = {
@@ -9,10 +10,10 @@ const sourceHandleStyleB: CSSProperties = {
 
 export const CustomNode: FC<NodeProps> = memo(({data, xPos, yPos}) => {
     return (
-        <>
+        <div>
             <Handle type="target" position={Position.Top}/>
             <div>
-                customNode
+                {LOREM}
             </div>
             <Handle
                 type="source"
@@ -26,7 +27,7 @@ export const CustomNode: FC<NodeProps> = memo(({data, xPos, yPos}) => {
                 id="b"
                 style={sourceHandleStyleB}
             />
-        </>
+        </div>
     );
 })
 

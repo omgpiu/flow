@@ -161,6 +161,7 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
             <SideBar addNode={onAdd} generateNodes={generateNodes} saveInitialValues={saveInitialValues}/>
             <div className="reactflow-wrapper" ref={reactFlowWrapper}>
                 <ReactFlow
+                    onNodeClick={(ele: any) => console.log(ele)}
                     nodes={nodes}
                     edges={edges}
                     onNodesChange={onNodesChange}

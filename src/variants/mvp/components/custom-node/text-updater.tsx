@@ -1,5 +1,5 @@
 import { memo, useRef } from 'react';
-import { Handle, Position } from 'reactflow';
+import { Handle, Position, useReactFlow } from 'reactflow';
 import './styles.css'
 import { LOREM } from "../../../../constants";
 
@@ -8,15 +8,15 @@ const handleRightStyle = {left: '75%'}
 
 interface Props {
     id: string
-    onDelete?: (id: string) => void
 }
 
-export const TextUpdaterNode = memo(({id, onDelete,...rest}:Props,context) => {
-    console.log(rest,'TextUpdaterNode')
-    console.log('context :', context)
+export const TextUpdaterNode = memo(({id}: Props,) => {
+
     const ref = useRef<any>(null)
+    //@ts-ignore
+    const {deleteElements, getNode} = useReactFlow();
     const onClickHandler = () => {
-        onDelete?.(id)
+        deleteElements({nodes: [getNode(id)!]})
     }
     return (
         <div className="text-updater-node">

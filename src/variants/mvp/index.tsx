@@ -36,8 +36,7 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
     //states
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-    console.log(edges, 'edges')
-    console.log(nodes, 'nodes')
+
     const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
     //refs
     const reactFlowWrapper = useRef<any>(null);
@@ -147,6 +146,14 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
         localStorage.setItem('nodes', serizNodes)
         localStorage.setItem('edges', serizEdges)
     }, [nodes, edges])
+
+    const deleteNodeById = useCallback((data:any) => {
+        console.log(data)
+        setNodes(nds => nds.filter(node => node.id !== data.id));
+    },[]);
+
+
+
 
 
     return (

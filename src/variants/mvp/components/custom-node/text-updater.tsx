@@ -6,11 +6,22 @@ import { LOREM } from "../../../../constants";
 const handleLeftStyle = {left: '25%'};
 const handleRightStyle = {left: '75%'}
 
-export const TextUpdaterNode = memo(() => {
+interface Props {
+    id: string
+    onDelete?: (id: string) => void
+}
+
+export const TextUpdaterNode = memo(({id, onDelete,...rest}:Props,context) => {
+    console.log(rest,'TextUpdaterNode')
+    console.log('context :', context)
     const ref = useRef<any>(null)
+    const onClickHandler = () => {
+        onDelete?.(id)
+    }
     return (
         <div className="text-updater-node">
             <Handle type="target" position={Position.Top}/>
+            <button onClick={onClickHandler}>Delete</button>
             <div>
                 <label htmlFor="text">Text:</label>
                 <input id="text" name="text" ref={ref}/>

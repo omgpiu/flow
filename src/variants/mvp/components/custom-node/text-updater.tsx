@@ -6,7 +6,7 @@ import { LOREM } from "../../../../constants";
 const handleLeftStyle = {left: '25%'};
 const handleRightStyle = {left: '75%'}
 
-export const TextUpdaterNode = memo(({data}: any) => {
+export const TextUpdaterNode = memo(() => {
     const ref = useRef<any>(null)
     return (
         <div className="text-updater-node">

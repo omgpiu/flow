@@ -17,15 +17,12 @@ import { CustomNode, SideBar, TextUpdaterNode } from './components';
 
 import './index.css';
 import { createNodesAndEdges } from "../utils";
+import { InitialEdges, InitialNodes } from "../../constants";
 
-const initialNodes = [
-    {
-        id: '1',
-        type: 'input',
-        data: {label: 'input node'},
-        position: {x: 250, y: 5},
-    },
-];
+interface RenderProps {
+    initialNodes: InitialNodes
+    initialEdges: InitialEdges
+}
 
 const nodeTypes = {
     custom: CustomNode,
@@ -33,13 +30,14 @@ const nodeTypes = {
 };
 
 
-let id = 0;
-const getId = () =>uuidv4();
+const getId = () => uuidv4();
 
-const Render = () => {
+const Render = ({initialNodes, initialEdges}: RenderProps) => {
     //states
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState([]);
+    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+    console.log(edges, 'edges')
+    console.log(nodes, 'nodes')
     const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
     //refs
     const reactFlowWrapper = useRef<any>(null);
@@ -47,7 +45,7 @@ const Render = () => {
     //hooks
     const {project} = useReactFlow();
 
-    const generateNodes = useCallback((x:number,y:number) => {
+    const generateNodes = useCallback((x: number, y: number) => {
         createNodesAndEdges(x, y, setNodes, setEdges)
     }, [])
 
@@ -134,8 +132,8 @@ const Render = () => {
             id: getId(),
             data: { label: 'Added node' },
             position: {
-                x: Math.random()*50 ,
-                y: Math.random()*50 ,
+                x: Math.random() * 50,
+                y: Math.random() * 50,
             },
         };
         console.log(newNode)
@@ -143,38 +141,46 @@ const Render = () => {
     }, [setNodes]);
 
 
+    const saveInitialValues = useCallback(() => {
+        const serizNodes = JSON.stringify(nodes)
+        const serizEdges = JSON.stringify(edges)
+        localStorage.setItem('nodes', serizNodes)
+        localStorage.setItem('edges', serizEdges)
+    }, [nodes, edges])
+
+
     return (
         <div className="dndflow">
-                <SideBar addNode={onAdd} generateNodes={generateNodes}/>
-                <div className="reactflow-wrapper" ref={reactFlowWrapper}>
-                    <ReactFlow
-                        nodes={nodes}
-                        edges={edges}
-                        onNodesChange={onNodesChange}
-                        onEdgesChange={onEdgesChange}
-                        onConnect={onConnect}
-                        onConnectStart={onConnectStart}
-                        onConnectEnd={onConnectEnd}
-                        onInit={setReactFlowInstance}
-                        onDrop={onDrop}
-                        onDragOver={onDragOver}
-                        nodeTypes={nodeTypes}
-                        fitView
-                    >
-                        <Controls/>
-                        <MiniMap/>
-                        <Background/>
-                    </ReactFlow>
-                </div>
+            <SideBar addNode={onAdd} generateNodes={generateNodes} saveInitialValues={saveInitialValues}/>
+            <div className="reactflow-wrapper" ref={reactFlowWrapper}>
+                <ReactFlow
+                    nodes={nodes}
+                    edges={edges}
+                    onNodesChange={onNodesChange}
+                    onEdgesChange={onEdgesChange}
+                    onConnect={onConnect}
+                    onConnectStart={onConnectStart}
+                    onConnectEnd={onConnectEnd}
+                    onInit={setReactFlowInstance}
+                    onDrop={onDrop}
+                    onDragOver={onDragOver}
+                    nodeTypes={nodeTypes}
+                    fitView
+                >
+                    <Controls/>
+                    <MiniMap/>
+                    <Background/>
+                </ReactFlow>
+            </div>
         </div>
     );
 };
 
 
-export function EdgeWithButtonFlow() {
+export function EdgeWithButtonFlow({initialEdges, initialNodes}: RenderProps) {
     return (
         <ReactFlowProvider>
-            <Render/>
+            <Render initialNodes={initialNodes} initialEdges={initialEdges}/>
         </ReactFlowProvider>
     );
 }

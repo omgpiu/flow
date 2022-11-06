@@ -8,7 +8,7 @@ const sourceHandleStyleB: CSSProperties = {
     left: 'auto',
 };
 
-export const CustomNode: FC<NodeProps> = memo(({data, xPos, yPos}) => {
+export const CustomNode: FC<NodeProps> = memo(() => {
     return (
         <div>
             <Handle type="target" position={Position.Top}/>

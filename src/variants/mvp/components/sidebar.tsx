@@ -1,10 +1,17 @@
 import React, { memo, useRef } from 'react';
 
-export const SideBar = memo(({addNode, generateNodes}: any) => {
-    const xNodesAmount = useRef<any>(null)
-    const yNodesAmount = useRef(null)
+interface Props {
+    addNode: () => void
+    generateNodes: (xNodes: number, yNodes: number) => void
+    saveInitialValues: () => void
+}
 
-    const onDragStart = (event: any, nodeType: any) => {
+
+export const SideBar = memo(({addNode, generateNodes, saveInitialValues}: Props) => {
+    const xNodesAmount = useRef<HTMLInputElement | null>(null)
+    const yNodesAmount = useRef<HTMLInputElement | null>(null)
+
+    const onDragStart = (event: React.DragEvent<HTMLDivElement>, nodeType: string) => {
         event.dataTransfer.setData('application/reactflow', nodeType);
         event.dataTransfer.effectAllowed = 'move';
     };
@@ -41,6 +48,7 @@ export const SideBar = memo(({addNode, generateNodes}: any) => {
             <input type="number" ref={xNodesAmount} min={1} placeholder={'10'}/>
             <p>yNodesAmount</p>
             <input type="number" ref={yNodesAmount} min={1} placeholder={'10'}/>
+            <button style={{marginTop: '10px'}} onClick={saveInitialValues}>Save initial values</button>
         </aside>
     );
 })

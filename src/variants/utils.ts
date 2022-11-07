@@ -1,3 +1,5 @@
+import { LOREM } from "../constants";
+
 export function createNodesAndEdges(xNodes = 5, yNodes = 5, setNodes?: any, setEdges?: any) {
     const nodes: { id: string; style: { width: number; fontSize: number; }; data: { label: string; }; position: { x: number; y: number; }; }[] = [];
     const edges: { id: string; source: string; target: string; }[] = [];
@@ -6,13 +8,14 @@ export function createNodesAndEdges(xNodes = 5, yNodes = 5, setNodes?: any, setE
 
     for (let y = 0; y < yNodes; y++) {
         for (let x = 0; x < xNodes; x++) {
-            const position = {x: x * 100, y: y * 50};
-            const data = {label: `Node ${nodeId}`};
+            const position = {x: x * 1000, y: y * 500};
+            const data = {label: LOREM};
             const node = {
                 id: `stress-${nodeId.toString()}`,
-                style: {width: 50, fontSize: 11},
+                style: {width: 300, fontSize: 11},
                 data,
                 position,
+                type: 'custom'
             };
             nodes.push(node);
 

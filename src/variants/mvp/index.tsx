@@ -147,15 +147,6 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
         localStorage.setItem('edges', serizEdges)
     }, [nodes, edges])
 
-    const deleteNodeById = useCallback((data:any) => {
-        console.log(data)
-        setNodes(nds => nds.filter(node => node.id !== data.id));
-    },[]);
-
-
-
-
-
     return (
         <div className="dndflow">
             <SideBar addNode={onAdd} generateNodes={generateNodes} saveInitialValues={saveInitialValues}/>

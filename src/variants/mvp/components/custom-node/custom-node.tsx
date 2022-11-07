@@ -1,6 +1,7 @@
 import React, { CSSProperties, memo } from 'react';
 import { Handle, Position, useReactFlow } from 'reactflow';
 import { LOREM } from "../../../../constants";
+import { waterWebp } from "../../../../assets";
 
 const sourceHandleStyleA: CSSProperties = {left: 40};
 const sourceHandleStyleB: CSSProperties = {
@@ -26,6 +27,7 @@ export const CustomNode = memo(({id}: Props) => {
             <div>
                 {LOREM}
             </div>
+            <img src={waterWebp} alt='water' width={180} height={120}/>
             <Handle
                 type="source"
                 position={Position.Bottom}

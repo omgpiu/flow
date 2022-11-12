@@ -36,6 +36,7 @@ export const FinishNode = memo(({id}: Props,) => {
                             onChange={e => handleAddrTypeChange(e)}
                     >
                         {OPTIONS.map(value => <option
+                            selected={value === message}
                             key={value}
                             value={value}
                         >{value}</option>)}

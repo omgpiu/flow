@@ -19,6 +19,7 @@ import './index.css';
 import { createNodesAndEdges } from "../utils";
 import { InitialEdges, InitialNodes } from "../../constants";
 import { FinishNode } from "./components/nodes";
+import { NoteNode } from "./components/nodes/note/note";
 
 interface RenderProps {
     initialNodes: InitialNodes
@@ -28,7 +29,10 @@ interface RenderProps {
 const nodeTypes = {
     [Nodes.CUSTOM_NODE]: CustomNode,
     [Nodes.TEXT_UPDATER]: TextUpdaterNode,
-    [Nodes.FINISH_NODE]: FinishNode
+    [Nodes.FINISH_NODE]: FinishNode,
+    [Nodes.NOTE_NODE]: NoteNode,
+
+
 };
 
 

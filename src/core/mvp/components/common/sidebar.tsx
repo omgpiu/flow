@@ -40,8 +40,8 @@ export const SideBar = memo(({addNode, generateNodes, saveInitialValues}: Props)
             {/*<div className="dndnode output" onDragStart={(event) => onDragStart(event, Nodes.OUTPUT)} draggable>*/}
             {/*    Output Node*/}
             {/*</div>*/}
-            <div className="dndnode message" onDragStart={(event) => onDragStart(event, Nodes.CUSTOM_NODE)} draggable>
-                Сообщение
+            <div className="dndnode note" onDragStart={(event) => onDragStart(event, Nodes.NOTE_NODE)} draggable>
+                Заметка
             </div>
             <div className="dndnode finish" onDragStart={(event) => onDragStart(event, Nodes.FINISH_NODE)} draggable>
                 Завершение

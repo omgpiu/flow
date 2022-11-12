@@ -1,7 +1,7 @@
 import React from 'react';
 import { getBezierPath } from 'reactflow';
 
-import '../index.css';
+import '../../index.css';
 
 const foreignObjectSize = 40;
 

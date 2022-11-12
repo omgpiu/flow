@@ -1,0 +1,9 @@
+.modalContent {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+}
+
+.modalContent input {
+    margin: 10px;
+}

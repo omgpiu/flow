@@ -8,7 +8,7 @@ import ReactFlow, {
     Background,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
-import { createNodesAndEdges } from "../utils";
+import { createNodesAndEdges } from "../../core/utils";
 
 
 const { nodes: initialNodes, edges: initialEdges } = createNodesAndEdges(15, 15);

@@ -40,7 +40,7 @@
 
 .react-flow .react-flow__node {
     /*height: 50px;*/
-    /*width: 150px;*/
+    width: 420px;
     justify-content: center;
     align-items: center;
     display: flex;
@@ -53,7 +53,7 @@
     stroke-width: 2;
 }
 
-.wrapper {
+.header {
     flex-grow: 1;
     height: 100%;
 }

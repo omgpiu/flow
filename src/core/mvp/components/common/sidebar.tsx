@@ -1,4 +1,5 @@
 import React, { memo, useRef } from 'react';
+import { Nodes } from "../types";
 
 interface Props {
     addNode: () => void
@@ -27,20 +28,23 @@ export const SideBar = memo(({addNode, generateNodes, saveInitialValues}: Props)
     return (
         <aside>
             <div className="description">You can drag these nodes to the pane on the right.</div>
-            <div className="dndnode input" onDragStart={(event) => onDragStart(event, 'input')} draggable>
+            <div className="dndnode input" onDragStart={(event) => onDragStart(event, Nodes.INPUT)} draggable>
                 Input Node
             </div>
-            <div className="dndnode" onDragStart={(event) => onDragStart(event, 'default')} draggable>
+            <div className="dndnode" onDragStart={(event) => onDragStart(event, Nodes.DEFAULT)} draggable>
                 Default Node
             </div>
-            <div className="dndnode custom" onDragStart={(event) => onDragStart(event, 'custom')} draggable>
+            <div className="dndnode custom" onDragStart={(event) => onDragStart(event, Nodes.CUSTOM_NODE)} draggable>
                 Custom Node
             </div>
-            <div className="dndnode output" onDragStart={(event) => onDragStart(event, 'output')} draggable>
+            <div className="dndnode output" onDragStart={(event) => onDragStart(event, Nodes.OUTPUT)} draggable>
                 Output Node
             </div>
-            <div className="dndnode output" onDragStart={(event) => onDragStart(event, 'textUpdater')} draggable>
+            <div className="dndnode output" onDragStart={(event) => onDragStart(event, Nodes.TEXT_UPDATER)} draggable>
                 TextUpdater
+            </div>
+            <div className="dndnode output" onDragStart={(event) => onDragStart(event, Nodes.FINISH_NODE)} draggable>
+                Завершение
             </div>
             <button onClick={addNode}>Add Node</button>
             <button style={{marginLeft: '10px'}} onClick={genNodes}>Generate nodes</button>

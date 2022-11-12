@@ -30,7 +30,7 @@ export const FinishNode = memo(({id}: Props,) => {
                 <div className={style.modalContent}>
                     Контекст
                     <select name="variants" id="variants">
-                        {options.map(el=> <option value={el.value}>{el.label}</option>)}
+                        {options.map(el => <option key={el.value} value={el.value}>{el.label}</option>)}
                     </select>
                     <input type='text'/>
                 </div>

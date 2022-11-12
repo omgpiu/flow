@@ -1,9 +1,10 @@
-.modalContent {
+.innerModal {
     display: flex;
     padding: 10px;
     flex-direction: column;
+    font-weight: bold;
 }
 
-.modalContent input {
-    margin: 10px;
+.innerModal *{
+    margin-bottom: 5px;
 }

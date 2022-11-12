@@ -6,9 +6,10 @@ interface HeaderProps {
     onClick: () => void
     title: string
     children?: ReactNode
+    onSave?: () => void
 }
 
-export const Header = ({onClick, title, children}: HeaderProps) => {
+export const Header = ({onClick, title, children, onSave}: HeaderProps) => {
     const [isOpen, setIsOpen] = useState(false);
     return <div className={style.header}>
         <p>{title}</p>
@@ -17,7 +18,7 @@ export const Header = ({onClick, title, children}: HeaderProps) => {
             className={style.btn}
             onClick={onClick}>Delete
         </button>
-        <Modal handleClose={() => setIsOpen(false)} isOpen={isOpen}>
+        <Modal onSave={onSave} handleClose={() => setIsOpen(false)} isOpen={isOpen}>
             {children}
         </Modal>
     </div>

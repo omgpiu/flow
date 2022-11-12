@@ -28,22 +28,22 @@ export const SideBar = memo(({addNode, generateNodes, saveInitialValues}: Props)
     return (
         <aside>
             <div className="description">You can drag these nodes to the pane on the right.</div>
-            <div className="dndnode input" onDragStart={(event) => onDragStart(event, Nodes.INPUT)} draggable>
-                Input Node
+            {/*<div className="dndnode input" onDragStart={(event) => onDragStart(event, Nodes.INPUT)} draggable>*/}
+            {/*    Input Node*/}
+            {/*</div>*/}
+            {/*<div className="dndnode" onDragStart={(event) => onDragStart(event, Nodes.DEFAULT)} draggable>*/}
+            {/*    Default Node*/}
+            {/*</div>*/}
+            {/*<div className="dndnode custom" onDragStart={(event) => onDragStart(event, Nodes.CUSTOM_NODE)} draggable>*/}
+            {/*    Custom Node*/}
+            {/*</div>*/}
+            {/*<div className="dndnode output" onDragStart={(event) => onDragStart(event, Nodes.OUTPUT)} draggable>*/}
+            {/*    Output Node*/}
+            {/*</div>*/}
+            <div className="dndnode message" onDragStart={(event) => onDragStart(event, Nodes.CUSTOM_NODE)} draggable>
+                Сообщение
             </div>
-            <div className="dndnode" onDragStart={(event) => onDragStart(event, Nodes.DEFAULT)} draggable>
-                Default Node
-            </div>
-            <div className="dndnode custom" onDragStart={(event) => onDragStart(event, Nodes.CUSTOM_NODE)} draggable>
-                Custom Node
-            </div>
-            <div className="dndnode output" onDragStart={(event) => onDragStart(event, Nodes.OUTPUT)} draggable>
-                Output Node
-            </div>
-            <div className="dndnode output" onDragStart={(event) => onDragStart(event, Nodes.TEXT_UPDATER)} draggable>
-                TextUpdater
-            </div>
-            <div className="dndnode output" onDragStart={(event) => onDragStart(event, Nodes.FINISH_NODE)} draggable>
+            <div className="dndnode finish" onDragStart={(event) => onDragStart(event, Nodes.FINISH_NODE)} draggable>
                 Завершение
             </div>
             <button onClick={addNode}>Add Node</button>

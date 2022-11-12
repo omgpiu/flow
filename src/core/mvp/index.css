@@ -45,7 +45,6 @@
     align-items: center;
     display: flex;
     border-width: 2px;
-    font-weight: 700;
 }
 
 .react-flow .react-flow__edge path,
@@ -89,8 +88,12 @@
     cursor: grab;
 }
 
-.dndflow .dndnode.input {
-    border-color: #0041d0;
+.dndflow .dndnode.message {
+    border-color: aqua;
+}
+
+.dndflow .dndnode.finish {
+    border-color: blueviolet;
 }
 
 .dndflow .dndnode.output {

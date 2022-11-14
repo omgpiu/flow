@@ -12,7 +12,7 @@ const WITH_NEW_REQUEST = OPTIONS[3]
 
 export const FinishNode = memo(({id}: Props) => {
 
-    const {deleteElements, getNode, setNodes} = useReactFlow();
+    const { getNode, setNodes} = useReactFlow();
     //@ts-ignore
     const value = getNode(id)?.payload?.value
     //@ts-ignore
@@ -40,15 +40,13 @@ export const FinishNode = memo(({id}: Props) => {
         );
     }
 
-    const deleteNode = () => {
-        deleteElements({nodes: [getNode(id)!]})
-    }
+
     const onChangeHandler = (e: any) => setMessage(e.target.value)
 
     return (
         <Container>
             <Handle type="target" position={Position.Top}/>
-            <Header onClick={deleteNode} title='Завершение' onSave={onSave}>
+            <Header nodeId={id} title='Завершение' onSave={onSave}>
                 <div className={style.innerModal}>
                     <span>Контекст</span>
                     <select name="variants" id="variants"

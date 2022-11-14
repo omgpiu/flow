@@ -39,14 +39,16 @@ export const FinishNode = memo(({id}: Props) => {
             })
         );
     }
-
+    const onDelete = () => {
+        deleteElements({nodes: [getNode(id)!]})
+    }
 
     const onChangeHandler = (e: any) => setMessage(e.target.value)
 
     return (
         <Container>
             <Handle type="target" position={Position.Top}/>
-            <Header nodeId={id} title='Завершение' onSave={onSave}>
+            <Header onDelete={onDelete} title='Завершение' onSave={onSave}>
                 <div className={style.innerModal}>
                     <span>Контекст</span>
                     <select name="variants" id="variants"

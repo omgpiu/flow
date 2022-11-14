@@ -6,15 +6,12 @@ interface HeaderProps {
     title: string
     children?: ReactNode
     onSave: () => void | undefined
-    nodeId: string
     onDelete: () => void
 }
 
 export const Header = ({title, children, onSave, onDelete}: HeaderProps) => {
 
-
     const [isOpen, setIsOpen] = useState(false);
-
 
     return <div className={style.header}>
         <p>{title}</p>

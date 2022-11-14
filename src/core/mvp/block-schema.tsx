@@ -18,7 +18,7 @@ import { Nodes, SideBar } from './components';
 import './block-chema.css';
 import { createNodesAndEdges } from "../utils";
 import { InitialEdges, InitialNodes } from "../../constants";
-import { CommentNode, FinishNode, JavascriptNode, MessageNode, NoteNode } from "./components/nodes";
+import { CommentNode, FinishNode, JavascriptNode, MessageNode, NoteNode, QuestionNode } from "./components/nodes";
 
 
 interface RenderProps {
@@ -33,6 +33,7 @@ const NODE_TYPES = {
     [Nodes.MESSAGE_NODE]: MessageNode,
     [Nodes.JAVASCRIPT_NODE]: JavascriptNode,
     [Nodes.COMMENT_NODE]: CommentNode,
+    [Nodes.QUESTION_NODE]:QuestionNode
 
 
 };

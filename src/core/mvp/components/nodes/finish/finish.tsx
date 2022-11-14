@@ -12,7 +12,7 @@ const WITH_NEW_REQUEST = OPTIONS[3]
 
 export const FinishNode = memo(({id}: Props) => {
 
-    const { getNode, setNodes} = useReactFlow();
+    const {deleteElements, getNode, setNodes} = useReactFlow();
     //@ts-ignore
     const value = getNode(id)?.payload?.value
     //@ts-ignore

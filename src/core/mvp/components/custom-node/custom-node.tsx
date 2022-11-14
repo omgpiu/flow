@@ -16,14 +16,15 @@ interface Props {
 export const CustomNode = memo(({id}: Props) => {
     //@ts-ignore
     const {deleteElements, getNode} = useReactFlow();
-    const onClickHandler = () => {
+
+    const onDelete = () => {
         deleteElements({nodes: [getNode(id)!]})
     }
 
     return (
         <div>
             <Handle type="target" position={Position.Top}/>
-            <button onClick={onClickHandler}>Delete</button>
+            <button onClick={onDelete}>Delete</button>
             <div>
                 {LOREM}
             </div>

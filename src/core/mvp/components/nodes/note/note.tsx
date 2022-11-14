@@ -9,14 +9,11 @@ interface Props {
 
 
 export const NoteNode = memo(({id}: Props) => {
-
-    const { getNode, setNodes} = useReactFlow();
+    const {deleteElements, getNode, setNodes} = useReactFlow();
     //@ts-ignore
     const value = getNode(id)?.payload?.value
-
     const [message, setMessage] = useState<any>(value);
     const inputRef = useRef<any>(null)
-
     const onSave = () => {
         setNodes((nds) =>
             nds.map((node: any) => {
@@ -36,10 +33,14 @@ export const NoteNode = memo(({id}: Props) => {
         setMessage(inputRef.current.value)
     }
 
+    const deleteNode = () => {
+        deleteElements({nodes: [getNode(id)!]})
+    }
+
     return (
         <Container>
             <Handle type="target" position={Position.Top}/>
-            <Header nodeId={id} title='Заметка' onSave={onSave}>
+            <Header onDelete={deleteNode} title='Заметка' onSave={onSave}>
                 <div className={style.innerModal}>
                     <span>Текст заметки</span>
                     <input type='text' ref={inputRef}/>

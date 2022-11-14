@@ -13,24 +13,26 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 import { v4 as uuidv4 } from 'uuid';
 
-import { CustomNode, Nodes, SideBar, TextUpdaterNode } from './components';
+import { Nodes, SideBar } from './components';
 
-import './index.css';
+import './block-chema.css';
 import { createNodesAndEdges } from "../utils";
 import { InitialEdges, InitialNodes } from "../../constants";
-import { FinishNode } from "./components/nodes";
-import { NoteNode } from "./components/nodes/note/note";
+import { CommentNode, FinishNode, JavascriptNode, MessageNode, NoteNode } from "./components/nodes";
+
 
 interface RenderProps {
     initialNodes: InitialNodes
     initialEdges: InitialEdges
 }
 
-const nodeTypes = {
-    [Nodes.CUSTOM_NODE]: CustomNode,
-    [Nodes.TEXT_UPDATER]: TextUpdaterNode,
+
+const NODE_TYPES = {
     [Nodes.FINISH_NODE]: FinishNode,
     [Nodes.NOTE_NODE]: NoteNode,
+    [Nodes.MESSAGE_NODE]: MessageNode,
+    [Nodes.JAVASCRIPT_NODE]: JavascriptNode,
+    [Nodes.COMMENT_NODE]: CommentNode,
 
 
 };
@@ -170,7 +172,7 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
                     onInit={setReactFlowInstance}
                     onDrop={onDrop}
                     onDragOver={onDragOver}
-                    nodeTypes={nodeTypes}
+                    nodeTypes={NODE_TYPES}
                     fitView
                 >
                     <Controls/>
@@ -183,7 +185,7 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
 };
 
 
-export function EdgeWithButtonFlow({initialEdges, initialNodes}: RenderProps) {
+export function BlockSchema({initialEdges, initialNodes}: RenderProps) {
     return (
         <ReactFlowProvider>
             <Render initialNodes={initialNodes} initialEdges={initialEdges}/>

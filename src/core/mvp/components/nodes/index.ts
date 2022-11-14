@@ -1,1 +1,5 @@
-export {FinishNode} from './finish/finish'
+export { FinishNode } from './finish/finish'
+export { MessageNode } from './message/message'
+export { CommentNode } from './comment/comment'
+export { JavascriptNode } from './javascript/javascript'
+export { NoteNode } from './note/note'

@@ -1,7 +1,7 @@
 import React from 'react';
 import { getBezierPath } from 'reactflow';
 
-import '../../index.css';
+import '../../block-chema.css';
 
 const foreignObjectSize = 40;
 

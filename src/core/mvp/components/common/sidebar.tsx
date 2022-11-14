@@ -1,5 +1,5 @@
 import React, { memo, useRef } from 'react';
-import { Nodes } from "../types";
+import { Nodes, NODES_NAME } from "../types";
 
 interface Props {
     addNode: () => void
@@ -28,23 +28,21 @@ export const SideBar = memo(({addNode, generateNodes, saveInitialValues}: Props)
     return (
         <aside>
             <div className="description">You can drag these nodes to the pane on the right.</div>
-            {/*<div className="dndnode input" onDragStart={(event) => onDragStart(event, Nodes.INPUT)} draggable>*/}
-            {/*    Input Node*/}
-            {/*</div>*/}
-            {/*<div className="dndnode" onDragStart={(event) => onDragStart(event, Nodes.DEFAULT)} draggable>*/}
-            {/*    Default Node*/}
-            {/*</div>*/}
-            {/*<div className="dndnode custom" onDragStart={(event) => onDragStart(event, Nodes.CUSTOM_NODE)} draggable>*/}
-            {/*    Custom Node*/}
-            {/*</div>*/}
-            {/*<div className="dndnode output" onDragStart={(event) => onDragStart(event, Nodes.OUTPUT)} draggable>*/}
-            {/*    Output Node*/}
-            {/*</div>*/}
+            <div className="dndnode note" onDragStart={(event) => onDragStart(event, Nodes.MESSAGE_NODE)} draggable>
+                {NODES_NAME[Nodes.MESSAGE_NODE]}
+            </div>
+            <div className="dndnode note" onDragStart={(event) => onDragStart(event, Nodes.JAVASCRIPT_NODE)} draggable>
+                Javascript
+                {NODES_NAME[Nodes.JAVASCRIPT_NODE]}
+            </div>
+            <div className="dndnode note" onDragStart={(event) => onDragStart(event, Nodes.COMMENT_NODE)} draggable>
+                {NODES_NAME[Nodes.COMMENT_NODE]}
+            </div>
             <div className="dndnode note" onDragStart={(event) => onDragStart(event, Nodes.NOTE_NODE)} draggable>
-                Заметка
+                {NODES_NAME[Nodes.NOTE_NODE]}
             </div>
             <div className="dndnode finish" onDragStart={(event) => onDragStart(event, Nodes.FINISH_NODE)} draggable>
-                Завершение
+                {NODES_NAME[Nodes.FINISH_NODE]}
             </div>
             <button onClick={addNode}>Add Node</button>
             <button style={{marginLeft: '10px'}} onClick={genNodes}>Generate nodes</button>

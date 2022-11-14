@@ -2,6 +2,7 @@ import { memo, useRef, useState } from 'react';
 import { Handle, Position, useReactFlow } from 'reactflow';
 import { Body, Container, Header } from "../../common";
 import style from './styles.module.css'
+import { Nodes, NODES_NAME } from "../../types";
 
 interface Props {
     id: string
@@ -48,7 +49,7 @@ export const FinishNode = memo(({id}: Props) => {
     return (
         <Container>
             <Handle type="target" position={Position.Top}/>
-            <Header onDelete={onDelete} title='Завершение' onSave={onSave}>
+            <Header onDelete={onDelete} title={NODES_NAME[Nodes.FINISH_NODE]} onSave={onSave}>
                 <div className={style.innerModal}>
                     <span>Контекст</span>
                     <select name="variants" id="variants"

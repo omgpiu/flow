@@ -1,37 +1,59 @@
-import { memo, useRef } from 'react';
-import { Handle, Position, useReactFlow } from 'reactflow';
-import './styles.css'
-import { LOREM } from "../../../../../constants";
-
-const handleLeftStyle = {left: '25%'};
-const handleRightStyle = {left: '75%'}
+import { memo, useRef, useState } from "react";
+import { Handle, Position, useReactFlow } from "reactflow";
+import { Body, Container, Header } from "../../common";
+import style from "./styles.module.css";
+import { Nodes, NODES_NAME } from "../../types";
 
 interface Props {
     id: string
 }
 
-export const CommentNode = memo(({id}: Props,) => {
 
-    const ref = useRef<any>(null)
+export const CommentNode = memo(({id}: Props) => {
+    const {deleteElements, getNode, setNodes} = useReactFlow();
     //@ts-ignore
-    const {deleteElements, getNode} = useReactFlow();
-    const onClickHandler = () => {
+    const value = getNode(id)?.payload?.value
+    const [message, setMessage] = useState<any>(value);
+    const inputRef = useRef<any>(null)
+    const onSave = () => {
+        setNodes((nds) =>
+            nds.map((node: any) => {
+                if (node.id === id) {
+                    //@ts-ignore
+                    return {
+                        ...node,
+                        payload: {
+                            ...node.payload,
+                            value: inputRef.current.value,
+                        }
+                    }
+                }
+                return node;
+            })
+        );
+        setMessage(inputRef.current.value)
+    }
+
+    const deleteNode = () => {
         deleteElements({nodes: [getNode(id)!]})
     }
+
     return (
-        <div className="text-updater-node">
+        <Container>
             <Handle type="target" position={Position.Top}/>
-            <button onClick={onClickHandler}>Delete</button>
-            <div>
-                <label htmlFor="text">Text:</label>
-                <input id="text" name="text" ref={ref}/>
-            </div>
-            <hr/>
-            <p>
-                {LOREM}
-            </p>
-            <Handle type="source" position={Position.Bottom} id="a" style={handleLeftStyle}/>
-            <Handle type="source" position={Position.Bottom} id="b" style={handleRightStyle}/>
-        </div>
+            <Header onDelete={deleteNode} title={NODES_NAME[Nodes.COMMENT_NODE]} onSave={onSave}>
+                <div className={style.innerModal}>
+                    <span>Текст заметки</span>
+                    <input type='text' ref={inputRef}/>
+                </div>
+            </Header>
+            <Body>
+                <span>
+                    {message}
+                </span>
+            </Body>
+            <Handle type="source" position={Position.Bottom}/>
+        </Container>
+
     );
 })

@@ -88,6 +88,10 @@
     cursor: grab;
 }
 
+.dndflow .dndnode.tag {
+    border-color: green;
+}
+
 .dndflow .dndnode.note {
     border-color: aqua;
 }

@@ -28,6 +28,9 @@ export const SideBar = memo(({addNode, generateNodes, saveInitialValues}: Props)
     return (
         <aside>
             <div className="description">You can drag these nodes to the pane on the right.</div>
+            <div className="dndnode tag" onDragStart={(event) => onDragStart(event, Nodes.TAG_NODE)} draggable>
+                {NODES_NAME[Nodes.TAG_NODE]}
+            </div>
             <div className="dndnode question" onDragStart={(event) => onDragStart(event, Nodes.QUESTION_NODE)} draggable>
                 {NODES_NAME[Nodes.QUESTION_NODE]}
             </div>

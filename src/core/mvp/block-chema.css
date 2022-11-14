@@ -97,8 +97,21 @@
 }
 
 .dndflow .dndnode.output {
-    border-color: #ff0072;
+    border-color: red;
 }
+
+.dndflow .dndnode.message {
+    border-color: green;
+}
+
+.dndflow .dndnode.javascript {
+    border-color: goldenrod;
+}
+
+.dndflow .dndnode.comment {
+    border-color: deeppink;
+}
+
 
 .dndflow .reactflow-wrapper {
     flex-grow: 1;

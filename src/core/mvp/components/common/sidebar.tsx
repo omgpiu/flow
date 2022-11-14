@@ -28,14 +28,13 @@ export const SideBar = memo(({addNode, generateNodes, saveInitialValues}: Props)
     return (
         <aside>
             <div className="description">You can drag these nodes to the pane on the right.</div>
-            <div className="dndnode note" onDragStart={(event) => onDragStart(event, Nodes.MESSAGE_NODE)} draggable>
+            <div className="dndnode message" onDragStart={(event) => onDragStart(event, Nodes.MESSAGE_NODE)} draggable>
                 {NODES_NAME[Nodes.MESSAGE_NODE]}
             </div>
-            <div className="dndnode note" onDragStart={(event) => onDragStart(event, Nodes.JAVASCRIPT_NODE)} draggable>
-                Javascript
+            <div className="dndnode javascript" onDragStart={(event) => onDragStart(event, Nodes.JAVASCRIPT_NODE)} draggable>
                 {NODES_NAME[Nodes.JAVASCRIPT_NODE]}
             </div>
-            <div className="dndnode note" onDragStart={(event) => onDragStart(event, Nodes.COMMENT_NODE)} draggable>
+            <div className="dndnode comment" onDragStart={(event) => onDragStart(event, Nodes.COMMENT_NODE)} draggable>
                 {NODES_NAME[Nodes.COMMENT_NODE]}
             </div>
             <div className="dndnode note" onDragStart={(event) => onDragStart(event, Nodes.NOTE_NODE)} draggable>

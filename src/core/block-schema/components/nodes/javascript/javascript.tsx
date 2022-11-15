@@ -1,7 +1,7 @@
 import { memo, useRef, useState } from "react";
 import { Handle, Position, useReactFlow } from "reactflow";
 import { Body, Container, Header } from "../../common";
-import style from "../finish/styles.module.css";
+import style from "./styles.module.css";
 import { Nodes, NODES_NAME } from "../../types";
 
 interface Props {
@@ -9,12 +9,19 @@ interface Props {
 }
 
 
-export const TagNode = memo(({ id }: Props) => {
+export const JavascriptNode = memo(({id}: Props) => {
     const { deleteElements, getNode, setNodes } = useReactFlow();
+    console.log(getNode(id), 'getNode')
     //@ts-ignore
-    const value = getNode(id)?.payload?.value
-    const [message, setMessage] = useState<any>(value);
-    const inputRef = useRef<any>(null)
+    const value = getNode(id)?.payload?.javascript
+    //@ts-ignore
+    const rows = getNode(id)?.payload?.rows
+    //@ts-ignore
+    const [rowsAmount, setRowsAmount] = useState<any>(rows);
+    const [message, setMessage] = useState<any>(value)
+
+    const textArea = useRef<any>(null)
+
     const onSave = () => {
         setNodes((nds) =>
             nds.map((node: any) => {
@@ -24,32 +31,36 @@ export const TagNode = memo(({ id }: Props) => {
                         ...node,
                         payload: {
                             ...node.payload,
-                            value: inputRef.current.value,
+                            javascript: textArea.current.value,
+                            rows: textArea.current.value.split(/\r\n|\r|\n/).length,
                         }
                     }
                 }
                 return node;
             })
         );
-        setMessage(inputRef.current.value)
+
+        setRowsAmount(textArea.current.value.split(/\r\n|\r|\n/).length)
+        setMessage(textArea.current.value)
     }
 
     const deleteNode = () => {
-        deleteElements({ nodes: [getNode(id)!] })
+        deleteElements({nodes: [getNode(id)!]})
     }
 
     return (
         <Container>
             <Handle type="target" position={Position.Top}/>
-            <Header onDelete={deleteNode} title={NODES_NAME[Nodes.TAG_NODE]} onSave={onSave}>
+            <Header onDelete={deleteNode} title={NODES_NAME[Nodes.JAVASCRIPT_NODE]} onSave={onSave}
+                    modalClassName={style.container}>
                 <div className={style.innerModal}>
-                    <span>Метка</span>
-                    <input type='text' ref={inputRef}/>
+                    <span>Javascript</span>
+                    <textarea ref={textArea} defaultValue={message} rows={15}/>
                 </div>
             </Header>
             <Body>
                 <span>
-                    {message}
+                    {rowsAmount}
                 </span>
             </Body>
             <Handle type="source" position={Position.Bottom}/>

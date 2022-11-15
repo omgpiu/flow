@@ -3,8 +3,13 @@
     padding: 10px;
     flex-direction: column;
     font-weight: bold;
+    width: 100%;
 }
 
-.innerModal *{
+.innerModal * {
     margin-bottom: 5px;
+}
+
+.container {
+    height:500px;
 }

@@ -13,21 +13,22 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Nodes, SideBar } from './components';
-
-import './block-chema.css';
-import { createNodesAndEdges } from "../utils";
-import { InitialEdges, InitialNodes } from "../../constants";
 import {
     CommentNode,
     FinishNode,
     GetFileNode,
     JavascriptNode,
     MessageNode,
+    Nodes,
     NoteNode,
     QuestionNode,
+    SideBar,
     TagNode
-} from "./components/nodes";
+} from './components';
+
+import './block-chema.css';
+import { createNodesAndEdges } from "../utils";
+import { InitialEdges, InitialNodes } from "../../constants";
 
 
 interface RenderProps {
@@ -84,7 +85,6 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
     const onConnectEnd = useCallback(
         (event: any) => {
             const targetIsPane = event.target.classList.contains('react-flow__pane');
-            console.log('targetIsPane :', targetIsPane)
             if (targetIsPane) {
                 // we need to remove the wrapper bounds, in order to get the correct position
                 const {top, left} = reactFlowWrapper.current.getBoundingClientRect();
@@ -95,7 +95,7 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
                     position: project({x: event.clientX - left, y: event.clientY - top}),
                     data: {label: `Node ${id}`},
                 };
-                console.log('connectingNodeId :', connectingNodeId)
+
                 setNodes((nds) => nds.concat(newNode));
                 setEdges((eds) => eds.concat({id, source: connectingNodeId.current, target: id}));
             }
@@ -156,7 +156,7 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
                 y: Math.random() * 50,
             },
         };
-        console.log(newNode)
+
         setNodes((nds) => nds.concat(newNode));
     }, [setNodes]);
 
@@ -173,7 +173,6 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
             <SideBar addNode={onAdd} generateNodes={generateNodes} saveInitialValues={saveInitialValues}/>
             <div className="reactflow-wrapper" ref={reactFlowWrapper}>
                 <ReactFlow
-                    onNodeClick={(ele: any) => console.log(ele)}
                     nodes={nodes}
                     edges={edges}
                     onNodesChange={onNodesChange}
@@ -188,7 +187,7 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
                     fitView
                 >
                     <Controls/>
-                    <MiniMap/>
+                    <MiniMap/>f
                     <Background/>
                 </ReactFlow>
             </div>

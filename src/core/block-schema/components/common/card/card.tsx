@@ -7,9 +7,10 @@ interface HeaderProps {
     children?: ReactNode
     onSave: () => void | undefined
     onDelete: () => void
+    modalClassName?: string
 }
 
-export const Header = ({title, children, onSave, onDelete}: HeaderProps) => {
+export const Header = ({ title, children, onSave, onDelete, modalClassName }: HeaderProps) => {
 
     const [isOpen, setIsOpen] = useState(false);
 
@@ -20,7 +21,9 @@ export const Header = ({title, children, onSave, onDelete}: HeaderProps) => {
             className={style.btn}
             onClick={onDelete}>Delete
         </button>
-        <Modal onSave={onSave} handleClose={() => setIsOpen(false)} isOpen={isOpen}>
+        <Modal onSave={onSave} handleClose={() => setIsOpen(false)} isOpen={isOpen}
+        className={modalClassName}
+        >
             {children}
         </Modal>
     </div>

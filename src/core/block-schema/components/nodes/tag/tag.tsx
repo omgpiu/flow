@@ -1,7 +1,7 @@
 import { memo, useRef, useState } from "react";
 import { Handle, Position, useReactFlow } from "reactflow";
 import { Body, Container, Header } from "../../common";
-import style from "./styles.module.css";
+import style from "../finish/styles.module.css";
 import { Nodes, NODES_NAME } from "../../types";
 
 interface Props {
@@ -9,12 +9,15 @@ interface Props {
 }
 
 
-export const JavascriptNode = memo(({id}: Props) => {
-    const {deleteElements, getNode, setNodes} = useReactFlow();
+export const TagNode = memo(({ id }: Props) => {
+    const { deleteElements, getNode, setNodes } = useReactFlow();
     //@ts-ignore
     const value = getNode(id)?.payload?.value
+
     const [message, setMessage] = useState<any>(value);
+
     const inputRef = useRef<any>(null)
+
     const onSave = () => {
         setNodes((nds) =>
             nds.map((node: any) => {
@@ -35,15 +38,15 @@ export const JavascriptNode = memo(({id}: Props) => {
     }
 
     const deleteNode = () => {
-        deleteElements({nodes: [getNode(id)!]})
+        deleteElements({ nodes: [getNode(id)!] })
     }
 
     return (
         <Container>
             <Handle type="target" position={Position.Top}/>
-            <Header onDelete={deleteNode} title={NODES_NAME[Nodes.JAVASCRIPT_NODE]} onSave={onSave}>
+            <Header onDelete={deleteNode} title={NODES_NAME[Nodes.TAG_NODE]} onSave={onSave}>
                 <div className={style.innerModal}>
-                    <span>Текст заметки</span>
+                    <span>Метка</span>
                     <input type='text' ref={inputRef}/>
                 </div>
             </Header>

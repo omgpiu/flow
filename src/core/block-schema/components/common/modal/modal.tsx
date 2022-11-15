@@ -1,15 +1,17 @@
 import style from './style.module.css'
 import { ReactNode, useEffect } from "react";
 import { Portal } from "./portal";
+import clsx from "clsx";
 
 interface Props {
     isOpen: boolean
     handleClose: () => void
     onSave?: () => void
     children: ReactNode
+    className?: string
 }
 
-export const Modal = ({children, isOpen, handleClose, onSave}: Props) => {
+export const Modal = ({ children, isOpen, handleClose, onSave, className }: Props) => {
     useEffect(() => {
         const closeOnEscapeKey = (e: any) => e.key === "Escape" ? handleClose() : null;
         document.body.addEventListener("keydown", closeOnEscapeKey);
@@ -22,7 +24,7 @@ export const Modal = ({children, isOpen, handleClose, onSave}: Props) => {
 
     return (
         <Portal wrapperId="react-portal-modal-container">
-            <div className={style.modal}>
+            <div className={clsx(style.modal, className)}>
                 <div className={style.modalHeader}>
                     <div></div>
                     <button onClick={handleClose}>Close me</button>

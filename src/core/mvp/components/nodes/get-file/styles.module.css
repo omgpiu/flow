@@ -1,0 +1,14 @@
+.innerModal {
+    display: flex;
+    padding: 10px;
+    flex-direction: column;
+    font-weight: bold;
+}
+
+.innerModal * {
+    margin-bottom: 5px;
+}
+
+.innerModal textarea {
+    resize: none;
+}

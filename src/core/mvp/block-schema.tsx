@@ -21,6 +21,7 @@ import { InitialEdges, InitialNodes } from "../../constants";
 import {
     CommentNode,
     FinishNode,
+    GetFileNode,
     JavascriptNode,
     MessageNode,
     NoteNode,
@@ -42,7 +43,8 @@ const NODE_TYPES = {
     [Nodes.JAVASCRIPT_NODE]: JavascriptNode,
     [Nodes.COMMENT_NODE]: CommentNode,
     [Nodes.QUESTION_NODE]: QuestionNode,
-    [Nodes.TAG_NODE]: TagNode
+    [Nodes.TAG_NODE]: TagNode,
+    [Nodes.GET_FILE_NODE]: GetFileNode,
 
 
 };

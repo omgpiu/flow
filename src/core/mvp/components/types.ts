@@ -4,6 +4,7 @@ export const enum Nodes {
     MESSAGE_NODE = 'messageNode',
     JAVASCRIPT_NODE = 'javascriptNode',
     QUESTION_NODE = 'questionNode',
+    GET_FILE_NODE='getFileNode',
     COMMENT_NODE = 'commentNode',
     TAG_NODE = 'tagNode',
     CUSTOM_NODE = 'custom',
@@ -20,7 +21,8 @@ export const NODES_NAME = {
     [Nodes.NOTE_NODE]: 'Заметки',
     [Nodes.COMMENT_NODE]: 'Комментарий',
     [Nodes.QUESTION_NODE]: 'Вопрос',
-    [Nodes.TAG_NODE]: 'Метка'
+    [Nodes.TAG_NODE]: 'Метка',
+    [Nodes.GET_FILE_NODE]:'Запрос файла'
 
 
 }

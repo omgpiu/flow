@@ -88,6 +88,11 @@
     cursor: grab;
 }
 
+.dndflow .dndnode.file {
+    border-color: blue;
+}
+
+
 .dndflow .dndnode.tag {
     border-color: green;
 }

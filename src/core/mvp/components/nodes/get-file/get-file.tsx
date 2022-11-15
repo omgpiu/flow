@@ -99,7 +99,6 @@ export const GetFileNode = memo(({ id }: Props) => {
     const deleteNode = () => {
         deleteElements({ nodes: [getNode(id)!] })
     }
-    // const onChangeHandler = (e: any) => setMessage(prev => e.target.value)
 
     return (
         <Container>

@@ -5,7 +5,9 @@ const typeMapper = {
     'End': 'finishNode'
 
 }
+
 type MyData = typeof data
+
 export const data = {
     "Blocks": [
         {
@@ -32,6 +34,7 @@ export const data = {
         }
     ]
 }
+
 export const convertedData = (data: MyData) => {
     const blocks = data.Blocks
 

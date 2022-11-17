@@ -97,6 +97,10 @@
     border-color: green;
 }
 
+.dndflow .dndnode.call {
+    border-color: black;
+}
+
 .dndflow .dndnode.note {
     border-color: aqua;
 }

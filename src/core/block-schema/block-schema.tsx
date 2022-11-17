@@ -14,6 +14,7 @@ import 'reactflow/dist/style.css';
 import { v4 as uuidv4 } from 'uuid';
 
 import {
+    CallNode,
     CommentNode,
     FinishNode,
     GetFileNode,
@@ -29,6 +30,7 @@ import {
 import './block-chema.css';
 import { createNodesAndEdges } from "../utils";
 import { InitialEdges, InitialNodes } from "../../constants";
+import { myEdges, myNodes } from "./data";
 
 
 interface RenderProps {
@@ -46,8 +48,7 @@ const NODE_TYPES = {
     [Nodes.QUESTION_NODE]: QuestionNode,
     [Nodes.TAG_NODE]: TagNode,
     [Nodes.GET_FILE_NODE]: GetFileNode,
-
-
+    [Nodes.CALL_NODE]: CallNode,
 };
 
 
@@ -55,15 +56,18 @@ const getId = () => uuidv4();
 
 const Render = ({initialNodes, initialEdges}: RenderProps) => {
     //states
-    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+    //@ts-ignore
+    const [nodes, setNodes, onNodesChange] = useNodesState(myNodes);
+    //@ts-ignore
+    const [edges, setEdges, onEdgesChange] = useEdgesState(myEdges);
+    console.log('edges :', edges)
     console.log('nodes :', nodes)
     const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
     //refs
     const reactFlowWrapper = useRef<any>(null);
     const connectingNodeId = useRef<any>(null);
     //hooks
-    const {project} = useReactFlow();
+    const { project } = useReactFlow();
 
     const generateNodes = useCallback((x: number, y: number) => {
         createNodesAndEdges(x, y, setNodes, setEdges)

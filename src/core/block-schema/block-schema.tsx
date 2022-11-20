@@ -16,6 +16,7 @@ import { v4 as uuidv4 } from 'uuid';
 import {
     CallNode,
     CommentNode,
+    ConditionNode,
     FinishNode,
     GetFileNode,
     JavascriptNode,
@@ -24,14 +25,14 @@ import {
     NoteNode,
     QuestionNode,
     SideBar,
-    TagNode
+    TagNode,
+    TransitionNode
 } from './components';
 
 import './block-chema.css';
 import { createNodesAndEdges } from "../utils";
 import { InitialEdges, InitialNodes } from "../../constants";
 import { myEdges, myNodes } from "./utils";
-import { TransitionNode } from "./components/nodes/transition/transition";
 
 
 interface RenderProps {
@@ -50,7 +51,8 @@ const NODE_TYPES = {
     [Nodes.TAG_NODE]: TagNode,
     [Nodes.GET_FILE_NODE]: GetFileNode,
     [Nodes.CALL_NODE]: CallNode,
-    [Nodes.TRANSITION]: TransitionNode
+    [Nodes.TRANSITION_NODE]: TransitionNode,
+    [Nodes.CONDITION_NODE]: ConditionNode
 };
 
 
@@ -69,7 +71,7 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
     const reactFlowWrapper = useRef<any>(null);
     const connectingNodeId = useRef<any>(null);
     //hooks
-    const { project, getViewport, toObject } = useReactFlow();
+    const { project, getViewport } = useReactFlow();
 
     const generateNodes = useCallback((x: number, y: number) => {
         createNodesAndEdges(x, y, setNodes, setEdges)

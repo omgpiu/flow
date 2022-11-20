@@ -13,7 +13,8 @@ export const enum Nodes {
     DEFAULT = 'default',
     INPUT = 'input',
     OUTPUT = 'output',
-    TRANSITION = 'transition'
+    TRANSITION_NODE = 'transitionNode',
+    CONDITION_NODE = 'conditionNode'
 }
 
 export const NODES_NAME = {
@@ -26,7 +27,8 @@ export const NODES_NAME = {
     [Nodes.TAG_NODE]: 'Метка',
     [Nodes.GET_FILE_NODE]: 'Запрос файла',
     [Nodes.CALL_NODE]: 'Вызов',
-    [Nodes.TRANSITION]: 'Переход'
+    [Nodes.TRANSITION_NODE]: 'Переход',
+    [Nodes.CONDITION_NODE]: 'Условие'
 
 
 }

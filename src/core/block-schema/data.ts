@@ -42,7 +42,7 @@ export const convertedData = (data: MyData) => {
     const edges: typeof edgesData = []
 
     const metaInfo = blocks[blocks.length - 1].text!.trim()
-    let res = metaInfo.match(/\[.+?\]/g);
+    const res = metaInfo.match(/\[.+?\]/g);
     const metaArray = JSON.parse(res![0])
 
     for (let i = 0; i < blocks.length - 1; i++) {

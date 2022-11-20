@@ -31,7 +31,7 @@ export const Modal = ({ children, isOpen, handleClose, onSave, className }: Prop
                 </div>
                 <div className={style.modalContent}>{children}</div>
                 <hr/>
-                <button onClick={() => {
+                <button type='submit' onClick={() => {
                     onSave?.()
                     handleClose()
                 }}>Сохранить

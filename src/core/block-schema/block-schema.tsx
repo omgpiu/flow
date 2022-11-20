@@ -14,7 +14,8 @@ import 'reactflow/dist/style.css';
 import { v4 as uuidv4 } from 'uuid';
 
 import {
-    CallNode, ChoiceNode,
+    CallNode,
+    ChoiceNode,
     CommentNode,
     ConditionNode,
     FinishNode,
@@ -26,7 +27,8 @@ import {
     QuestionNode,
     SideBar,
     TagNode,
-    TransitionNode
+    TransitionNode,
+    VariableNode
 } from './components';
 
 import './block-chema.css';
@@ -53,7 +55,9 @@ const NODE_TYPES = {
     [Nodes.CALL_NODE]: CallNode,
     [Nodes.TRANSITION_NODE]: TransitionNode,
     [Nodes.CONDITION_NODE]: ConditionNode,
-    [Nodes.CHOICE_NODE]: ChoiceNode
+    [Nodes.CHOICE_NODE]: ChoiceNode,
+    [Nodes.VARIABLE_NODE]: VariableNode,
+
 };
 
 

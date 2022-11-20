@@ -16,6 +16,7 @@ export const enum Nodes {
     TRANSITION_NODE = 'transitionNode',
     CONDITION_NODE = 'conditionNode',
     CHOICE_NODE = 'choiceNode',
+    VARIABLE_NODE = 'variableNode'
 }
 
 export const NODES_NAME = {
@@ -30,7 +31,8 @@ export const NODES_NAME = {
     [Nodes.CALL_NODE]: 'Вызов',
     [Nodes.TRANSITION_NODE]: 'Переход',
     [Nodes.CONDITION_NODE]: 'Условие',
-    [Nodes.CHOICE_NODE]: 'Выбор'
+    [Nodes.CHOICE_NODE]: 'Выбор',
+    [Nodes.VARIABLE_NODE]: 'Переменная'
 
 
 }

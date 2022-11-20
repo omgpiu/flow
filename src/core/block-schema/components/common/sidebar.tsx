@@ -44,7 +44,9 @@ export const SideBar = memo(({addNode, generateNodes, saveInitialValues}: Props)
             <div className="dndnode call" onDragStart={(event) => onDragStart(event, Nodes.CALL_NODE)} draggable>
                 {NODES_NAME[Nodes.CALL_NODE]}
             </div>
-
+            <div className="dndnode tag" onDragStart={(event) => onDragStart(event, Nodes.VARIABLE_NODE)} draggable>
+                {NODES_NAME[Nodes.VARIABLE_NODE]}
+            </div>
             <div className="dndnode file" onDragStart={(event) => onDragStart(event, Nodes.CONDITION_NODE)} draggable>
                 {NODES_NAME[Nodes.CONDITION_NODE]}
             </div>

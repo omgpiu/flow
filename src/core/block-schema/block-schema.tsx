@@ -14,7 +14,7 @@ import 'reactflow/dist/style.css';
 import { v4 as uuidv4 } from 'uuid';
 
 import {
-    CallNode,
+    CallNode, ChoiceNode,
     CommentNode,
     ConditionNode,
     FinishNode,
@@ -52,7 +52,8 @@ const NODE_TYPES = {
     [Nodes.GET_FILE_NODE]: GetFileNode,
     [Nodes.CALL_NODE]: CallNode,
     [Nodes.TRANSITION_NODE]: TransitionNode,
-    [Nodes.CONDITION_NODE]: ConditionNode
+    [Nodes.CONDITION_NODE]: ConditionNode,
+    [Nodes.CHOICE_NODE]: ChoiceNode
 };
 
 

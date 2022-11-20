@@ -14,7 +14,8 @@ export const enum Nodes {
     INPUT = 'input',
     OUTPUT = 'output',
     TRANSITION_NODE = 'transitionNode',
-    CONDITION_NODE = 'conditionNode'
+    CONDITION_NODE = 'conditionNode',
+    CHOICE_NODE = 'choiceNode',
 }
 
 export const NODES_NAME = {
@@ -28,7 +29,8 @@ export const NODES_NAME = {
     [Nodes.GET_FILE_NODE]: 'Запрос файла',
     [Nodes.CALL_NODE]: 'Вызов',
     [Nodes.TRANSITION_NODE]: 'Переход',
-    [Nodes.CONDITION_NODE]: 'Условие'
+    [Nodes.CONDITION_NODE]: 'Условие',
+    [Nodes.CHOICE_NODE]: 'Выбор'
 
 
 }

@@ -34,7 +34,7 @@ const OPTIONS = [{
 ]
 
 export const ConditionNode = memo(({ id }: Props) => {
-    const { deleteElements, getNode, setNodes, getNodes } = useReactFlow();
+    const { deleteElements, getNode, setNodes } = useReactFlow();
     //@ts-ignore
     const nodeCondition = getNode(id)?.payload?.condition ?? OPTIONS[2].value
     //@ts-ignore

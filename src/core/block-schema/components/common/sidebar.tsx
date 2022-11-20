@@ -28,12 +28,23 @@ export const SideBar = memo(({addNode, generateNodes, saveInitialValues}: Props)
     return (
         <aside>
             <div className="description">You can drag these nodes to the pane on the right.</div>
-            <div className="dndnode call" onDragStart={(event) => onDragStart(event, Nodes.CALL_NODE)} draggable>
-                {NODES_NAME[Nodes.CALL_NODE]}
+            <div className="dndnode message" onDragStart={(event) => onDragStart(event, Nodes.MESSAGE_NODE)} draggable>
+                {NODES_NAME[Nodes.MESSAGE_NODE]}
+            </div>
+            <div className="dndnode question" onDragStart={(event) => onDragStart(event, Nodes.QUESTION_NODE)}
+                 draggable>
+                {NODES_NAME[Nodes.QUESTION_NODE]}
             </div>
             <div className="dndnode file" onDragStart={(event) => onDragStart(event, Nodes.GET_FILE_NODE)} draggable>
                 {NODES_NAME[Nodes.GET_FILE_NODE]}
             </div>
+            <div className="dndnode comment" onDragStart={(event) => onDragStart(event, Nodes.CHOICE_NODE)} draggable>
+                {NODES_NAME[Nodes.CHOICE_NODE]}
+            </div>
+            <div className="dndnode call" onDragStart={(event) => onDragStart(event, Nodes.CALL_NODE)} draggable>
+                {NODES_NAME[Nodes.CALL_NODE]}
+            </div>
+
             <div className="dndnode file" onDragStart={(event) => onDragStart(event, Nodes.CONDITION_NODE)} draggable>
                 {NODES_NAME[Nodes.CONDITION_NODE]}
             </div>
@@ -44,13 +55,8 @@ export const SideBar = memo(({addNode, generateNodes, saveInitialValues}: Props)
                  draggable>
                 {NODES_NAME[Nodes.TRANSITION_NODE]}
             </div>
-            <div className="dndnode question" onDragStart={(event) => onDragStart(event, Nodes.QUESTION_NODE)}
-                 draggable>
-                {NODES_NAME[Nodes.QUESTION_NODE]}
-            </div>
-            <div className="dndnode message" onDragStart={(event) => onDragStart(event, Nodes.MESSAGE_NODE)} draggable>
-                {NODES_NAME[Nodes.MESSAGE_NODE]}
-            </div>
+
+
             <div className="dndnode javascript" onDragStart={(event) => onDragStart(event, Nodes.JAVASCRIPT_NODE)}
                  draggable>
                 {NODES_NAME[Nodes.JAVASCRIPT_NODE]}

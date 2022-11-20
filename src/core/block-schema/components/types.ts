@@ -4,15 +4,16 @@ export const enum Nodes {
     MESSAGE_NODE = 'messageNode',
     JAVASCRIPT_NODE = 'javascriptNode',
     QUESTION_NODE = 'questionNode',
-    GET_FILE_NODE='getFileNode',
-    CALL_NODE='callNode',
+    GET_FILE_NODE = 'getFileNode',
+    CALL_NODE = 'callNode',
     COMMENT_NODE = 'commentNode',
     TAG_NODE = 'tagNode',
     CUSTOM_NODE = 'custom',
     TEXT_UPDATER = 'textUpdater',
     DEFAULT = 'default',
     INPUT = 'input',
-    OUTPUT = 'output'
+    OUTPUT = 'output',
+    TRANSITION = 'transition'
 }
 
 export const NODES_NAME = {
@@ -23,8 +24,9 @@ export const NODES_NAME = {
     [Nodes.COMMENT_NODE]: 'Комментарий',
     [Nodes.QUESTION_NODE]: 'Вопрос',
     [Nodes.TAG_NODE]: 'Метка',
-    [Nodes.GET_FILE_NODE]:'Запрос файла',
-    [Nodes.CALL_NODE]:'Вызов'
+    [Nodes.GET_FILE_NODE]: 'Запрос файла',
+    [Nodes.CALL_NODE]: 'Вызов',
+    [Nodes.TRANSITION]: 'Переход'
 
 
 }

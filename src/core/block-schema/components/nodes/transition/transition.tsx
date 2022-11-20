@@ -1,4 +1,4 @@
-import { memo, useRef, useState } from "react";
+import { memo, useMemo, useRef, useState } from "react";
 import { Handle, Position, useReactFlow } from "reactflow";
 import { Body, Container, Header } from "../../common";
 import style from "../finish/styles.module.css";
@@ -9,12 +9,19 @@ interface Props {
 }
 
 
-export const TagNode = memo(({ id }: Props) => {
-    const { deleteElements, getNode, setNodes } = useReactFlow();
+export const TransitionNode = memo(({ id }: Props) => {
+    const { deleteElements, getNode, setNodes, getNodes } = useReactFlow();
     //@ts-ignore
     const value = getNode(id)?.payload?.value
 
-    const [message, setMessage] = useState<any>(value);
+    const options = useMemo(() => {
+        const tagNodes = getNodes().filter(e => e.type === 'tagNode')
+        // @ts-ignore
+        const values = tagNodes?.map(el => el?.payload?.value)
+        return values
+    }, [])
+
+    const [tag, setTag] = useState<any>(value);
 
     const inputRef = useRef<any>(null)
 
@@ -28,20 +35,20 @@ export const TagNode = memo(({ id }: Props) => {
                         payload: {
                             ...node.payload,
                             value: inputRef.current.value,
+                            tag,
                         }
                     }
                 }
                 return node;
             })
         );
-        setMessage(inputRef.current.value)
     }
 
     const deleteNode = () => {
         deleteElements({ nodes: [getNode(id)!] })
     }
 
-
+    const onChangeHandler = (e: any) => setTag(e.target.value)
 
 
     return (
@@ -49,13 +56,23 @@ export const TagNode = memo(({ id }: Props) => {
             <Handle type="target" position={Position.Top}/>
             <Header onDelete={deleteNode} title={NODES_NAME[Nodes.TAG_NODE]} onSave={onSave}>
                 <div className={style.innerModal}>
-                    <span>Метка</span>
-                    <input type='text' ref={inputRef}/>
+                    <span>Переход на метку</span>
+                    <select name="variants" id="variants"
+                            onChange={e => onChangeHandler(e)}
+                    >
+                        {options.map((value, idx) => <option
+                            defaultValue={tag}
+                            key={idx}
+                            value={value}
+                        >{value}</option>)}
+                    </select>
+                    <span>Не более чем данное количество раз</span>
+                    <input type='text' defaultValue={100} ref={inputRef}/>
                 </div>
             </Header>
             <Body>
                 <span>
-                    {message}
+                    {tag}
                 </span>
             </Body>
             <Handle type="source" position={Position.Bottom}/>

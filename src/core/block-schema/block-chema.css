@@ -93,6 +93,9 @@
 }
 
 
+.dndflow .dndnode.transition {
+    border-color: peachpuff;
+}
 .dndflow .dndnode.tag {
     border-color: green;
 }

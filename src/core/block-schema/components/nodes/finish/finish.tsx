@@ -56,7 +56,7 @@ export const FinishNode = memo(({id}: Props) => {
                             onChange={e => onChangeHandler(e)}
                     >
                         {OPTIONS.map((value, idx) => <option
-                            selected={value === message}
+                            defaultValue={message}
                             key={idx}
                             value={value}
                         >{value}</option>)}

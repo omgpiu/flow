@@ -30,7 +30,8 @@ import {
 import './block-chema.css';
 import { createNodesAndEdges } from "../utils";
 import { InitialEdges, InitialNodes } from "../../constants";
-import { myEdges, myNodes } from "./data";
+import { myEdges, myNodes } from "./utils";
+import { TransitionNode } from "./components/nodes/transition/transition";
 
 
 interface RenderProps {
@@ -49,6 +50,7 @@ const NODE_TYPES = {
     [Nodes.TAG_NODE]: TagNode,
     [Nodes.GET_FILE_NODE]: GetFileNode,
     [Nodes.CALL_NODE]: CallNode,
+    [Nodes.TRANSITION]: TransitionNode
 };
 
 
@@ -60,20 +62,20 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
     const [nodes, setNodes, onNodesChange] = useNodesState(myNodes);
     //@ts-ignore
     const [edges, setEdges, onEdgesChange] = useEdgesState(myEdges);
-    console.log('edges :', edges)
-    console.log('nodes :', nodes)
+    // console.log('edges :', edges)
+    // console.log('nodes :', nodes)
     const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
     //refs
     const reactFlowWrapper = useRef<any>(null);
     const connectingNodeId = useRef<any>(null);
     //hooks
-    const { project } = useReactFlow();
+    const { project, getViewport, toObject } = useReactFlow();
 
     const generateNodes = useCallback((x: number, y: number) => {
         createNodesAndEdges(x, y, setNodes, setEdges)
     }, [])
 
-    const onConnectStart = useCallback((_: any, {nodeId}: any) => {
+    const onConnectStart = useCallback((_: any, { nodeId }: any) => {
         connectingNodeId.current = nodeId;
     }, []);
 
@@ -170,6 +172,9 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
         const serizEdges = JSON.stringify(edges)
         localStorage.setItem('nodes', serizNodes)
         localStorage.setItem('edges', serizEdges)
+        // const serialisedNodes = serialiseApiNodes(nodes, edges, getViewport())
+        // console.log(serialisedNodes, 'toAPi')
+        // localStorage.setItem('API', JSON.stringify((serialisedNodes)))
     }, [nodes, edges])
 
     return (
@@ -191,7 +196,7 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
                     fitView
                 >
                     <Controls/>
-                    <MiniMap/>f
+                    <MiniMap/>
                     <Background/>
                 </ReactFlow>
             </div>

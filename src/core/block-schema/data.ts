@@ -1,12 +1,4 @@
-//finishNode,questionNode,commentNode
-const typeMapper = {
-    'Ask': 'questionNode',
-    'Comment': 'commentNode',
-    'End': 'finishNode'
 
-}
-
-type MyData = typeof data
 
 export const data = {
     "Blocks": [
@@ -34,52 +26,6 @@ export const data = {
         }
     ]
 }
-
-export const convertedData = (data: MyData) => {
-    const blocks = data.Blocks
-
-    const nodes: typeof finishData = []
-    const edges: typeof edgesData = []
-
-    const metaInfo = blocks[blocks.length - 1].text!.trim()
-    const res = metaInfo.match(/\[.+?\]/g);
-    const metaArray = JSON.parse(res![0])
-
-    for (let i = 0; i < blocks.length - 1; i++) {
-        const { type, ...rest } = blocks[i]
-        nodes.push({
-            id: `${i}`,
-            //@ts-ignore
-            type: typeMapper[type],
-            data: { label: `${type}-${i}-${i + 1}` },
-            dragging: false,
-            //@ts-ignore
-            payload: {
-                ...rest
-            },
-            position: { x: metaArray[i]['pos_x'], y: metaArray[i]['pos_y'] },
-            positionAbsolute: { x: metaArray[i]['pos_x'], y: metaArray[i]['pos_y'] },
-            selected: false,
-        })
-        if (i < blocks.length - 1) {
-            edges.push({
-                "source": String(i),
-                "sourceHandle": null,
-                "target": String(i + 1),
-                "targetHandle": null,
-                "id": String(i) + String(i + 1)
-            })
-        }
-
-
-    }
-
-    return [nodes, edges]
-}
-
-console.log(convertedData(data), 'converted data')
-export const [myNodes,myEdges] = convertedData(data)
-
 
 export const finishData = [
     {
@@ -150,7 +96,7 @@ export const finishData = [
     }
 ]
 
-const edgesData = [
+export const edgesData = [
     {
         "source": "5a60f3b7-c00e-4278-b533-c7f490ce93f9",
         "sourceHandle": null,
@@ -166,3 +112,4 @@ const edgesData = [
         "id": "reactflow__edge-8f128465-3ac8-4f44-923f-89c848ed132a-829d1eeb-fabc-4349-86b5-903d8c3e6681"
     }
 ]
+

@@ -1,4 +1,5 @@
 import { data, edgesData, finishData } from "./data";
+import { Rect, Viewport } from "reactflow";
 //finishNode,questionNode,commentNode
 const typeMapper = {
     'Ask': 'questionNode',
@@ -61,30 +62,29 @@ const dataWitoutMeta = {
 
 // console.log(JSON.parse("UI_METAINFO: {version:0.1,flow:{" +
 //     "Blocks:[{type:'Ask',pos_x:-23896,pos_y:-5487},{type:'Comment',pos_x:-23898,pos_y:-4968},{type:'End',pos_x:-23945,pos_y:-4651}],view_zoom:0.706,view_pos_x:276,view_pos_y:550,canvas_x:17065,canvas_y:3720,connectionStyle:'quadratisch_praktisch_gut'}}"))
-export const serialiseApiNodes = (nodes: any, edges: any, viewPort: any) => {
+export const serialiseApiNodes = (nodes: any, edges: any, viewPort: Viewport, rect:Rect) => {
     console.log(nodes, 'nodes')
     const serilNodes = []
-    const posBlocks: any = []
-    const lastElement = {
-        text: '',
-        type: 'CodeComment'
+    const positionBlock: any = []
 
-    }
     const meta = {
         version: 0.1,
         flow: {
-            'Blocks': posBlocks,
+            'Blocks': positionBlock,
             view_zoom: viewPort.zoom,
             view_pos_x: viewPort.x,
             view_pos_y: viewPort.y,
-            canvas_x: 17065,
-            canvas_y: 3720,
+            canvas_x: rect.x,
+            canvas_y: rect.y,
             connectionStyle: 'quadratisch_praktisch_gut'
-
         }
-
     }
-    console.log(viewPort, 'viewport')
+
+    const lastElement = {
+        text: `UI_METAINFO:${JSON.stringify(meta)}`,
+        type: 'CodeComment'
+    }
+
 
     for (let i = 0; i < nodes.length; i++) {
         //@ts-ignore
@@ -94,18 +94,19 @@ export const serialiseApiNodes = (nodes: any, edges: any, viewPort: any) => {
             //@ts-ignore
             type,
         })
-        posBlocks.push({
+        positionBlock.push({
             type,
             "pos_x": nodes[i].position.x,
             "pos_y": nodes[i].position.y
         })
+        if (i === nodes.length - 1) {
+            serilNodes.push(lastElement)
+        }
 
     }
 
-
     return {
         "Blocks": serilNodes,
-        lastElement
     }
 }
 

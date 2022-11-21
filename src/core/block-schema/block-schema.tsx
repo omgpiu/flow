@@ -4,6 +4,7 @@ import ReactFlow, {
     addEdge,
     Background,
     Controls,
+    getRectOfNodes,
     MiniMap,
     ReactFlowProvider,
     useEdgesState,
@@ -34,7 +35,7 @@ import {
 import './block-chema.css';
 import { createNodesAndEdges } from "../utils";
 import { InitialEdges, InitialNodes } from "../../constants";
-import { myEdges, myNodes } from "./utils";
+import { myEdges, myNodes, serialiseApiNodes } from "./utils";
 
 
 interface RenderProps {
@@ -77,7 +78,6 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
     const connectingNodeId = useRef<any>(null);
     //hooks
     const { project, getViewport } = useReactFlow();
-
     const generateNodes = useCallback((x: number, y: number) => {
         createNodesAndEdges(x, y, setNodes, setEdges)
     }, [])
@@ -116,7 +116,7 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
         [project]
     );
 
-
+    console.log('getRectOfNodes(nodes) :', getRectOfNodes(nodes))
     const onDrop = useCallback(
         (event: any) => {
             event.preventDefault();
@@ -175,12 +175,12 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
 
 
     const saveInitialValues = useCallback(() => {
-        const serizNodes = JSON.stringify(nodes)
-        const serizEdges = JSON.stringify(edges)
-        localStorage.setItem('nodes', serizNodes)
-        localStorage.setItem('edges', serizEdges)
+        // const serizNodes = JSON.stringify(nodes)
+        // const serizEdges = JSON.stringify(edges)
+        // localStorage.setItem('nodes', serizNodes)
+        // localStorage.setItem('edges', serizEdges)
         // const serialisedNodes = serialiseApiNodes(nodes, edges, getViewport())
-        // console.log(serialisedNodes, 'toAPi')
+        console.log(serialiseApiNodes(nodes, edges, getViewport(),getRectOfNodes(nodes)), 'toAPi')
         // localStorage.setItem('API', JSON.stringify((serialisedNodes)))
     }, [nodes, edges])
 

@@ -59,7 +59,7 @@ export const ChoiceNode = memo(({ id }: Props) => {
     return (
         <Container>
             <Handle type="target" position={Position.Top}/>
-            <Header onDelete={deleteNode} title={NODES_NAME[Nodes.QUESTION_NODE]} onSave={onSave}>
+            <Header onDelete={deleteNode} title={NODES_NAME[Nodes.CHOICE_NODE]} onSave={onSave}>
                 <div className={style.innerModal}>
                     <span>Текст сообщения</span>
                     <textarea ref={textAreaRef} defaultValue={nodeData.valueMessage} rows={5}/>

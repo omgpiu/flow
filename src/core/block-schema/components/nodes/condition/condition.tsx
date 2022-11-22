@@ -84,7 +84,7 @@ export const ConditionNode = memo(({ id }: Props) => {
     return (
         <Container>
             <Handle type="target" position={Position.Top}/>
-            <Header onDelete={deleteNode} title={NODES_NAME[Nodes.TAG_NODE]} onSave={onSave}>
+            <Header onDelete={deleteNode} title={NODES_NAME[Nodes.CONDITION_NODE]} onSave={onSave}>
                 <div className={style.innerModal}>
                     <span>Переменна</span>
                     <input type='text' defaultValue={variable} ref={inputVariableRef}/>

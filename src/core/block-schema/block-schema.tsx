@@ -71,7 +71,7 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
     //@ts-ignore
     const [edges, setEdges, onEdgesChange] = useEdgesState(myEdges);
     // console.log('edges :', edges)
-    // console.log('nodes :', nodes)
+    console.log('nodes :', nodes)
     const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
     //refs
     const reactFlowWrapper = useRef<any>(null);
@@ -116,7 +116,6 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
         [project]
     );
 
-    console.log('getRectOfNodes(nodes) :', getRectOfNodes(nodes))
     const onDrop = useCallback(
         (event: any) => {
             event.preventDefault();

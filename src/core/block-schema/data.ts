@@ -113,3 +113,749 @@ export const edgesData = [
     }
 ]
 
+export const BIG_DATA = {
+    "Blocks": [
+        {
+            "text": "Сообщение",
+            "type": "Message",
+            "pos_x": -3550,
+            "pos_y": -3731,
+            "_node": {
+                "id": 1,
+                "name": "block_Message",
+                "data": {
+                    "_block": {
+                        "text": "Сообщение",
+                        "type": "Message",
+                        "pos_x": -3550,
+                        "pos_y": -3731
+                    }
+                },
+                "class": "df-class-Message",
+                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-regular fa-message\" style=\"padding-right:5px\" ></i><span> Сообщение</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                        <div class=\"box\">\n                            <div class=\"text-secondary msg-container\">\n                            Сообщение\n                            </div>\n                        </div>\n                    </div>\n                    ",
+                "typenode": false,
+                "inputs": {},
+                "outputs": {
+                    "output_1": {
+                        "connections": []
+                    }
+                },
+                "pos_x": -3550,
+                "pos_y": -3731
+            }
+        },
+        {
+            "expect": "text",
+            "options": [
+                "Вар1",
+                "Вар2"
+            ],
+            "result_variable": "user_said1",
+            "text": "Вопрос",
+            "type": "Ask",
+            "pos_x": -3546,
+            "pos_y": -3455,
+            "_node": {
+                "id": 2,
+                "name": "block_Ask",
+                "data": {
+                    "_block": {
+                        "expect": "text",
+                        "options": [
+                            "Вар1",
+                            "Вар2"
+                        ],
+                        "result_variable": "user_said1",
+                        "text": "Вопрос",
+                        "type": "Ask",
+                        "pos_x": -3546,
+                        "pos_y": -3455
+                    }
+                },
+                "class": "df-class-Ask",
+                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-circle-question\" style=\"padding-right:5px\" ></i><span> Вопрос</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <div class=\"text-secondary ask_text\">Вопрос</div>\n                        <hr></hr>\n                        <p class=\"text-secondary\">\n                        <span class=\"ask_reply_options_label\" >\n                            Варианты ответа:\n                        </span>\n                        <span class=\"text-secondary ask_reply_options\" >\n                        <code>Вар1</code>, &nbsp<code>Вар2</code>\n                        </span>\n                        </p>\n                        <p class=\"text-secondary ask_result_var\" >Сохранить результат в <code>user_said1</code></p>\n                    </div>\n                    </div>\n                    ",
+                "typenode": false,
+                "inputs": {},
+                "outputs": {
+                    "output_1": {
+                        "connections": []
+                    }
+                },
+                "pos_x": -3546,
+                "pos_y": -3455
+            }
+        },
+        {
+            "expect": "optional_file",
+            "result_variable": "user_file",
+            "text": "Добавьте пожалуйста файл",
+            "text_skip_file": "Пропустить",
+            "type": "Ask",
+            "pos_x": -3548,
+            "pos_y": -3164,
+            "_node": {
+                "id": 3,
+                "name": "block_Ask",
+                "data": {
+                    "_block": {
+                        "expect": "optional_file",
+                        "result_variable": "user_file",
+                        "text": "Добавьте пожалуйста файл",
+                        "text_skip_file": "Пропустить",
+                        "type": "Ask",
+                        "pos_x": -3548,
+                        "pos_y": -3164
+                    }
+                },
+                "class": "df-class-Ask",
+                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-circle-question\" style=\"padding-right:5px\" ></i><span> Файл</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <div class=\"text-secondary ask_text\">Добавьте пожалуйста файл</div>\n                        <hr></hr>\n                        <p class=\"text-secondary\">\n                        <span class=\"ask_reply_options_label\" >\n                            \n                        </span>\n                        <span class=\"text-secondary ask_reply_options\" >\n                        \n                        </span>\n                        </p>\n                        <p class=\"text-secondary ask_result_var\" >Сохранить результат в <code>user_file</code></p>\n                    </div>\n                    </div>\n                    ",
+                "typenode": false,
+                "inputs": {},
+                "outputs": {
+                    "output_1": {
+                        "connections": []
+                    }
+                },
+                "pos_x": -3548,
+                "pos_y": -3164
+            }
+        },
+        {
+            "type": "Ask",
+            "text": "<p>Выбор</p>\n<p>&nbsp;</p>",
+            "result_variable": "user_said",
+            "expect": "text",
+            "options": [
+                "Выбор1",
+                "Выбор2"
+            ],
+            "pos_x": -3555,
+            "pos_y": -2880
+        },
+        {
+            "type": "If",
+            "condition": "{user_said} == Выбор2",
+            "Blocks": [
+                {
+                    "key": "Variable2",
+                    "scope": "script",
+                    "type": "Var",
+                    "value": "2",
+                    "pos_x": -2807,
+                    "pos_y": -2626,
+                },
+                {
+                    "action": null,
+                    "type": "End",
+                    "pos_x": -2789,
+                    "pos_y": -2428,
+                }
+            ]
+        },
+        {
+            "type": "If",
+            "condition": "{user_said} == Выбор1",
+            "Blocks": [
+                {
+                    "key": "varuable1",
+                    "scope": "script",
+                    "type": "Var",
+                    "value": "1",
+                    "pos_x": -2589,
+                    "pos_y": -3020,
+                    "_node": {
+                        "id": 5,
+                        "name": "block_Var",
+                        "data": {
+                            "scope": "script",
+                            "_block": {
+                                "key": "varuable1",
+                                "scope": "script",
+                                "type": "Var",
+                                "value": "1",
+                                "pos_x": -2589,
+                                "pos_y": -3020,
+                                "_node": {
+                                    "id": 5,
+                                    "name": "block_Var",
+                                    "data": {
+                                        "scope": "script",
+                                        "_block": {
+                                            "key": "varuable1",
+                                            "scope": "script",
+                                            "type": "Var",
+                                            "value": "1",
+                                            "pos_x": -2589,
+                                            "pos_y": -3020,
+                                            "_node": {
+                                                "id": 5,
+                                                "name": "block_Var",
+                                                "data": {
+                                                    "scope": "script",
+                                                    "_block": {
+                                                        "key": "varuable1",
+                                                        "scope": "script",
+                                                        "type": "Var",
+                                                        "value": "1",
+                                                        "pos_x": -2589,
+                                                        "pos_y": -3020
+                                                    }
+                                                },
+                                                "class": "df-class-Var",
+                                                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-subscript\" style=\"padding-right:5px\" ></i><span> Переменная</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-secondary\">\n                        <div><code class=\"var-key\" >varuable1</code></div>\n                        </p>\n                    </div>\n                    </div>\n                    ",
+                                                "typenode": false,
+                                                "inputs": {},
+                                                "outputs": {
+                                                    "output_1": {
+                                                        "connections": []
+                                                    }
+                                                },
+                                                "pos_x": -2589,
+                                                "pos_y": -3020
+                                            }
+                                        }
+                                    },
+                                    "class": "df-class-Var",
+                                    "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-subscript\" style=\"padding-right:5px\" ></i><span> Переменная</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-secondary\">\n                        <div><code class=\"var-key\" >varuable1</code></div>\n                        </p>\n                    </div>\n                    </div>\n                    ",
+                                    "typenode": false,
+                                    "inputs": {
+                                        "input_1": {
+                                            "connections": []
+                                        }
+                                    },
+                                    "outputs": {
+                                        "output_1": {
+                                            "connections": []
+                                        }
+                                    },
+                                    "pos_x": -2589,
+                                    "pos_y": -3020
+                                }
+                            }
+                        },
+                        "class": "df-class-Var",
+                        "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-subscript\" style=\"padding-right:5px\" ></i><span> Переменная</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-secondary\">\n                        <div><code class=\"var-key\" >varuable1</code></div>\n                        </p>\n                    </div>\n                    </div>\n                    ",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [
+                                    {
+                                        "node": "4",
+                                        "input": "output_2"
+                                    }
+                                ]
+                            }
+                        },
+                        "outputs": {
+                            "output_1": {
+                                "connections": [
+                                    {
+                                        "node": "6",
+                                        "output": "input_1"
+                                    }
+                                ]
+                            }
+                        },
+                        "pos_x": -2589,
+                        "pos_y": -3020
+                    }
+                },
+                {
+                    "action": null,
+                    "type": "End",
+                    "pos_x": -2213,
+                    "pos_y": -2715,
+                    "_node": {
+                        "id": 6,
+                        "name": "block_End",
+                        "data": {
+                            "action": "null",
+                            "_block": {
+                                "action": null,
+                                "type": "End",
+                                "pos_x": -2213,
+                                "pos_y": -2715,
+                                "_node": {
+                                    "id": 6,
+                                    "name": "block_End",
+                                    "data": {
+                                        "action": "null",
+                                        "_block": {
+                                            "action": null,
+                                            "type": "End",
+                                            "pos_x": -2213,
+                                            "pos_y": -2715,
+                                            "_node": {
+                                                "id": 6,
+                                                "name": "block_End",
+                                                "data": {
+                                                    "action": "null",
+                                                    "_block": {
+                                                        "action": null,
+                                                        "type": "End",
+                                                        "pos_x": -2213,
+                                                        "pos_y": -2715
+                                                    }
+                                                },
+                                                "class": "df-class-End",
+                                                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-flag-checkered\" style=\"padding-right:5px\" ></i><span> Завершение</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-muted\">завершить сценарий</p>\n                    </div>\n                    </div>",
+                                                "typenode": false,
+                                                "inputs": {},
+                                                "outputs": {
+                                                    "output_1": {
+                                                        "connections": []
+                                                    }
+                                                },
+                                                "pos_x": -2213,
+                                                "pos_y": -2715
+                                            }
+                                        }
+                                    },
+                                    "class": "df-class-End",
+                                    "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-flag-checkered\" style=\"padding-right:5px\" ></i><span> Завершение</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-muted\">завершить сценарий</p>\n                    </div>\n                    </div>",
+                                    "typenode": false,
+                                    "inputs": {
+                                        "input_1": {
+                                            "connections": []
+                                        }
+                                    },
+                                    "outputs": {},
+                                    "pos_x": -2213,
+                                    "pos_y": -2715
+                                }
+                            }
+                        },
+                        "class": "df-class-End",
+                        "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-flag-checkered\" style=\"padding-right:5px\" ></i><span> Завершение</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-muted\">завершить сценарий</p>\n                    </div>\n                    </div>",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": []
+                            }
+                        },
+                        "outputs": {},
+                        "pos_x": -2213,
+                        "pos_y": -2715
+                    }
+                }
+            ]
+        },
+        {
+            "headers": {
+                "httpParam1": "httpParam1"
+            },
+            "method": "GET",
+            "parameters": {
+                "urlparam1": "urlValue1"
+            },
+            "result_variable": "http_result",
+            "type": "HTTP",
+            "url": "https://google.com",
+            "pos_x": -3565,
+            "pos_y": -2553,
+            "_node": {
+                "id": 9,
+                "name": "block_HTTP",
+                "data": {
+                    "_block": {
+                        "headers": {
+                            "httpParam1": "httpParam1"
+                        },
+                        "method": "GET",
+                        "parameters": {
+                            "urlparam1": "urlValue1"
+                        },
+                        "result_variable": "http_result",
+                        "type": "HTTP",
+                        "url": "https://google.com",
+                        "pos_x": -3565,
+                        "pos_y": -2553
+                    }
+                },
+                "class": "df-class-HTTP",
+                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-server\" style=\"padding-right:5px\" ></i><span> Вызов</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p>\n                        <div>\n                        <span class=\"text-muted\">GET</span>\n                        <span class=\"text-primary\" style=\"max-width: 250px; display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;\" title=\"https://google.com\" >https://google.com</span>\n                        </div>\n                        </p>\n                        <div>Результат в переменной <code class=\"http-result-var\" >http_result</code></div>\n                    </div>\n                    </div>\n                    ",
+                "typenode": false,
+                "inputs": {},
+                "outputs": {
+                    "output_1": {
+                        "connections": []
+                    }
+                },
+                "pos_x": -3565,
+                "pos_y": -2553
+            }
+        },
+        {
+            "key": "varibale3",
+            "scope": "script",
+            "type": "Var",
+            "value": "3",
+            "pos_x": -3572,
+            "pos_y": -2323,
+            "_node": {
+                "id": 10,
+                "name": "block_Var",
+                "data": {
+                    "scope": "script",
+                    "_block": {
+                        "key": "varibale3",
+                        "scope": "script",
+                        "type": "Var",
+                        "value": "3",
+                        "pos_x": -3572,
+                        "pos_y": -2323
+                    }
+                },
+                "class": "df-class-Var",
+                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-subscript\" style=\"padding-right:5px\" ></i><span> Переменная</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-secondary\">\n                        <div><code class=\"var-key\" >varibale3</code></div>\n                        </p>\n                    </div>\n                    </div>\n                    ",
+                "typenode": false,
+                "inputs": {},
+                "outputs": {
+                    "output_1": {
+                        "connections": []
+                    }
+                },
+                "pos_x": -3572,
+                "pos_y": -2323
+            }
+        },
+        {
+            "Blocks": [
+                {
+                    "action": null,
+                    "type": "End",
+                    "pos_x": -2927,
+                    "pos_y": -2124,
+                    "_node": {
+                        "id": 12,
+                        "name": "block_End",
+                        "data": {
+                            "action": "null",
+                            "_block": {
+                                "action": null,
+                                "type": "End",
+                                "pos_x": -2927,
+                                "pos_y": -2124,
+                                "_node": {
+                                    "id": 12,
+                                    "name": "block_End",
+                                    "data": {
+                                        "action": "null",
+                                        "_block": {
+                                            "action": null,
+                                            "type": "End",
+                                            "pos_x": -2927,
+                                            "pos_y": -2124,
+                                            "_node": {
+                                                "id": 12,
+                                                "name": "block_End",
+                                                "data": {
+                                                    "action": "null",
+                                                    "_block": {
+                                                        "action": null,
+                                                        "type": "End",
+                                                        "pos_x": -2927,
+                                                        "pos_y": -2124
+                                                    }
+                                                },
+                                                "class": "df-class-End",
+                                                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-flag-checkered\" style=\"padding-right:5px\" ></i><span> Завершение</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-muted\">завершить сценарий</p>\n                    </div>\n                    </div>",
+                                                "typenode": false,
+                                                "inputs": {},
+                                                "outputs": {
+                                                    "output_1": {
+                                                        "connections": []
+                                                    }
+                                                },
+                                                "pos_x": -2927,
+                                                "pos_y": -2124
+                                            }
+                                        }
+                                    },
+                                    "class": "df-class-End",
+                                    "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-flag-checkered\" style=\"padding-right:5px\" ></i><span> Завершение</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-muted\">завершить сценарий</p>\n                    </div>\n                    </div>",
+                                    "typenode": false,
+                                    "inputs": {
+                                        "input_1": {
+                                            "connections": []
+                                        }
+                                    },
+                                    "outputs": {},
+                                    "pos_x": -2927,
+                                    "pos_y": -2124
+                                }
+                            }
+                        },
+                        "class": "df-class-End",
+                        "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-flag-checkered\" style=\"padding-right:5px\" ></i><span> Завершение</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-muted\">завершить сценарий</p>\n                    </div>\n                    </div>",
+                        "typenode": false,
+                        "inputs": {
+                            "input_1": {
+                                "connections": [
+                                    {
+                                        "node": "11",
+                                        "input": "output_2"
+                                    }
+                                ]
+                            }
+                        },
+                        "outputs": {},
+                        "pos_x": -2927,
+                        "pos_y": -2124
+                    }
+                }
+            ],
+            "condition": "{user_said} == 3",
+            "type": "If",
+            "pos_x": -3573,
+            "pos_y": -2109,
+            "_node": {
+                "id": 11,
+                "name": "block_If",
+                "data": {
+                    "_block": {
+                        "Blocks": [
+                            {
+                                "action": null,
+                                "type": "End",
+                                "pos_x": -2927,
+                                "pos_y": -2124
+                            }
+                        ],
+                        "condition": "{user_said} == 3",
+                        "type": "If",
+                        "pos_x": -3573,
+                        "pos_y": -2109
+                    }
+                },
+                "class": "df-class-If",
+                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-code-branch\" style=\"padding-right:5px\" ></i><span> Условие</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-secondary\">{user_said} == 3</p>\n                    </div>\n                    </div>",
+                "typenode": false,
+                "inputs": {},
+                "outputs": {
+                    "output_1": {
+                        "connections": []
+                    }
+                },
+                "pos_x": -3573,
+                "pos_y": -2109
+            }
+        },
+        {
+            "text": "metka1",
+            "type": "Label",
+            "pos_x": -3589,
+            "pos_y": -1877,
+            "_node": {
+                "id": 13,
+                "name": "block_Label",
+                "data": {
+                    "_block": {
+                        "text": "metka1",
+                        "type": "Label",
+                        "pos_x": -3589,
+                        "pos_y": -1877
+                    }
+                },
+                "class": "df-class-Label",
+                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-tag\" style=\"padding-right:5px\" ></i><span> Метка</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-secondary\">metka1</p>\n                    </div>\n                    </div>",
+                "typenode": false,
+                "inputs": {},
+                "outputs": {
+                    "output_1": {
+                        "connections": []
+                    }
+                },
+                "pos_x": -3589,
+                "pos_y": -1877
+            }
+        },
+        {
+            "code": "var javaScript=1",
+            "type": "Javascript",
+            "pos_x": -3586,
+            "pos_y": -1669,
+            "_node": {
+                "id": 14,
+                "name": "block_Javascript",
+                "data": {
+                    "_block": {
+                        "code": "var javaScript=1",
+                        "type": "Javascript",
+                        "pos_x": -3586,
+                        "pos_y": -1669
+                    }
+                },
+                "class": "df-class-Javascript",
+                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-brands fa-js\" style=\"padding-right:5px\" ></i><span> Javascript</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-secondary\"> 0 строк </p>\n                    </div>\n                    </div>",
+                "typenode": false,
+                "inputs": {},
+                "outputs": {
+                    "output_1": {
+                        "connections": []
+                    }
+                },
+                "pos_x": -3586,
+                "pos_y": -1669
+            }
+        },
+        {
+            "text": "New comment",
+            "type": "Comment",
+            "pos_x": -3579,
+            "pos_y": -1464,
+            "_node": {
+                "id": 15,
+                "name": "block_Comment",
+                "data": {
+                    "_block": {
+                        "text": "New comment",
+                        "type": "Comment",
+                        "pos_x": -3579,
+                        "pos_y": -1464
+                    }
+                },
+                "class": "df-class-Comment",
+                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-regular fa-comment-dots\" style=\"padding-right:5px\" ></i><span> Комментарий к диалогу</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-secondary\">New comment</p>\n                    </div>\n                    </div>",
+                "typenode": false,
+                "inputs": {},
+                "outputs": {
+                    "output_1": {
+                        "connections": []
+                    }
+                },
+                "pos_x": -3579,
+                "pos_y": -1464
+            }
+        },
+        {
+            "text": "Note One",
+            "type": "CodeComment",
+            "pos_x": -3590,
+            "pos_y": -1278,
+            "_node": {
+                "id": 16,
+                "name": "block_CodeComment",
+                "data": {
+                    "_block": {
+                        "text": "Note One",
+                        "type": "CodeComment",
+                        "pos_x": -3590,
+                        "pos_y": -1278
+                    }
+                },
+                "class": "df-class-CodeComment",
+                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-regular fa-note-sticky\" style=\"padding-right:5px\" ></i><span> Заметка</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-secondary\">Note One</p>\n                    </div>\n                    </div>",
+                "typenode": false,
+                "inputs": {},
+                "outputs": {
+                    "output_1": {
+                        "connections": []
+                    }
+                },
+                "pos_x": -3590,
+                "pos_y": -1278
+            }
+        },
+        {
+            "expect": "optional_file",
+            "result_variable": "user_file",
+            "text": "Добавьте пожалуйста файл",
+            "text_skip_file": "Пропустить",
+            "type": "Ask",
+            "pos_x": -3588,
+            "pos_y": -953,
+            "_node": {
+                "id": 17,
+                "name": "block_Ask",
+                "data": {
+                    "_block": {
+                        "expect": "optional_file",
+                        "result_variable": "user_file",
+                        "text": "Добавьте пожалуйста файл",
+                        "text_skip_file": "Пропустить",
+                        "type": "Ask",
+                        "pos_x": -3588,
+                        "pos_y": -953
+                    }
+                },
+                "class": "df-class-Ask",
+                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-circle-question\" style=\"padding-right:5px\" ></i><span> Файл</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <div class=\"text-secondary ask_text\">Добавьте пожалуйста файл</div>\n                        <hr></hr>\n                        <p class=\"text-secondary\">\n                        <span class=\"ask_reply_options_label\" >\n                            \n                        </span>\n                        <span class=\"text-secondary ask_reply_options\" >\n                        \n                        </span>\n                        </p>\n                        <p class=\"text-secondary ask_result_var\" >Сохранить результат в <code>user_file</code></p>\n                    </div>\n                    </div>\n                    ",
+                "typenode": false,
+                "inputs": {},
+                "outputs": {
+                    "output_1": {
+                        "connections": []
+                    }
+                },
+                "pos_x": -3588,
+                "pos_y": -953
+            }
+        },
+        {
+            "type": "Loop",
+            "label": "metka1",
+            "counter": 100,
+            "pos_x": -3552.6599505172717,
+            "pos_y": -705.5296281848497,
+            "_node": {
+                "id": 19,
+                "name": "block_Loop",
+                "data": {
+                    "_block": {
+                        "type": "Loop",
+                        "label": "",
+                        "counter": 100,
+                        "pos_x": -3552.6599505172717,
+                        "pos_y": -705.5296281848497
+                    }
+                },
+                "class": "df-class-Loop",
+                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-right-long\" style=\"padding-right:5px\" ></i><span> Переход</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-secondary\"></p>\n                    </div>\n                    </div>",
+                "typenode": false,
+                "inputs": {},
+                "outputs": {
+                    "output_1": {
+                        "connections": []
+                    }
+                },
+                "pos_x": -3552.6599505172717,
+                "pos_y": -705.5296281848497
+            }
+        },
+        {
+            "action": null,
+            "type": "End",
+            "pos_x": -3542,
+            "pos_y": -524,
+            "_node": {
+                "id": 18,
+                "name": "block_End",
+                "data": {
+                    "action": "null",
+                    "_block": {
+                        "action": null,
+                        "type": "End",
+                        "pos_x": -3542,
+                        "pos_y": -524
+                    }
+                },
+                "class": "df-class-End",
+                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-flag-checkered\" style=\"padding-right:5px\" ></i><span> Завершение</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-muted\">завершить сценарий</p>\n                    </div>\n                    </div>",
+                "typenode": false,
+                "inputs": {},
+                "outputs": {
+                    "output_1": {
+                        "connections": []
+                    }
+                },
+                "pos_x": -3542,
+                "pos_y": -524
+            }
+        },
+        {
+            "type": "CodeComment",
+            "text": "UI_METAINFO: {\"version\":0.1,\"flow\":{\"Blocks\":[{\"type\":\"Message\",\"pos_x\":-3550,\"pos_y\":-3731},{\"type\":\"Ask\",\"pos_x\":-3546,\"pos_y\":-3455},{\"type\":\"Ask\",\"pos_x\":-3548,\"pos_y\":-3164},{\"type\":\"DPatternChoice\",\"pos_x\":-3555,\"pos_y\":-2880,\"branches\":[{\"Blocks\":[{\"type\":\"Var\",\"pos_x\":-2589,\"pos_y\":-3020},{\"type\":\"End\",\"pos_x\":-2213,\"pos_y\":-2715}],\"condition\":\"{user_said} == Выбор1\",\"type\":\"If\",\"_choiceOptionValue\":\"Выбор1\",\"_i\":5},{\"Blocks\":[{\"type\":\"Var\",\"pos_x\":-2807,\"pos_y\":-2626},{\"type\":\"End\",\"pos_x\":-2789,\"pos_y\":-2428}],\"condition\":\"{user_said} == Выбор2\",\"type\":\"If\",\"_choiceOptionValue\":\"Выбор2\",\"_i\":4}]},{\"type\":\"HTTP\",\"pos_x\":-3565,\"pos_y\":-2553},{\"type\":\"Var\",\"pos_x\":-3572,\"pos_y\":-2323},{\"Blocks\":[{\"type\":\"End\",\"pos_x\":-2927,\"pos_y\":-2124}],\"type\":\"If\",\"pos_x\":-3573,\"pos_y\":-2109},{\"type\":\"Label\",\"pos_x\":-3589,\"pos_y\":-1877},{\"type\":\"Javascript\",\"pos_x\":-3586,\"pos_y\":-1669},{\"type\":\"Comment\",\"pos_x\":-3579,\"pos_y\":-1464},{\"type\":\"CodeComment\",\"pos_x\":-3590,\"pos_y\":-1278},{\"type\":\"Ask\",\"pos_x\":-3588,\"pos_y\":-953},{\"type\":\"Loop\",\"pos_x\":-3552,\"pos_y\":-705},{\"type\":\"End\",\"pos_x\":-3542,\"pos_y\":-524}],\"view_zoom\":0.704,\"view_pos_x\":1673,\"view_pos_y\":335,\"canvas_x\":2540,\"canvas_y\":834,\"connectionStyle\":\"smooth_cubic\"}}"
+        }
+    ]
+}

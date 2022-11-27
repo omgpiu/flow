@@ -1,22 +1,24 @@
+export const enum QuestionExpectField {
+    TEXT = "text",
+    FILE = 'optional_file'
+
+
+}
+
 export const enum Nodes {
-    FINISH_NODE = 'finishNode',
-    NOTE_NODE = 'noteNode',
-    MESSAGE_NODE = 'messageNode',
-    JAVASCRIPT_NODE = 'javascriptNode',
-    QUESTION_NODE = 'questionNode',
-    GET_FILE_NODE = 'getFileNode',
-    CALL_NODE = 'callNode',
-    COMMENT_NODE = 'commentNode',
-    TAG_NODE = 'tagNode',
-    CUSTOM_NODE = 'custom',
-    TEXT_UPDATER = 'textUpdater',
-    DEFAULT = 'default',
-    INPUT = 'input',
-    OUTPUT = 'output',
-    TRANSITION_NODE = 'transitionNode',
-    CONDITION_NODE = 'conditionNode',
+    FINISH_NODE = 'End',
+    NOTE_NODE = 'CodeComment',
+    MESSAGE_NODE = 'Message',
+    JAVASCRIPT_NODE = 'Javascript',
+    QUESTION_NODE = 'Ask',
+    GET_FILE_NODE = 'getFile',
+    CALL_NODE = 'HTTP',
+    COMMENT_NODE = 'Comment',
+    TAG_NODE = 'Label',
+    TRANSITION_NODE = 'Loop',
+    CONDITION_NODE = 'If',
     CHOICE_NODE = 'choiceNode',
-    VARIABLE_NODE = 'variableNode'
+    VARIABLE_NODE = 'Var'
 }
 
 export const NODES_NAME = {

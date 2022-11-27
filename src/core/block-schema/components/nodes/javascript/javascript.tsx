@@ -11,7 +11,6 @@ interface Props {
 
 export const JavascriptNode = memo(({id}: Props) => {
     const { deleteElements, getNode, setNodes } = useReactFlow();
-    console.log(getNode(id), 'getNode')
     //@ts-ignore
     const value = getNode(id)?.payload?.javascript
     //@ts-ignore

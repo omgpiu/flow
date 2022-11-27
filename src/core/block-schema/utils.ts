@@ -1,12 +1,8 @@
-import { data, edgesData, finishData } from "./data";
+import { BIG_DATA } from "./data";
 import { Rect, Viewport } from "reactflow";
+import { Nodes, QuestionExpectField } from "./components";
 //finishNode,questionNode,commentNode
-const typeMapper = {
-    'Ask': 'questionNode',
-    'Comment': 'commentNode',
-    'End': 'finishNode'
 
-}
 const revertTypeMapper = {
     'questionNode': 'Ask',
     'commentNode': 'Comment',
@@ -14,54 +10,25 @@ const revertTypeMapper = {
 
 }
 
-type MyData = typeof data
-const dataWitoutMeta = {
-    'Blocks': [
-        {
-            "expect": "text",
-            "options": [
-                "Проверить баланс",
-                "В другой раз"
-            ],
-            "result_variable": "UserSaid_Balance",
-            "text": "В наших ломбардах действует программа лояльности, благодаря которой можно:<br>▪️ увеличить сумму займа от 7 до 15%;<br>▪️ получить подарок в день рождения;<br>▪️ провести отлог сроком на 14 дней.<br> <br>Хотите проверить баланс вашей клубной карты? 😉",
-            "type": "Ask"
-        },
-        {
-            "Blocks": [
-                {
-                    "action": "query_kb",
-                    "text": "Баланс",
-                    "type": "End"
-                }
-            ],
-            "condition": "{UserSaid_Balance} == Проверить баланс",
-            "type": "If"
-        },
-        {
-            "Blocks": [
-                {
-                    "text": "Установите мобильное приложение 585*Золотой, и баланс всегда будет под рукой.<br> <br>AppStore: <a href:='https://apps.apple.com/ru/app/585-%D0%B7%D0%BE%D0%BB%D0%BE%D1%82%D0%BE%D0%B9/id1449179965'>apps.apple.com/ru/app/585zolotoy</a><br>Google Play: <a href:='https://play.google.com/store/apps/details?id=ru.zolotoy585.customer'>play.google.com/store/apps/585zolotoy</a>",
-                    "type": "Message"
-                },
-                {
-                    "action": null,
-                    "type": "End"
-                }
-            ],
-            "condition": "{UserSaid_Balance} == В другой раз",
-            "type": "If"
-        },
-        {
-            "action": "query_kb",
-            "text": "{UserSaid_Balance}",
-            "type": "End"
+const updateBigData = (data: any) => {
+    let ref: number;
+    for (let i = 0; i < data.length; i++) {
+        if (data[i + 1]?.Blocks) {
+            ref = i
         }
-    ]
+        if (data[i].Blocks) {
+            data[i].Blocks.forEach((el: any) => {
+                el.target = ref
+            })
+            //@ts-ignore
+            data[i].source = ref
+        }
+    }
+
+
 }
 
-// console.log(JSON.parse("UI_METAINFO: {version:0.1,flow:{" +
-//     "Blocks:[{type:'Ask',pos_x:-23896,pos_y:-5487},{type:'Comment',pos_x:-23898,pos_y:-4968},{type:'End',pos_x:-23945,pos_y:-4651}],view_zoom:0.706,view_pos_x:276,view_pos_y:550,canvas_x:17065,canvas_y:3720,connectionStyle:'quadratisch_praktisch_gut'}}"))
+
 export const serialiseApiNodes = (nodes: any, edges: any, viewPort: Viewport, rect:Rect) => {
     console.log(nodes, 'nodes')
     const serilNodes = []
@@ -109,48 +76,133 @@ export const serialiseApiNodes = (nodes: any, edges: any, viewPort: Viewport, re
         "Blocks": serilNodes,
     }
 }
+const checkAskType = (expect: string, node?: {}) => {
+    if (node) {
+        return expect === QuestionExpectField.TEXT ? Nodes.QUESTION_NODE : Nodes.GET_FILE_NODE
+    } else {
+        return Nodes.CHOICE_NODE
+    }
+
+}
 
 
-export const desirialiseAPINode = (data: MyData) => {
-    const blocks = data.Blocks
+let count = 0
 
-    const nodes: typeof finishData = []
-    const edges: typeof edgesData = []
+function traversal({ tree, IDX, nodes, edges }: any): any {
+    let id;
+    let node;
+    let edge;
+    let ref;
+    if (!Array.isArray(tree)) {
+        if (tree.type !== undefined) {
 
-    const metaInfo = blocks[blocks.length - 1].text!.trim()
-    const res = metaInfo.match(/\[.+?]/g);
-    const metaArray = JSON.parse(res![0])
+                count++
+            const { type, pos_x, pos_y, _node, source, Blocks, target, ...rest } = tree
+            let idx = source ? `${source}-${IDX}` : `${IDX}`
+            node = {
+                position: { x: pos_x ?? 0, y: pos_y ?? 0 },
+                // positionAbsolute: { x: pos_x ?? 0, y: pos_y ?? 0 },
+                id: idx ,
+                type: type === Nodes.QUESTION_NODE ? checkAskType(tree?.expect, _node) : type,
+                data: { label: `${type}-${count}-${count + 1}` },
+                dragging: false,
+                ...rest,
+                selected: false,
+            }
 
-    for (let i = 0; i < blocks.length - 1; i++) {
-        const { type, ...rest } = blocks[i]
-        nodes.push({
-            id: `${i}`,
-            //@ts-ignore
-            type: typeMapper[type],
-            data: { label: `${type}-${i}-${i + 1}` },
-            dragging: false,
-            //@ts-ignore
-            payload: {
-                ...rest
-            },
-            position: { x: metaArray[i]['pos_x'], y: metaArray[i]['pos_y'] },
-            positionAbsolute: { x: metaArray[i]['pos_x'], y: metaArray[i]['pos_y'] },
-            selected: false,
-        })
-        if (i < blocks.length - 1) {
+            if (source) {
+                node.source = source
+            }
+            if (target) {
+                node.target = target
+            }
+
+            nodes.push(node)
+            if (tree.ref) {
+                ref = tree.ref
+
+            }
+            // const longId =
             edges.push({
-                "source": String(i),
+                "source": idx,
                 "sourceHandle": null,
-                "target": String(i + 1),
+                "target": String(IDX + 1),
                 "targetHandle": null,
-                "id": String(i) + String(i + 1)
+                "id": String(IDX) + String(IDX + 1)
             })
-        }
 
+        }
+    }
+
+
+    if (!tree.Blocks) return
+
+
+    for (let i = 0; i < tree.Blocks.length; i++) {
+        traversal({ tree: tree.Blocks[i], IDX: i, nodes, edges })
 
     }
+
 
     return [nodes, edges]
 }
 
-export const [myNodes, myEdges] = desirialiseAPINode(data)
+
+export const desirialiseAPINode = (data: any, IDX?: number, reqNumber?: number) => {
+
+    updateBigData(data?.Blocks)
+
+    const n: any = []
+    const e: any = []
+
+    const [nodes, edges] = traversal({ tree: data, nodes: n, edges: e })
+
+    // const metaInfo = data?.Blocks[data?.Blocks.length - 1].text!.trim()
+    // const res = metaInfo.match(/\[.+?]/g);
+    // const metaArray = JSON.parse(res![0])
+    // console.log(metaArray, 'metaArray')
+    // for (let i = 0; i < blocks.length - 1; i++) {
+    //     const { type, pos_x, pos_y, _node, ...rest } = blocks[i]
+    //     if (type === Nodes.CONDITION_NODE) {
+    //
+    //         const result = desirialiseAPINode(data, i)
+    //         console.log(result, 'result')
+    //
+    //
+    //     } else {
+    //         nodes.push({
+    //             position: { x: pos_x, y: pos_y }, positionAbsolute: { x: pos_x, y: pos_y },
+    //             id: IDX ? getId(IDX, i) : `${i}`,
+    //             type: type === Nodes.QUESTION_NODE ? checkAskType(blocks[i]?.expect, _node) : type,
+    //             data: { label: `${type}-${i}-${i + 1}` },
+    //             dragging: false,
+    //             ...rest,
+    //             selected: false
+    //         })
+    //
+    //         if (i < blocks.length - 1) {
+    //             edges.push({
+    //                 "source": String(i),
+    //                 "sourceHandle": null,
+    //                 "target": String(i + 1),
+    //                 "targetHandle": null,
+    //                 "id": String(i) + String(i + 1)
+    //             })
+    //         }
+    //
+    //
+    //     }
+    //
+    // }
+    // const nodes: any = []
+    // const edges: any = []
+    console.log(nodes)
+    console.log(edges)
+    return [nodes, edges]
+}
+
+export const [myNodes, myEdges] = desirialiseAPINode(BIG_DATA)
+console.log(myNodes)
+//
+// console.log(myNodes, 'Nodes')
+// console.log(myEdges, 'edges')

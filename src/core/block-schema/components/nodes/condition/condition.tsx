@@ -84,6 +84,7 @@ export const ConditionNode = memo(({ id }: Props) => {
     return (
         <Container>
             <Handle type="target" position={Position.Top}/>
+            <Handle type="source" id='a' position={Position.Bottom}/>
             <Header onDelete={deleteNode} title={NODES_NAME[Nodes.CONDITION_NODE]} onSave={onSave}>
                 <div className={style.innerModal}>
                     <span>Переменна</span>
@@ -107,7 +108,7 @@ export const ConditionNode = memo(({ id }: Props) => {
                     {`{${variable}} ${condition} ${value} `}
                 </span>
             </Body>
-            <Handle type="source" position={Position.Bottom}/>
+            <Handle type="source" id='b' position={Position.Right}/>
         </Container>
 
     );

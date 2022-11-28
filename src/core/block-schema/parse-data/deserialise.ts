@@ -84,10 +84,7 @@ function recursiveCreateNodes({ tree, IDX, nodes, edges, cache }: any): any {
             const targetId = isNaN(Number(idx)) ? idx : String(IDX + 1)
 
 
-            let sourceHandleId = null
-            if (tree.type === 'Ask' && tree.options) {
-                sourceHandleId = 0
-            }
+
 
             if (tree.type === Nodes.TAG_NODE && cache[tree.text] === undefined) {
                 cache[tree.text] = {
@@ -95,7 +92,7 @@ function recursiveCreateNodes({ tree, IDX, nodes, edges, cache }: any): any {
                 }
             }
 
-
+            const sourceHandleId = tree.type === Nodes.TRANSITION_NODE ? 'b' : null
             const edge = {
                 "source": sourceId,
                 "sourceHandle": sourceHandleId,
@@ -139,7 +136,7 @@ export const desirialiseAPINode = (data: any, IDX?: number, reqNumber?: number) 
             console.log(targetCache,'')
             accEdge.push({
                 "source": el.id,
-                "sourceHandle": null,
+                "sourceHandle": 'a',
                 "target": targetCache[el.label].target,
                 "targetHandle": null,
                 "id": String(IDX) + String(targetCache[el.label].target + 1) + idx,

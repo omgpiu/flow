@@ -13,7 +13,7 @@ export const TransitionNode = memo(({ id }: Props) => {
     const { deleteElements, getNode, setNodes, getNodes } = useReactFlow();
     //@ts-ignore
     const label = getNode(id)?.label
-
+    // console.log(label, 'label')
     const options = useMemo(() => {
         const tagNodes = getNodes().filter(e => e.type === Nodes.TAG_NODE)
         // @ts-ignore
@@ -51,6 +51,7 @@ export const TransitionNode = memo(({ id }: Props) => {
     return (
         <Container>
             <Handle type="target" position={Position.Top}/>
+            <Handle type="source" id='a' position={Position.Right}/>
             <Header onDelete={deleteNode} title={NODES_NAME[Nodes.TRANSITION_NODE]} onSave={onSave}>
                 <div className={style.innerModal}>
                     <span>Переход на метку</span>
@@ -72,7 +73,7 @@ export const TransitionNode = memo(({ id }: Props) => {
                     {tag}
                 </span>
             </Body>
-            <Handle type="source" position={Position.Bottom}/>
+            <Handle type="source" id='b'position={Position.Bottom}/>
         </Container>
 
     );

@@ -1,14 +1,15 @@
 import React, { memo, useRef } from 'react';
 import { Nodes, NODES_NAME } from "../types";
+import { Login } from "./login";
 
 interface Props {
     addNode: () => void
     generateNodes: (xNodes: number, yNodes: number) => void
-    saveInitialValues: () => void
+    serializeNodes: () => void
 }
 
 
-export const SideBar = memo(({addNode, generateNodes, saveInitialValues}: Props) => {
+export const SideBar = memo(({addNode, generateNodes, serializeNodes}: Props) => {
     const xNodesAmount = useRef<HTMLInputElement | null>(null)
     const yNodesAmount = useRef<HTMLInputElement | null>(null)
 
@@ -72,13 +73,14 @@ export const SideBar = memo(({addNode, generateNodes, saveInitialValues}: Props)
             <div className="dndnode finish" onDragStart={(event) => onDragStart(event, Nodes.FINISH_NODE)} draggable>
                 {NODES_NAME[Nodes.FINISH_NODE]}
             </div>
-            <button onClick={addNode}>Add Node</button>
-            <button style={{marginLeft: '10px'}} onClick={genNodes}>Generate nodes</button>
-            <p>xNodesAmount</p>
-            <input type="number" ref={xNodesAmount} min={1} placeholder={'10'}/>
-            <p>yNodesAmount</p>
-            <input type="number" ref={yNodesAmount} min={1} placeholder={'10'}/>
-            <button style={{marginTop: '10px'}} onClick={saveInitialValues}>Save initial values</button>
+            {/*<button onClick={addNode}>Add Node</button>*/}
+            {/*<button style={{marginLeft: '10px'}} onClick={genNodes}>Generate nodes</button>*/}
+            {/*<p>xNodesAmount</p>*/}
+            {/*<input type="number" ref={xNodesAmount} min={1} placeholder={'10'}/>*/}
+            {/*<p>yNodesAmount</p>*/}
+            {/*<input type="number" ref={yNodesAmount} min={1} placeholder={'10'}/>*/}
+            <button style={{ marginTop: '10px' }} onClick={serializeNodes}>SerializeNodes</button>
+            <Login/>
         </aside>
     );
 })

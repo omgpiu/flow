@@ -4,9 +4,8 @@ import { Nodes, QuestionExpectField } from "./components";
 //finishNode,questionNode,commentNode
 
 const revertTypeMapper = {
-    'questionNode': 'Ask',
-    'commentNode': 'Comment',
-    'finishNode': 'End'
+    [Nodes.GET_FILE_NODE]: 'Ask',
+    [Nodes.CHOICE_NODE]: 'Ask',
 
 }
 
@@ -19,6 +18,7 @@ const updateBigData = (data: any) => {
         if (data[i].Blocks) {
             data[i].Blocks.forEach((el: any) => {
                 el.target = ref
+                el.condition = data[i].condition
             })
             //@ts-ignore
             data[i].source = ref
@@ -30,9 +30,30 @@ const updateBigData = (data: any) => {
 
 
 export const serialiseApiNodes = (nodes: any, edges: any, viewPort: Viewport, rect:Rect) => {
-    console.log(nodes, 'nodes')
-    const serilNodes = []
+
+    const serilNodes: any = []
     const positionBlock: any = []
+
+    for (let i = 0; i < nodes.length; i++) {
+
+        const { type: nodeType, position, id, selected, dragging, height, width, data, ...rest } = nodes[i]
+        //@ts-ignore
+        const type = revertTypeMapper[nodeType] ?? nodeType
+
+        serilNodes.push({
+            "pos_x": position.x,
+            "pos_y": position.y,
+            type,
+            ...rest,
+        })
+
+        positionBlock.push({
+            type,
+            "pos_x": position.x,
+            "pos_y": position.y
+        })
+
+    }
 
     const meta = {
         version: 0.1,
@@ -52,25 +73,7 @@ export const serialiseApiNodes = (nodes: any, edges: any, viewPort: Viewport, re
         type: 'CodeComment'
     }
 
-
-    for (let i = 0; i < nodes.length; i++) {
-        //@ts-ignore
-        const type = revertTypeMapper[nodes[i].type]
-        serilNodes.push({
-            ...nodes[i].payload,
-            //@ts-ignore
-            type,
-        })
-        positionBlock.push({
-            type,
-            "pos_x": nodes[i].position.x,
-            "pos_y": nodes[i].position.y
-        })
-        if (i === nodes.length - 1) {
-            serilNodes.push(lastElement)
-        }
-
-    }
+    serilNodes.push(lastElement)
 
     return {
         "Blocks": serilNodes,
@@ -88,7 +91,7 @@ const checkAskType = (expect: string, node?: {}) => {
 
 let count = 0
 
-function traversal({ tree, IDX, nodes, edges }: any): any {
+function traversal({ tree, IDX, nodes, edges, cache }: any): any {
     let id;
     let node;
     let edge;
@@ -96,13 +99,19 @@ function traversal({ tree, IDX, nodes, edges }: any): any {
     if (!Array.isArray(tree)) {
         if (tree.type !== undefined) {
 
-                count++
+            count++
             const { type, pos_x, pos_y, _node, source, Blocks, target, ...rest } = tree
-            let idx = source ? `${source}-${IDX}` : `${IDX}`
+            if (target) {
+                if (cache[target] === undefined) {
+                    cache[target] = 0
+                } else {
+                    cache[target] = cache[target] + 1
+                }
+            }
+            let idx = target ? `${target}-${cache[target]}` : `${IDX}`
             node = {
-                position: { x: pos_x ?? 0, y: pos_y ?? 0 },
-                // positionAbsolute: { x: pos_x ?? 0, y: pos_y ?? 0 },
-                id: idx ,
+                position: { x: pos_x ?? 25 * IDX * (-20), y: pos_y ?? 25 * IDX * (-20) },
+                id: idx,
                 type: type === Nodes.QUESTION_NODE ? checkAskType(tree?.expect, _node) : type,
                 data: { label: `${type}-${count}-${count + 1}` },
                 dragging: false,
@@ -116,19 +125,21 @@ function traversal({ tree, IDX, nodes, edges }: any): any {
             if (target) {
                 node.target = target
             }
-
-            nodes.push(node)
+            if (cache[source] === undefined) {
+                nodes.push(node)
+            }
             if (tree.ref) {
                 ref = tree.ref
 
             }
-            // const longId =
+            const sourceId = isNaN(Number(idx)) ? idx.match(/^([0-9]+)/)![1] : idx
+            const targetId = isNaN(Number(idx)) ? idx : String(IDX + 1)
             edges.push({
-                "source": idx,
+                "source": sourceId,
                 "sourceHandle": null,
-                "target": String(IDX + 1),
+                "target": targetId,
                 "targetHandle": null,
-                "id": String(IDX) + String(IDX + 1)
+                "id": String(IDX) + String(IDX + 1) + idx
             })
 
         }
@@ -139,7 +150,7 @@ function traversal({ tree, IDX, nodes, edges }: any): any {
 
 
     for (let i = 0; i < tree.Blocks.length; i++) {
-        traversal({ tree: tree.Blocks[i], IDX: i, nodes, edges })
+        traversal({ tree: tree.Blocks[i], IDX: i, nodes, edges, cache })
 
     }
 
@@ -149,60 +160,18 @@ function traversal({ tree, IDX, nodes, edges }: any): any {
 
 
 export const desirialiseAPINode = (data: any, IDX?: number, reqNumber?: number) => {
-
+    const targetCache: any = {}
     updateBigData(data?.Blocks)
 
-    const n: any = []
-    const e: any = []
+    const localNode: any = []
+    const localEdge: any = []
 
-    const [nodes, edges] = traversal({ tree: data, nodes: n, edges: e })
+    const [nodes, edges] = traversal({ tree: data, nodes: localNode, edges: localEdge, cache: targetCache })
 
-    // const metaInfo = data?.Blocks[data?.Blocks.length - 1].text!.trim()
-    // const res = metaInfo.match(/\[.+?]/g);
-    // const metaArray = JSON.parse(res![0])
-    // console.log(metaArray, 'metaArray')
-    // for (let i = 0; i < blocks.length - 1; i++) {
-    //     const { type, pos_x, pos_y, _node, ...rest } = blocks[i]
-    //     if (type === Nodes.CONDITION_NODE) {
-    //
-    //         const result = desirialiseAPINode(data, i)
-    //         console.log(result, 'result')
-    //
-    //
-    //     } else {
-    //         nodes.push({
-    //             position: { x: pos_x, y: pos_y }, positionAbsolute: { x: pos_x, y: pos_y },
-    //             id: IDX ? getId(IDX, i) : `${i}`,
-    //             type: type === Nodes.QUESTION_NODE ? checkAskType(blocks[i]?.expect, _node) : type,
-    //             data: { label: `${type}-${i}-${i + 1}` },
-    //             dragging: false,
-    //             ...rest,
-    //             selected: false
-    //         })
-    //
-    //         if (i < blocks.length - 1) {
-    //             edges.push({
-    //                 "source": String(i),
-    //                 "sourceHandle": null,
-    //                 "target": String(i + 1),
-    //                 "targetHandle": null,
-    //                 "id": String(i) + String(i + 1)
-    //             })
-    //         }
-    //
-    //
-    //     }
-    //
-    // }
-    // const nodes: any = []
-    // const edges: any = []
     console.log(nodes)
     console.log(edges)
     return [nodes, edges]
 }
 
 export const [myNodes, myEdges] = desirialiseAPINode(BIG_DATA)
-console.log(myNodes)
-//
-// console.log(myNodes, 'Nodes')
-// console.log(myEdges, 'edges')
+

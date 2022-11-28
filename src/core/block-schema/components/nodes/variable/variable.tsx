@@ -45,8 +45,14 @@ export const VariableNode = memo(({ id }: Props) => {
     const { deleteElements, getNode, setNodes } = useReactFlow();
     //@ts-ignore
     const value = getNode(id)?.payload?.value
-    //@ts-ignore
-    const variableAPI = getNode(id)?.payload?.payload?.variable
+    console.log(getNode(id), 'NOD')
+
+    const variableAPI = {
+        //@ts-ignore
+        name: getNode(id)?.key,
+        //@ts-ignore
+        value: getNode(id)?.value
+    }
 
     const [scope, setScope] = useState(value ?? SCOPE_OPTIONS[0].value)
     const [variable, setVariable] = useState(variableAPI ?? { name: '', value: '' })
@@ -177,6 +183,7 @@ export const VariableNode = memo(({ id }: Props) => {
                     {variable.name}
                 </span>
             </Body>
+            <Handle type="source" position={Position.Bottom}/>
         </Container>
     );
 })

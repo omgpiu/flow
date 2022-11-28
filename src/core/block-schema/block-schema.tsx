@@ -71,7 +71,8 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
     //@ts-ignore
     const [edges, setEdges, onEdgesChange] = useEdgesState(myEdges);
     // console.log('edges :', edges)
-    console.log('nodes :', nodes)
+    // console.log('nodes :', nodes)
+    // console.log('edges :', edges)
     const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
     //refs
     const reactFlowWrapper = useRef<any>(null);
@@ -185,7 +186,7 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
 
     return (
         <div className="dndflow">
-            <SideBar addNode={onAdd} generateNodes={generateNodes} saveInitialValues={saveInitialValues}/>
+            <SideBar addNode={onAdd} generateNodes={generateNodes} serializeNodes={saveInitialValues}/>
             <div className="reactflow-wrapper" ref={reactFlowWrapper}>
                 <ReactFlow
                     nodes={nodes}

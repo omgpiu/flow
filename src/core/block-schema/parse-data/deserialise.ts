@@ -37,12 +37,11 @@ const updateBigData = (data: any) => {
 let count = 0
 
 function recursiveCreateNodes({ tree, IDX, nodes, edges, cache }: any): any {
-    let id;
     let node;
-    let edge;
     let ref;
     if (!Array.isArray(tree)) {
         if (tree.type !== undefined) {
+
 
             count++
             const { type, pos_x, pos_y, _node, source, Blocks, target, ...rest } = tree
@@ -53,7 +52,9 @@ function recursiveCreateNodes({ tree, IDX, nodes, edges, cache }: any): any {
                     cache[target] = cache[target] + 1
                 }
             }
+
             let idx = target ? `${target}-${cache[target]}` : `${IDX}`
+
             node = {
                 position: { x: pos_x ?? 25 * IDX * (-20), y: pos_y ?? 25 * IDX * (-20) },
                 id: idx,
@@ -88,12 +89,19 @@ function recursiveCreateNodes({ tree, IDX, nodes, edges, cache }: any): any {
                 sourceHandleId = 0
             }
 
+            if (tree.type === Nodes.TAG_NODE && cache[tree.text] === undefined) {
+                cache[tree.text] = {
+                    target: idx
+                }
+            }
+
+
             const edge = {
                 "source": sourceId,
                 "sourceHandle": sourceHandleId,
                 "target": targetId,
                 "targetHandle": null,
-                "id": String(IDX) + String(IDX + 1) + idx
+                "id": String(IDX) + String(IDX + 1) + idx,
             }
 
 
@@ -125,6 +133,19 @@ export const desirialiseAPINode = (data: any, IDX?: number, reqNumber?: number) 
 
     recursiveCreateNodes({ tree: data, nodes: accNode, edges: accEdge, cache: targetCache })
     accNode.pop()
+    accNode.forEach((el:any,idx:number)=>{
+        if(el.type === Nodes.TRANSITION_NODE){
+            console.log(el,'el')
+            console.log(targetCache,'')
+            accEdge.push({
+                "source": el.id,
+                "sourceHandle": null,
+                "target": targetCache[el.label].target,
+                "targetHandle": null,
+                "id": String(IDX) + String(targetCache[el.label].target + 1) + idx,
+            })
+        }
+    })
     console.log('accNode :', accNode)
     console.log(accEdge, 'accEdge')
     return [accNode, accEdge]

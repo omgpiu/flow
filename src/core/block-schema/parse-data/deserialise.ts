@@ -77,7 +77,7 @@ function recursiveCreateNodes({ tree, IDX, nodes, edges, cache }: any): any {
                 ref = tree.ref
 
             }
-            const sourceId = isNaN(Number(idx)) ? parseInt(idx) : idx
+            const sourceId = isNaN(Number(idx)) ? String(parseInt(idx)) : idx
             const targetId = isNaN(Number(idx)) ? idx : String(IDX + 1)
             edges.push({
                 "source": sourceId,
@@ -111,9 +111,11 @@ export const desirialiseAPINode = (data: any, IDX?: number, reqNumber?: number) 
     const accNode: any = []
     const accEdge: any = []
 
-    const [nodes, edges] = recursiveCreateNodes({ tree: data, nodes: accNode, edges: accEdge, cache: targetCache })
-
-    return [nodes, edges]
+    recursiveCreateNodes({ tree: data, nodes: accNode, edges: accEdge, cache: targetCache })
+    accNode.pop()
+    console.log('accNode :', accNode)
+    console.log(accEdge, 'accEdge')
+    return [accNode, accEdge]
 }
 
 export const [myNodes, myEdges] = desirialiseAPINode(BIG_DATA)

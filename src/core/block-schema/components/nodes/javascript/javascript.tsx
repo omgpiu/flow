@@ -12,12 +12,12 @@ interface Props {
 export const JavascriptNode = memo(({id}: Props) => {
     const { deleteElements, getNode, setNodes } = useReactFlow();
     //@ts-ignore
-    const value = getNode(id)?.payload?.javascript
+    const value = getNode(id)?.code
     //@ts-ignore
-    const rows = getNode(id)?.payload?.rows
+    const rows = getNode(id)?.rows
     //@ts-ignore
     const [rowsAmount, setRowsAmount] = useState<any>(rows);
-    const [message, setMessage] = useState<any>(value)
+    const [jsCode, setJsCode] = useState<any>(value)
 
     const textArea = useRef<any>(null)
 
@@ -28,11 +28,9 @@ export const JavascriptNode = memo(({id}: Props) => {
                     //@ts-ignore
                     return {
                         ...node,
-                        payload: {
-                            ...node.payload,
-                            javascript: textArea.current.value,
-                            rows: textArea.current.value.split(/\r\n|\r|\n/).length,
-                        }
+                        code: textArea.current.value,
+                        rows: textArea.current.value.split(/\r\n|\r|\n/).length,
+
                     }
                 }
                 return node;
@@ -40,7 +38,7 @@ export const JavascriptNode = memo(({id}: Props) => {
         );
 
         setRowsAmount(textArea.current.value.split(/\r\n|\r|\n/).length)
-        setMessage(textArea.current.value)
+        setJsCode(textArea.current.value)
     }
 
     const deleteNode = () => {
@@ -54,12 +52,12 @@ export const JavascriptNode = memo(({id}: Props) => {
                     modalClassName={style.container}>
                 <div className={style.innerModal}>
                     <span>Javascript</span>
-                    <textarea ref={textArea} defaultValue={message} rows={15}/>
+                    <textarea ref={textArea} defaultValue={jsCode} rows={15}/>
                 </div>
             </Header>
             <Body>
                 <span>
-                    {rowsAmount}
+                    {jsCode ?? rowsAmount}
                 </span>
             </Body>
             <Handle type="source" position={Position.Bottom}/>

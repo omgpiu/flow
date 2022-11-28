@@ -14,9 +14,9 @@ export const ChoiceNode = memo(({ id }: Props) => {
     let top = 90
     const { deleteElements, getNode, setNodes } = useReactFlow();
     //@ts-ignore
-    const valueMessage = getNode(id)?.payload?.value
+    const valueMessage = getNode(id)?.text
     //@ts-ignore
-    const selectValues = getNode(id)?.payload?.select ?? []
+    const selectValues = getNode(id)?.options ?? []
 
     const [selectedValuesArray, setSelectedValues] = useState<string[]>(selectValues)
 
@@ -34,11 +34,9 @@ export const ChoiceNode = memo(({ id }: Props) => {
                     //@ts-ignore
                     return {
                         ...node,
-                        payload: {
-                            ...node.payload,
-                            value: textAreaRef.current?.value,
-                            list: selectedValuesArray
-                        }
+                        text: textAreaRef.current?.value,
+                        options: selectedValuesArray,
+
                     }
                 }
                 return node;

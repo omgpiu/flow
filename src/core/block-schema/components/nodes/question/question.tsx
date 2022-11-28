@@ -1,4 +1,4 @@
-import { memo, useRef, useState } from "react";
+import { Fragment, memo, useRef, useState } from "react";
 import { Handle, Position, useReactFlow } from "reactflow";
 import { Body, Container, Header } from "../../common";
 import style from "./styles.module.css";
@@ -14,11 +14,11 @@ export const QuestionNode = memo(({ id }: Props) => {
 
     const { deleteElements, getNode, setNodes } = useReactFlow();
     //@ts-ignore
-    const valueMessage = getNode(id)?.payload?.value
+    const valueMessage = getNode(id)?.text
     //@ts-ignore
-    const valueVariable = getNode(id)?.payload?.variable
+    const valueVariable = getNode(id)?.result_variable
     //@ts-ignore
-    const selectValues = getNode(id)?.payload?.select
+    const selectValues = getNode(id)?.options ?? []
     const selectedValuesArray: Array<string> = []
     const [nodeData, setNodeData] = useState<any>({
         valueMessage,
@@ -28,8 +28,7 @@ export const QuestionNode = memo(({ id }: Props) => {
 
     const textAreaRef = useRef<any>(null)
     const inputRef = useRef<any>(null)
-    console.log(textAreaRef.current?.value, 'textArea')
-    console.log(inputRef.current?.value, 'input')
+
 
     const onSave = () => {
         setNodes((nds) =>
@@ -38,12 +37,10 @@ export const QuestionNode = memo(({ id }: Props) => {
                     //@ts-ignore
                     return {
                         ...node,
-                        payload: {
-                            ...node.payload,
-                            value: textAreaRef.current?.value,
-                            variable: inputRef.current?.value,
-                            list: selectedValuesArray
-                        }
+                        text: textAreaRef.current?.value,
+                        result_variable: inputRef.current?.value,
+                        options: selectedValuesArray
+
                     }
                 }
                 return node;
@@ -87,6 +84,14 @@ export const QuestionNode = memo(({ id }: Props) => {
                 <span>
                     {nodeData?.valueMessage}
                 </span>
+
+                <p>
+                    <span>Варианты ответа</span>
+                    {nodeData.selectValues.map((el: any) => {
+                        return <Fragment key={el}>{el}</Fragment>
+                    })}
+                </p>
+
                 <span>
                  {`Сохранить результат в  ${textVariable}`}
                 </span>

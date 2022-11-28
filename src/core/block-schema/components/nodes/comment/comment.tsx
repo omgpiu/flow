@@ -12,7 +12,7 @@ interface Props {
 export const CommentNode = memo(({id}: Props) => {
     const {deleteElements, getNode, setNodes} = useReactFlow();
     //@ts-ignore
-    const value = getNode(id)?.payload?.value
+    const value = getNode(id)?.text
     const [message, setMessage] = useState<any>(value);
     const inputRef = useRef<any>(null)
     const onSave = () => {
@@ -22,10 +22,8 @@ export const CommentNode = memo(({id}: Props) => {
                     //@ts-ignore
                     return {
                         ...node,
-                        payload: {
-                            ...node.payload,
-                            value: inputRef.current.value,
-                        }
+                        ...node.payload,
+                        text: inputRef.current.value,
                     }
                 }
                 return node;

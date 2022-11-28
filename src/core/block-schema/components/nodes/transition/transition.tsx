@@ -12,18 +12,18 @@ interface Props {
 export const TransitionNode = memo(({ id }: Props) => {
     const { deleteElements, getNode, setNodes, getNodes } = useReactFlow();
     //@ts-ignore
-    const value = getNode(id)?.payload?.value
+    const label = getNode(id)?.label
 
     const options = useMemo(() => {
-        const tagNodes = getNodes().filter(e => e.type === 'tagNode')
+        const tagNodes = getNodes().filter(e => e.type === Nodes.TAG_NODE)
         // @ts-ignore
-        const values = tagNodes?.map(el => el?.payload?.value)
+        const values = tagNodes?.map(el => el?.label)
         return values
     }, [])
 
-    const [tag, setTag] = useState<any>(value);
+    const [tag, setTag] = useState<any>(label);
 
-    const inputRef = useRef<any>(null)
+    const amountRef = useRef<any>(null)
 
     const onSave = () => {
         setNodes((nds) =>
@@ -32,11 +32,8 @@ export const TransitionNode = memo(({ id }: Props) => {
                     //@ts-ignore
                     return {
                         ...node,
-                        payload: {
-                            ...node.payload,
-                            value: inputRef.current.value,
-                            tag,
-                        }
+                        label:tag,
+                        counter: amountRef.current.value,
                     }
                 }
                 return node;
@@ -67,7 +64,7 @@ export const TransitionNode = memo(({ id }: Props) => {
                         >{value}</option>)}
                     </select>
                     <span>Не более чем данное количество раз</span>
-                    <input type='text' defaultValue={100} ref={inputRef}/>
+                    <input type='text' defaultValue={100} ref={amountRef}/>
                 </div>
             </Header>
             <Body>

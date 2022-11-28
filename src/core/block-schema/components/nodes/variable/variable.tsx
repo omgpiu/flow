@@ -45,7 +45,6 @@ export const VariableNode = memo(({ id }: Props) => {
     const { deleteElements, getNode, setNodes } = useReactFlow();
     //@ts-ignore
     const value = getNode(id)?.payload?.value
-    console.log(getNode(id), 'NOD')
 
     const variableAPI = {
         //@ts-ignore
@@ -58,7 +57,6 @@ export const VariableNode = memo(({ id }: Props) => {
     const [variable, setVariable] = useState(variableAPI ?? { name: '', value: '' })
     const [additionalVariables, setAdditionalVariables] = useState<any>({})
     const [scopeType, setScopeType] = useState()
-    console.log('additionalVariables :', additionalVariables)
     const variableName = useRef<any>(null)
     const variableValue = useRef<any>(null)
 

@@ -18,12 +18,7 @@ interface State {
 
 
 interface Payload {
-    payload: {
-        value: string | null
-        variable: string | null
-        file: number | null
-        btnText: string | null
-    } | null
+
 
 }
 
@@ -36,11 +31,12 @@ const OPTIONS = [{
 },]
 
 
-const getInitialValues = (node: Payload) => {
-    const messageValue = node?.payload?.value ?? 'Добавьте пожалуйста файл'
-    const variableValue = node?.payload?.variable ?? 'user_files'
-    const isWithFile = node?.payload?.file || 0
-    const btnText = node?.payload?.btnText ?? 'Пропустить'
+const getInitialValues = (node: any) => {
+
+    const messageValue = node?.text ?? 'Добавьте пожалуйста файл'
+    const variableValue = node?.result_variable ?? 'user_files'
+    const isWithFile = node?.file || 0
+    const btnText = node?.text_skip_file ?? 'Пропустить'
 
     return {
         messageValue,
@@ -75,13 +71,10 @@ export const GetFileNode = memo(({ id }: Props) => {
                     //@ts-ignore
                     return {
                         ...node,
-                        payload: {
-                            ...node.payload,
-                            value: textAreaRef.current?.value,
-                            variable: variableMessageRef.current?.value,
-                            isFile: selectRef.current?.value,
-                            btnText: btnTextRef.current?.value,
-                        }
+                        text: textAreaRef.current?.value,
+                        result_variable: variableMessageRef.current?.value,
+                        file: selectRef.current?.value,
+                        text_skip_file: btnTextRef.current?.value,
                     }
                 }
                 return node;
@@ -106,7 +99,7 @@ export const GetFileNode = memo(({ id }: Props) => {
             <Header onDelete={deleteNode} title={NODES_NAME[Nodes.GET_FILE_NODE]} onSave={onSave}>
                 <div className={style.innerModal}>
                     <span>Текст сообщения</span>
-                    <textarea ref={textAreaRef} rows={5}/>
+                    <textarea ref={textAreaRef} defaultValue={messageValue} rows={5}/>
                     <span>Требования файла</span>
                     <select name="variants" id="variants"
                             ref={selectRef}
@@ -117,9 +110,9 @@ export const GetFileNode = memo(({ id }: Props) => {
                         >{label}</option>)}
                     </select>
                     <span>Текст кнопки для пропуска загрузки </span>
-                    <input type='text' ref={btnTextRef}/>
+                    <input type='text' ref={btnTextRef} defaultValue={btnText}/>
                     <span>Имя переменной для хранения ответа</span>
-                    <input type='text' ref={variableMessageRef}/>
+                    <input type='text' ref={variableMessageRef} defaultValue={variableValue}/>
                 </div>
             </Header>
             <Body>

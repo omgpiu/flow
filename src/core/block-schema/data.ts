@@ -186,7 +186,7 @@ export const BIG_DATA = {
             }
         },
         {
-            "expect": "optional_file",
+            "expect": "file",
             "result_variable": "user_file",
             "text": "Добавьте пожалуйста файл",
             "text_skip_file": "Пропустить",
@@ -222,87 +222,98 @@ export const BIG_DATA = {
         },
         {
             "type": "Ask",
-            "text": "<p>Выбор</p>\n<p>&nbsp;</p>",
+            "text": "<p>Выбор</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>",
             "result_variable": "user_said",
             "expect": "text",
             "options": [
-                "Выбор1",
-                "Выбор2"
+                "Выбор1"
             ],
             "pos_x": -3555,
             "pos_y": -2880
         },
         {
             "type": "If",
-            "condition": "{user_said} == Выбор2",
-            "Blocks": [
-                {
-                    "key": "Variable2",
-                    "scope": "script",
-                    "type": "Var",
-                    "value": "2",
-                    "pos_x": -2807,
-                    "pos_y": -2626,
-                },
-                {
-                    "action": null,
-                    "type": "End",
-                    "pos_x": -2789,
-                    "pos_y": -2428,
-                }
-            ]
-        },
-        {
-            "type": "If",
             "condition": "{user_said} == Выбор1",
             "Blocks": [
                 {
-                    "key": "varuable1",
-                    "scope": "script",
                     "type": "Var",
-                    "value": "1",
-                    "pos_x": -2589,
-                    "pos_y": -3020,
+                    "key": "variableValue",
+                    "value": "valueis1",
+                    "scope": "script",
+                    "ui_view": {
+                        "name": "",
+                        "type": "text",
+                        "show_operator": true,
+                        "readonly": false,
+                        "required": false,
+                        "options": ""
+                    },
+                    "pos_x": -2798,
+                    "pos_y": -2798,
                     "_node": {
-                        "id": 5,
+                        "id": 22,
                         "name": "block_Var",
                         "data": {
-                            "scope": "script",
+                            "scope": "",
                             "_block": {
-                                "key": "varuable1",
-                                "scope": "script",
                                 "type": "Var",
-                                "value": "1",
-                                "pos_x": -2589,
-                                "pos_y": -3020,
+                                "key": "variableValue",
+                                "value": "valueis1",
+                                "scope": "script",
+                                "ui_view": {
+                                    "name": "",
+                                    "type": "text",
+                                    "show_operator": true,
+                                    "readonly": false,
+                                    "required": false,
+                                    "options": ""
+                                },
+                                "pos_x": -2798,
+                                "pos_y": -2798,
                                 "_node": {
-                                    "id": 5,
+                                    "id": 22,
                                     "name": "block_Var",
                                     "data": {
-                                        "scope": "script",
+                                        "scope": "",
                                         "_block": {
-                                            "key": "varuable1",
-                                            "scope": "script",
                                             "type": "Var",
-                                            "value": "1",
-                                            "pos_x": -2589,
-                                            "pos_y": -3020,
+                                            "key": "",
+                                            "value": "",
+                                            "scope": "",
+                                            "ui_view": {
+                                                "name": "",
+                                                "type": "text",
+                                                "show_operator": true,
+                                                "readonly": false,
+                                                "required": false,
+                                                "options": ""
+                                            },
+                                            "pos_x": -3406.7838262847977,
+                                            "pos_y": -2566.9602244211733,
                                             "_node": {
-                                                "id": 5,
+                                                "id": 22,
                                                 "name": "block_Var",
                                                 "data": {
-                                                    "scope": "script",
+                                                    "scope": "",
                                                     "_block": {
-                                                        "key": "varuable1",
-                                                        "scope": "script",
                                                         "type": "Var",
-                                                        "value": "1",
-                                                        "pos_x": -2589,
-                                                        "pos_y": -3020
+                                                        "key": "",
+                                                        "value": "",
+                                                        "scope": "",
+                                                        "ui_view": {
+                                                            "name": "",
+                                                            "type": "text",
+                                                            "show_operator": true,
+                                                            "readonly": false,
+                                                            "required": false,
+                                                            "options": ""
+                                                        },
+                                                        "pos_x": -3406.7838262847977,
+                                                        "pos_y": -2566.9602244211733
                                                     }
                                                 },
                                                 "class": "df-class-Var",
-                                                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-subscript\" style=\"padding-right:5px\" ></i><span> Переменная</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-secondary\">\n                        <div><code class=\"var-key\" >varuable1</code></div>\n                        </p>\n                    </div>\n                    </div>\n                    ",
+                                                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-subscript\" style=\"padding-right:5px\" ></i><span> Переменная</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-secondary\">\n                        <div><code class=\"var-key\" ></code></div>\n                        </p>\n                    </div>\n                    </div>\n                    ",
                                                 "typenode": false,
                                                 "inputs": {},
                                                 "outputs": {
@@ -310,13 +321,13 @@ export const BIG_DATA = {
                                                         "connections": []
                                                     }
                                                 },
-                                                "pos_x": -2589,
-                                                "pos_y": -3020
+                                                "pos_x": -3406.7838262847977,
+                                                "pos_y": -2566.9602244211733
                                             }
                                         }
                                     },
                                     "class": "df-class-Var",
-                                    "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-subscript\" style=\"padding-right:5px\" ></i><span> Переменная</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-secondary\">\n                        <div><code class=\"var-key\" >varuable1</code></div>\n                        </p>\n                    </div>\n                    </div>\n                    ",
+                                    "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-subscript\" style=\"padding-right:5px\" ></i><span> Переменная</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-secondary\">\n                        <div><code class=\"var-key\" ></code></div>\n                        </p>\n                    </div>\n                    </div>\n                    ",
                                     "typenode": false,
                                     "inputs": {
                                         "input_1": {
@@ -328,13 +339,13 @@ export const BIG_DATA = {
                                             "connections": []
                                         }
                                     },
-                                    "pos_x": -2589,
-                                    "pos_y": -3020
+                                    "pos_x": -3401.2735502976398,
+                                    "pos_y": -2581.9602282031865
                                 }
                             }
                         },
                         "class": "df-class-Var",
-                        "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-subscript\" style=\"padding-right:5px\" ></i><span> Переменная</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-secondary\">\n                        <div><code class=\"var-key\" >varuable1</code></div>\n                        </p>\n                    </div>\n                    </div>\n                    ",
+                        "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-subscript\" style=\"padding-right:5px\" ></i><span> Переменная</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-secondary\">\n                        <div><code class=\"var-key\" ></code></div>\n                        </p>\n                    </div>\n                    </div>\n                    ",
                         "typenode": false,
                         "inputs": {
                             "input_1": {
@@ -350,78 +361,60 @@ export const BIG_DATA = {
                             "output_1": {
                                 "connections": [
                                     {
-                                        "node": "6",
+                                        "node": "9",
+                                        "output": "input_1"
+                                    },
+                                    {
+                                        "node": "23",
                                         "output": "input_1"
                                     }
                                 ]
                             }
                         },
-                        "pos_x": -2589,
-                        "pos_y": -3020
+                        "pos_x": -2798,
+                        "pos_y": -2798
                     }
                 },
                 {
-                    "action": null,
                     "type": "End",
-                    "pos_x": -2213,
-                    "pos_y": -2715,
+                    "action": null,
+                    "pos_x": -2820.060057548181,
+                    "pos_y": -2607.6454492605735,
                     "_node": {
-                        "id": 6,
+                        "id": 23,
                         "name": "block_End",
                         "data": {
                             "action": "null",
                             "_block": {
-                                "action": null,
                                 "type": "End",
-                                "pos_x": -2213,
-                                "pos_y": -2715,
+                                "text": "",
+                                "action": null,
+                                "pos_x": -2820.060057548181,
+                                "pos_y": -2607.6454492605735,
                                 "_node": {
-                                    "id": 6,
+                                    "id": 23,
                                     "name": "block_End",
                                     "data": {
                                         "action": "null",
                                         "_block": {
-                                            "action": null,
                                             "type": "End",
-                                            "pos_x": -2213,
-                                            "pos_y": -2715,
-                                            "_node": {
-                                                "id": 6,
-                                                "name": "block_End",
-                                                "data": {
-                                                    "action": "null",
-                                                    "_block": {
-                                                        "action": null,
-                                                        "type": "End",
-                                                        "pos_x": -2213,
-                                                        "pos_y": -2715
-                                                    }
-                                                },
-                                                "class": "df-class-End",
-                                                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-flag-checkered\" style=\"padding-right:5px\" ></i><span> Завершение</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-muted\">завершить сценарий</p>\n                    </div>\n                    </div>",
-                                                "typenode": false,
-                                                "inputs": {},
-                                                "outputs": {
-                                                    "output_1": {
-                                                        "connections": []
-                                                    }
-                                                },
-                                                "pos_x": -2213,
-                                                "pos_y": -2715
-                                            }
+                                            "text": "",
+                                            "action": null,
+                                            "pos_x": -2820.060057548181,
+                                            "pos_y": -2607.6454492605735
                                         }
                                     },
                                     "class": "df-class-End",
                                     "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-flag-checkered\" style=\"padding-right:5px\" ></i><span> Завершение</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-muted\">завершить сценарий</p>\n                    </div>\n                    </div>",
                                     "typenode": false,
-                                    "inputs": {
-                                        "input_1": {
+                                    "inputs": {},
+                                    "outputs": {
+                                        "output_1": {
                                             "connections": []
                                         }
                                     },
-                                    "outputs": {},
-                                    "pos_x": -2213,
-                                    "pos_y": -2715
+                                    "pos_x": -2820.060057548181,
+                                    "pos_y": -2607.6454492605735
                                 }
                             }
                         },
@@ -434,8 +427,8 @@ export const BIG_DATA = {
                             }
                         },
                         "outputs": {},
-                        "pos_x": -2213,
-                        "pos_y": -2715
+                        "pos_x": -2820.060057548181,
+                        "pos_y": -2607.6454492605735
                     }
                 }
             ]
@@ -524,8 +517,8 @@ export const BIG_DATA = {
                 {
                     "action": null,
                     "type": "End",
-                    "pos_x": -2927,
-                    "pos_y": -2124,
+                    "pos_x": -2939,
+                    "pos_y": -1897,
                     "_node": {
                         "id": 12,
                         "name": "block_End",
@@ -534,8 +527,8 @@ export const BIG_DATA = {
                             "_block": {
                                 "action": null,
                                 "type": "End",
-                                "pos_x": -2927,
-                                "pos_y": -2124,
+                                "pos_x": -2939,
+                                "pos_y": -1897,
                                 "_node": {
                                     "id": 12,
                                     "name": "block_End",
@@ -544,8 +537,8 @@ export const BIG_DATA = {
                                         "_block": {
                                             "action": null,
                                             "type": "End",
-                                            "pos_x": -2927,
-                                            "pos_y": -2124,
+                                            "pos_x": -2939,
+                                            "pos_y": -1897,
                                             "_node": {
                                                 "id": 12,
                                                 "name": "block_End",
@@ -554,21 +547,248 @@ export const BIG_DATA = {
                                                     "_block": {
                                                         "action": null,
                                                         "type": "End",
-                                                        "pos_x": -2927,
-                                                        "pos_y": -2124
+                                                        "pos_x": -2939,
+                                                        "pos_y": -1897,
+                                                        "_node": {
+                                                            "id": 12,
+                                                            "name": "block_End",
+                                                            "data": {
+                                                                "action": "null",
+                                                                "_block": {
+                                                                    "action": null,
+                                                                    "type": "End",
+                                                                    "pos_x": -2939,
+                                                                    "pos_y": -1897,
+                                                                    "_node": {
+                                                                        "id": 12,
+                                                                        "name": "block_End",
+                                                                        "data": {
+                                                                            "action": "null",
+                                                                            "_block": {
+                                                                                "action": null,
+                                                                                "type": "End",
+                                                                                "pos_x": -2939,
+                                                                                "pos_y": -1897,
+                                                                                "_node": {
+                                                                                    "id": 12,
+                                                                                    "name": "block_End",
+                                                                                    "data": {
+                                                                                        "action": "null",
+                                                                                        "_block": {
+                                                                                            "action": null,
+                                                                                            "type": "End",
+                                                                                            "pos_x": -2939,
+                                                                                            "pos_y": -1897,
+                                                                                            "_node": {
+                                                                                                "id": 12,
+                                                                                                "name": "block_End",
+                                                                                                "data": {
+                                                                                                    "action": "null",
+                                                                                                    "_block": {
+                                                                                                        "action": null,
+                                                                                                        "type": "End",
+                                                                                                        "pos_x": -2939,
+                                                                                                        "pos_y": -1897,
+                                                                                                        "_node": {
+                                                                                                            "id": 12,
+                                                                                                            "name": "block_End",
+                                                                                                            "data": {
+                                                                                                                "action": "null",
+                                                                                                                "_block": {
+                                                                                                                    "action": null,
+                                                                                                                    "type": "End",
+                                                                                                                    "pos_x": -2927,
+                                                                                                                    "pos_y": -2124,
+                                                                                                                    "_node": {
+                                                                                                                        "id": 12,
+                                                                                                                        "name": "block_End",
+                                                                                                                        "data": {
+                                                                                                                            "action": "null",
+                                                                                                                            "_block": {
+                                                                                                                                "action": null,
+                                                                                                                                "type": "End",
+                                                                                                                                "pos_x": -2927,
+                                                                                                                                "pos_y": -2124,
+                                                                                                                                "_node": {
+                                                                                                                                    "id": 12,
+                                                                                                                                    "name": "block_End",
+                                                                                                                                    "data": {
+                                                                                                                                        "action": "null",
+                                                                                                                                        "_block": {
+                                                                                                                                            "action": null,
+                                                                                                                                            "type": "End",
+                                                                                                                                            "pos_x": -2927,
+                                                                                                                                            "pos_y": -2124,
+                                                                                                                                            "_node": {
+                                                                                                                                                "id": 12,
+                                                                                                                                                "name": "block_End",
+                                                                                                                                                "data": {
+                                                                                                                                                    "action": "null",
+                                                                                                                                                    "_block": {
+                                                                                                                                                        "action": null,
+                                                                                                                                                        "type": "End",
+                                                                                                                                                        "pos_x": -2927,
+                                                                                                                                                        "pos_y": -2124
+                                                                                                                                                    }
+                                                                                                                                                },
+                                                                                                                                                "class": "df-class-End",
+                                                                                                                                                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-flag-checkered\" style=\"padding-right:5px\" ></i><span> Завершение</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-muted\">завершить сценарий</p>\n                    </div>\n                    </div>",
+                                                                                                                                                "typenode": false,
+                                                                                                                                                "inputs": {},
+                                                                                                                                                "outputs": {
+                                                                                                                                                    "output_1": {
+                                                                                                                                                        "connections": []
+                                                                                                                                                    }
+                                                                                                                                                },
+                                                                                                                                                "pos_x": -2927,
+                                                                                                                                                "pos_y": -2124
+                                                                                                                                            }
+                                                                                                                                        }
+                                                                                                                                    },
+                                                                                                                                    "class": "df-class-End",
+                                                                                                                                    "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-flag-checkered\" style=\"padding-right:5px\" ></i><span> Завершение</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-muted\">завершить сценарий</p>\n                    </div>\n                    </div>",
+                                                                                                                                    "typenode": false,
+                                                                                                                                    "inputs": {
+                                                                                                                                        "input_1": {
+                                                                                                                                            "connections": []
+                                                                                                                                        }
+                                                                                                                                    },
+                                                                                                                                    "outputs": {},
+                                                                                                                                    "pos_x": -2927,
+                                                                                                                                    "pos_y": -2124
+                                                                                                                                }
+                                                                                                                            }
+                                                                                                                        },
+                                                                                                                        "class": "df-class-End",
+                                                                                                                        "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-flag-checkered\" style=\"padding-right:5px\" ></i><span> Завершение</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-muted\">завершить сценарий</p>\n                    </div>\n                    </div>",
+                                                                                                                        "typenode": false,
+                                                                                                                        "inputs": {
+                                                                                                                            "input_1": {
+                                                                                                                                "connections": [
+                                                                                                                                    {
+                                                                                                                                        "node": "11",
+                                                                                                                                        "input": "output_2"
+                                                                                                                                    }
+                                                                                                                                ]
+                                                                                                                            }
+                                                                                                                        },
+                                                                                                                        "outputs": {},
+                                                                                                                        "pos_x": -2927,
+                                                                                                                        "pos_y": -2124
+                                                                                                                    }
+                                                                                                                }
+                                                                                                            },
+                                                                                                            "class": "df-class-End",
+                                                                                                            "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-flag-checkered\" style=\"padding-right:5px\" ></i><span> Завершение</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-muted\">завершить сценарий</p>\n                    </div>\n                    </div>",
+                                                                                                            "typenode": false,
+                                                                                                            "inputs": {
+                                                                                                                "input_1": {
+                                                                                                                    "connections": [
+                                                                                                                        {
+                                                                                                                            "node": "11",
+                                                                                                                            "input": "output_2"
+                                                                                                                        }
+                                                                                                                    ]
+                                                                                                                }
+                                                                                                            },
+                                                                                                            "outputs": {},
+                                                                                                            "pos_x": -2927,
+                                                                                                            "pos_y": -2124
+                                                                                                        }
+                                                                                                    }
+                                                                                                },
+                                                                                                "class": "df-class-End",
+                                                                                                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-flag-checkered\" style=\"padding-right:5px\" ></i><span> Завершение</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-muted\">завершить сценарий</p>\n                    </div>\n                    </div>",
+                                                                                                "typenode": false,
+                                                                                                "inputs": {
+                                                                                                    "input_1": {
+                                                                                                        "connections": [
+                                                                                                            {
+                                                                                                                "node": "11",
+                                                                                                                "input": "output_2"
+                                                                                                            }
+                                                                                                        ]
+                                                                                                    }
+                                                                                                },
+                                                                                                "outputs": {},
+                                                                                                "pos_x": -2939.2360939431396,
+                                                                                                "pos_y": -1897.5278121137208
+                                                                                            }
+                                                                                        }
+                                                                                    },
+                                                                                    "class": "df-class-End",
+                                                                                    "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-flag-checkered\" style=\"padding-right:5px\" ></i><span> Завершение</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-muted\">завершить сценарий</p>\n                    </div>\n                    </div>",
+                                                                                    "typenode": false,
+                                                                                    "inputs": {
+                                                                                        "input_1": {
+                                                                                            "connections": [
+                                                                                                {
+                                                                                                    "node": "11",
+                                                                                                    "input": "output_2"
+                                                                                                }
+                                                                                            ]
+                                                                                        }
+                                                                                    },
+                                                                                    "outputs": {},
+                                                                                    "pos_x": -2939.2360939431396,
+                                                                                    "pos_y": -1897.5278121137208
+                                                                                }
+                                                                            }
+                                                                        },
+                                                                        "class": "df-class-End",
+                                                                        "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-flag-checkered\" style=\"padding-right:5px\" ></i><span> Завершение</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-muted\">завершить сценарий</p>\n                    </div>\n                    </div>",
+                                                                        "typenode": false,
+                                                                        "inputs": {
+                                                                            "input_1": {
+                                                                                "connections": [
+                                                                                    {
+                                                                                        "node": "11",
+                                                                                        "input": "output_2"
+                                                                                    }
+                                                                                ]
+                                                                            }
+                                                                        },
+                                                                        "outputs": {},
+                                                                        "pos_x": -2939.2360939431396,
+                                                                        "pos_y": -1897.5278121137208
+                                                                    }
+                                                                }
+                                                            },
+                                                            "class": "df-class-End",
+                                                            "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-flag-checkered\" style=\"padding-right:5px\" ></i><span> Завершение</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-muted\">завершить сценарий</p>\n                    </div>\n                    </div>",
+                                                            "typenode": false,
+                                                            "inputs": {
+                                                                "input_1": {
+                                                                    "connections": [
+                                                                        {
+                                                                            "node": "11",
+                                                                            "input": "output_2"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            },
+                                                            "outputs": {},
+                                                            "pos_x": -2939.2360939431396,
+                                                            "pos_y": -1897.5278121137208
+                                                        }
                                                     }
                                                 },
                                                 "class": "df-class-End",
                                                 "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-flag-checkered\" style=\"padding-right:5px\" ></i><span> Завершение</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-muted\">завершить сценарий</p>\n                    </div>\n                    </div>",
                                                 "typenode": false,
-                                                "inputs": {},
-                                                "outputs": {
-                                                    "output_1": {
-                                                        "connections": []
+                                                "inputs": {
+                                                    "input_1": {
+                                                        "connections": [
+                                                            {
+                                                                "node": "11",
+                                                                "input": "output_2"
+                                                            }
+                                                        ]
                                                     }
                                                 },
-                                                "pos_x": -2927,
-                                                "pos_y": -2124
+                                                "outputs": {},
+                                                "pos_x": -2939.2360939431396,
+                                                "pos_y": -1897.5278121137208
                                             }
                                         }
                                     },
@@ -577,12 +797,17 @@ export const BIG_DATA = {
                                     "typenode": false,
                                     "inputs": {
                                         "input_1": {
-                                            "connections": []
+                                            "connections": [
+                                                {
+                                                    "node": "11",
+                                                    "input": "output_2"
+                                                }
+                                            ]
                                         }
                                     },
                                     "outputs": {},
-                                    "pos_x": -2927,
-                                    "pos_y": -2124
+                                    "pos_x": -2939.2360939431396,
+                                    "pos_y": -1897.5278121137208
                                 }
                             }
                         },
@@ -600,8 +825,8 @@ export const BIG_DATA = {
                             }
                         },
                         "outputs": {},
-                        "pos_x": -2927,
-                        "pos_y": -2124
+                        "pos_x": -2939.2360939431396,
+                        "pos_y": -1897.5278121137208
                     }
                 }
             ],
@@ -793,25 +1018,25 @@ export const BIG_DATA = {
             }
         },
         {
-            "type": "Loop",
-            "label": "metka1",
             "counter": 100,
-            "pos_x": -3552.6599505172717,
-            "pos_y": -705.5296281848497,
+            "label": "metka1",
+            "type": "Loop",
+            "pos_x": -3552,
+            "pos_y": -705,
             "_node": {
-                "id": 19,
+                "id": 18,
                 "name": "block_Loop",
                 "data": {
                     "_block": {
-                        "type": "Loop",
-                        "label": "",
                         "counter": 100,
-                        "pos_x": -3552.6599505172717,
-                        "pos_y": -705.5296281848497
+                        "label": "metka1",
+                        "type": "Loop",
+                        "pos_x": -3552,
+                        "pos_y": -705
                     }
                 },
                 "class": "df-class-Loop",
-                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-right-long\" style=\"padding-right:5px\" ></i><span> Переход</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-secondary\"></p>\n                    </div>\n                    </div>",
+                "html": "\n                    <div>\n                    <div class=\"title-box\">\n                    <i class=\"fa-solid fa-right-long\" style=\"padding-right:5px\" ></i><span> Переход</span>\n                    <i class=\"fa-solid fa-xmark delete-df-node\"></i>\n                    <i class=\"fa-solid fa-circle-info node-info\"></i>\n                </div>\n                    <div class=\"box\">\n                        <p class=\"text-secondary\">metka1</p>\n                    </div>\n                    </div>",
                 "typenode": false,
                 "inputs": {},
                 "outputs": {
@@ -819,8 +1044,8 @@ export const BIG_DATA = {
                         "connections": []
                     }
                 },
-                "pos_x": -3552.6599505172717,
-                "pos_y": -705.5296281848497
+                "pos_x": -3552,
+                "pos_y": -705
             }
         },
         {
@@ -829,7 +1054,7 @@ export const BIG_DATA = {
             "pos_x": -3542,
             "pos_y": -524,
             "_node": {
-                "id": 18,
+                "id": 19,
                 "name": "block_End",
                 "data": {
                     "action": "null",
@@ -855,7 +1080,8 @@ export const BIG_DATA = {
         },
         {
             "type": "CodeComment",
-            "text": "UI_METAINFO: {\"version\":0.1,\"flow\":{\"Blocks\":[{\"type\":\"Message\",\"pos_x\":-3550,\"pos_y\":-3731},{\"type\":\"Ask\",\"pos_x\":-3546,\"pos_y\":-3455},{\"type\":\"Ask\",\"pos_x\":-3548,\"pos_y\":-3164},{\"type\":\"DPatternChoice\",\"pos_x\":-3555,\"pos_y\":-2880,\"branches\":[{\"Blocks\":[{\"type\":\"Var\",\"pos_x\":-2589,\"pos_y\":-3020},{\"type\":\"End\",\"pos_x\":-2213,\"pos_y\":-2715}],\"condition\":\"{user_said} == Выбор1\",\"type\":\"If\",\"_choiceOptionValue\":\"Выбор1\",\"_i\":5},{\"Blocks\":[{\"type\":\"Var\",\"pos_x\":-2807,\"pos_y\":-2626},{\"type\":\"End\",\"pos_x\":-2789,\"pos_y\":-2428}],\"condition\":\"{user_said} == Выбор2\",\"type\":\"If\",\"_choiceOptionValue\":\"Выбор2\",\"_i\":4}]},{\"type\":\"HTTP\",\"pos_x\":-3565,\"pos_y\":-2553},{\"type\":\"Var\",\"pos_x\":-3572,\"pos_y\":-2323},{\"Blocks\":[{\"type\":\"End\",\"pos_x\":-2927,\"pos_y\":-2124}],\"type\":\"If\",\"pos_x\":-3573,\"pos_y\":-2109},{\"type\":\"Label\",\"pos_x\":-3589,\"pos_y\":-1877},{\"type\":\"Javascript\",\"pos_x\":-3586,\"pos_y\":-1669},{\"type\":\"Comment\",\"pos_x\":-3579,\"pos_y\":-1464},{\"type\":\"CodeComment\",\"pos_x\":-3590,\"pos_y\":-1278},{\"type\":\"Ask\",\"pos_x\":-3588,\"pos_y\":-953},{\"type\":\"Loop\",\"pos_x\":-3552,\"pos_y\":-705},{\"type\":\"End\",\"pos_x\":-3542,\"pos_y\":-524}],\"view_zoom\":0.704,\"view_pos_x\":1673,\"view_pos_y\":335,\"canvas_x\":2540,\"canvas_y\":834,\"connectionStyle\":\"smooth_cubic\"}}"
+            "text": "UI_METAINFO: {\"version\":0.1,\"flow\":{\"Blocks\":[{\"type\":\"Message\",\"pos_x\":-3550,\"pos_y\":-3731},{\"type\":\"Ask\",\"pos_x\":-3546,\"pos_y\":-3455},{\"type\":\"Ask\",\"pos_x\":-3548,\"pos_y\":-3164},{\"type\":\"DPatternChoice\",\"pos_x\":-3555,\"pos_y\":-2880,\"branches\":[{\"Blocks\":[{\"type\":\"Var\",\"pos_x\":-2798,\"pos_y\":-2798},{\"type\":\"End\",\"pos_x\":-2820,\"pos_y\":-2607}],\"condition\":\"{user_said} == Выбор1\",\"type\":\"If\",\"_choiceOptionValue\":\"Выбор1\",\"_i\":5,\"subflow\":{}}]},{\"type\":\"HTTP\",\"pos_x\":-3565,\"pos_y\":-2553},{\"type\":\"Var\",\"pos_x\":-3572,\"pos_y\":-2323},{\"Blocks\":[{\"type\":\"End\",\"pos_x\":-2939,\"pos_y\":-1897}],\"type\":\"If\",\"pos_x\":-3573,\"pos_y\":-2109},{\"type\":\"Label\",\"pos_x\":-3589,\"pos_y\":-1877},{\"type\":\"Javascript\",\"pos_x\":-3586,\"pos_y\":-1669},{\"type\":\"Comment\",\"pos_x\":-3579,\"pos_y\":-1464},{\"type\":\"CodeComment\",\"pos_x\":-3590,\"pos_y\":-1278},{\"type\":\"Ask\",\"pos_x\":-3588,\"pos_y\":-953},{\"type\":\"Loop\",\"pos_x\":-3552,\"pos_y\":-705},{\"type\":\"End\",\"pos_x\":-3542,\"pos_y\":-524}],\"view_zoom\":0.934,\"view_pos_x\":1686,\"view_pos_y\":583,\"canvas_x\":3396,\"canvas_y\":3434,\"connectionStyle\":\"smooth_cubic\"}}"
         }
     ]
+
 }

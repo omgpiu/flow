@@ -1,6 +1,6 @@
 import { LOREM } from "../constants";
 
-export function createNodesAndEdges(xNodes = 5, yNodes = 5, setNodes?: any, setEdges?: any) {
+export function createStressNodes(xNodes = 5, yNodes = 5, setNodes?: any, setEdges?: any) {
     const nodes: { id: string; style: { width: number; fontSize: number; }; data: { label: string; }; position: { x: number; y: number; }; }[] = [];
     const edges: { id: string; source: string; target: string; }[] = [];
     let nodeId = 1;

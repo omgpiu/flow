@@ -33,7 +33,7 @@ import {
 } from '../components';
 
 import '../block-chema.css';
-import { createNodesAndEdges } from "../../utils";
+import { createStressNodes } from "../../utils";
 import { InitialEdges, InitialNodes } from "../../../constants";
 import { myEdges, myNodes } from "./deserialise";
 import { serialiseApiNodes } from "./serialize";
@@ -71,9 +71,7 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
     const [nodes, setNodes, onNodesChange] = useNodesState(myNodes);
     //@ts-ignore
     const [edges, setEdges, onEdgesChange] = useEdgesState(myEdges);
-    // console.log('edges :', edges)
-    // console.log('nodes :', nodes)
-    // console.log('edges :', edges)
+
     const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
     //refs
     const reactFlowWrapper = useRef<any>(null);
@@ -81,7 +79,7 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
     //hooks
     const { project, getViewport } = useReactFlow();
     const generateNodes = useCallback((x: number, y: number) => {
-        createNodesAndEdges(x, y, setNodes, setEdges)
+        createStressNodes(x, y, setNodes, setEdges)
     }, [])
 
     const onConnectStart = useCallback((_: any, { nodeId }: any) => {

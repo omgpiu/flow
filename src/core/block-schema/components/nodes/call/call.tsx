@@ -15,22 +15,23 @@ export const CallNode = memo(({ id }: Props) => {
 
     const { deleteElements, getNode, setNodes } = useReactFlow();
     //@ts-ignore
-    const value = getNode(id)?.payload?.value
+    const value = getNode(id)?.method
     //@ts-ignore
-    const request = getNode(id)?.payload?.newRequest
+    const urlAddress = getNode(id)?.result_variable
 
-    const [message, setMessage] = useState(value ?? OPTIONS[0])
-    const [newRequest, setNewRequest] = useState(request ?? '')
+    const [apiMethod, setApiMethod] = useState(value ?? OPTIONS[0])
+    const [newRequest, setNewRequest] = useState(urlAddress ?? '')
     const inputRef = useRef<any>(null)
     const onSave = () => {
 
         setNodes((nds) =>
             nds.map((node: any) => {
                 if (node.id === id) {
-                    node.payload = {
-                        ...node.payload,
-                        value: message,
-                    };
+                    return {
+                        ...node,
+                        method: apiMethod,
+                        url: urlAddress
+                    }
                 }
                 return node;
             })
@@ -40,7 +41,7 @@ export const CallNode = memo(({ id }: Props) => {
         deleteElements({ nodes: [getNode(id)!] })
     }
 
-    const onChangeHandler = (e: any) => setMessage(e.target.value)
+    const onChangeHandler = (e: any) => setApiMethod(e.target.value)
 
     return (
         <Container>
@@ -52,7 +53,7 @@ export const CallNode = memo(({ id }: Props) => {
                             onChange={e => onChangeHandler(e)}
                     >
                         {OPTIONS.map((value, idx) => <option
-                            selected={value === message}
+                            selected={value === apiMethod}
                             key={idx}
                             value={value}
                         >{value}</option>)}
@@ -67,7 +68,7 @@ export const CallNode = memo(({ id }: Props) => {
                     </div>
                     <div>
                         <span>Тело запроса</span>
-                        <textarea defaultValue={message} rows={5}/>
+                        <textarea defaultValue={apiMethod} rows={5}/>
                     </div>
                     <div>
                         <p>URL параметры</p>
@@ -83,13 +84,14 @@ export const CallNode = memo(({ id }: Props) => {
             </Header>
             <Body>
                 <span>
-                    {message}
+                    {apiMethod}
                 </span>
                 <hr/>
                 <p>
                     {newRequest}
                 </p>
             </Body>
+            <Handle type="source" position={Position.Bottom}/>
         </Container>
     );
 })

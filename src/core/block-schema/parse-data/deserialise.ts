@@ -77,15 +77,27 @@ function recursiveCreateNodes({ tree, IDX, nodes, edges, cache }: any): any {
                 ref = tree.ref
 
             }
+
+
             const sourceId = isNaN(Number(idx)) ? String(parseInt(idx)) : idx
             const targetId = isNaN(Number(idx)) ? idx : String(IDX + 1)
-            edges.push({
+
+
+            let sourceHandleId = null
+            if (tree.type === 'Ask' && tree.options) {
+                sourceHandleId = 0
+            }
+
+            const edge = {
                 "source": sourceId,
-                "sourceHandle": null,
+                "sourceHandle": sourceHandleId,
                 "target": targetId,
                 "targetHandle": null,
                 "id": String(IDX) + String(IDX + 1) + idx
-            })
+            }
+
+
+            edges.push(edge)
 
         }
     }

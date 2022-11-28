@@ -26,7 +26,6 @@ export const ChoiceNode = memo(({ id }: Props) => {
     });
     const textAreaRef = useRef<any>(null)
 
-    console.log('selectedValuesArray :', selectedValuesArray)
     const onSave = () => {
         setNodes((nds) =>
             nds.map((node: any) => {

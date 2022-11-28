@@ -1,11 +1,12 @@
-import { BIG_DATA } from "./data";
-import { Rect, Viewport } from "reactflow";
-import { Nodes, QuestionExpectField } from "./components";
-//finishNode,questionNode,commentNode
+import { BIG_DATA } from "../data";
+import { Nodes, QuestionExpectField } from "../components";
 
-const revertTypeMapper = {
-    [Nodes.GET_FILE_NODE]: 'Ask',
-    [Nodes.CHOICE_NODE]: 'Ask',
+const checkAskType = (expect: string, node?: {}) => {
+    if (node) {
+        return expect === QuestionExpectField.TEXT ? Nodes.QUESTION_NODE : Nodes.GET_FILE_NODE
+    } else {
+        return Nodes.CHOICE_NODE
+    }
 
 }
 
@@ -29,69 +30,13 @@ const updateBigData = (data: any) => {
 }
 
 
-export const serialiseApiNodes = (nodes: any, edges: any, viewPort: Viewport, rect:Rect) => {
 
-    const serilNodes: any = []
-    const positionBlock: any = []
 
-    for (let i = 0; i < nodes.length; i++) {
-
-        const { type: nodeType, position, id, selected, dragging, height, width, data, ...rest } = nodes[i]
-        //@ts-ignore
-        const type = revertTypeMapper[nodeType] ?? nodeType
-
-        serilNodes.push({
-            "pos_x": position.x,
-            "pos_y": position.y,
-            type,
-            ...rest,
-        })
-
-        positionBlock.push({
-            type,
-            "pos_x": position.x,
-            "pos_y": position.y
-        })
-
-    }
-
-    const meta = {
-        version: 0.1,
-        flow: {
-            'Blocks': positionBlock,
-            view_zoom: viewPort.zoom,
-            view_pos_x: viewPort.x,
-            view_pos_y: viewPort.y,
-            canvas_x: rect.x,
-            canvas_y: rect.y,
-            connectionStyle: 'quadratisch_praktisch_gut'
-        }
-    }
-
-    const lastElement = {
-        text: `UI_METAINFO:${JSON.stringify(meta)}`,
-        type: 'CodeComment'
-    }
-
-    serilNodes.push(lastElement)
-
-    return {
-        "Blocks": serilNodes,
-    }
-}
-const checkAskType = (expect: string, node?: {}) => {
-    if (node) {
-        return expect === QuestionExpectField.TEXT ? Nodes.QUESTION_NODE : Nodes.GET_FILE_NODE
-    } else {
-        return Nodes.CHOICE_NODE
-    }
-
-}
 
 
 let count = 0
 
-function traversal({ tree, IDX, nodes, edges, cache }: any): any {
+function recursiveCreateNodes({ tree, IDX, nodes, edges, cache }: any): any {
     let id;
     let node;
     let edge;
@@ -132,7 +77,7 @@ function traversal({ tree, IDX, nodes, edges, cache }: any): any {
                 ref = tree.ref
 
             }
-            const sourceId = isNaN(Number(idx)) ? idx.match(/^([0-9]+)/)![1] : idx
+            const sourceId = isNaN(Number(idx)) ? parseInt(idx) : idx
             const targetId = isNaN(Number(idx)) ? idx : String(IDX + 1)
             edges.push({
                 "source": sourceId,
@@ -150,7 +95,7 @@ function traversal({ tree, IDX, nodes, edges, cache }: any): any {
 
 
     for (let i = 0; i < tree.Blocks.length; i++) {
-        traversal({ tree: tree.Blocks[i], IDX: i, nodes, edges, cache })
+        recursiveCreateNodes({ tree: tree.Blocks[i], IDX: i, nodes, edges, cache })
 
     }
 
@@ -163,13 +108,11 @@ export const desirialiseAPINode = (data: any, IDX?: number, reqNumber?: number) 
     const targetCache: any = {}
     updateBigData(data?.Blocks)
 
-    const localNode: any = []
-    const localEdge: any = []
+    const accNode: any = []
+    const accEdge: any = []
 
-    const [nodes, edges] = traversal({ tree: data, nodes: localNode, edges: localEdge, cache: targetCache })
+    const [nodes, edges] = recursiveCreateNodes({ tree: data, nodes: accNode, edges: accEdge, cache: targetCache })
 
-    console.log(nodes)
-    console.log(edges)
     return [nodes, edges]
 }
 

@@ -1,25 +1,28 @@
 interface SignIn {
-    email: string
+    login: string
     password: string
 }
 
-export const signIn = async ({ email, password }: SignIn) => {
+
+export const signIn = async ({ login, password }: SignIn) => {
     try {
+        console.log('debug')
         const res = await fetch('https://chat.autofaq.ai/api/login', {
             method: "POST",
-            body: JSON.stringify({ email, password }),
+            body: Buffer.from(JSON.stringify({ login, password })).toString("base64"),
             credentials: "include",
             mode: 'no-cors',
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "text/plain",
                 'Access-Control-Allow-Origin': '*',
                 "Accept": " */*"
             },
         })
+        console.log('123')
         const bla = await res.json()
         console.log(bla)
     } catch (e: any) {
-        console.log(e)
+        console.log(e,'error')
     }
 
 }

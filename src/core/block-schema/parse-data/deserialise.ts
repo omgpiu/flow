@@ -44,7 +44,7 @@ function recursiveCreateNodes({ tree, IDX, nodes, edges, cache }: any): any {
 
 
             count++
-            const { type, pos_x, pos_y, _node, source, Blocks, target, ...rest } = tree
+            const { type: nodeType, pos_x, pos_y, _node, source, Blocks, target, ...rest } = tree
             if (target) {
                 if (cache[target] === undefined) {
                     cache[target] = 0
@@ -54,11 +54,11 @@ function recursiveCreateNodes({ tree, IDX, nodes, edges, cache }: any): any {
             }
 
             let idx = target ? `${target}-${cache[target]}` : `${IDX}`
-
+            const type = nodeType === Nodes.QUESTION_NODE ? checkAskType(tree?.expect, _node) : nodeType
             node = {
                 position: { x: pos_x ?? 25 * IDX * (-20), y: pos_y ?? 25 * IDX * (-20) },
                 id: idx,
-                type: type === Nodes.QUESTION_NODE ? checkAskType(tree?.expect, _node) : type,
+                type,
                 data: { label: `${type}-${count}-${count + 1}` },
                 dragging: false,
                 ...rest,

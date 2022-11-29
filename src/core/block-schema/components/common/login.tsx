@@ -4,10 +4,10 @@ export const Login = () => {
 
     const onSubmit = (e: any) => {
         e.preventDefault()
-        const email = e.target.email.value
+        const login = e.target.email.value
         const password = e.target.password.value
         signIn({
-            email,
+            login,
             password
         })
     }

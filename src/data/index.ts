@@ -116,5 +116,6 @@ export const edgesData = [
 
 
 export const BIG_DATA = {
-    "Blocks":CHOICE_VARIANT
+    // "Blocks":CHOICE_VARIANT
+    "Blocks":FLAT_VARIANT
 }

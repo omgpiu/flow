@@ -33,10 +33,10 @@ import {
 } from './components';
 
 import './block-chema.css';
-import { createStressNodes } from "../../utils/stress-nodes";
-import { InitialEdges, InitialNodes } from "../../constants";
-import { myEdges, myNodes } from "../../utils/deserialise";
-import { serialiseApiNodes } from "../../utils/serialize";
+import { createStressNodes } from "../utils/stress-nodes";
+import { InitialEdges, InitialNodes } from "../constants";
+import { myEdges, myNodes } from "../utils/deserialise";
+import { serialiseApiNodes } from "../utils/serialize";
 
 
 interface RenderProps {

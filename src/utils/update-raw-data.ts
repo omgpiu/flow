@@ -1,4 +1,4 @@
-import { Nodes } from "../core/block-schema/components";
+import { Nodes } from "../core/components";
 import { convertAskType } from "./convert-ask-type";
 
 // export const updateRawData = (data: any) => {
@@ -35,8 +35,8 @@ export const updateRawData = (data: any) => {
             }
             data[i + 1].skip = true
             data[i].source = i
-            data[i+1].Blocks.forEach((el:any,idx:number)=>{
-                if(idx===0){
+            data[i + 1].Blocks.forEach((el: any, idx: number) => {
+                if (idx === 0) {
                     el.target = i
                 }
                 el.target = `${i}`
@@ -44,10 +44,16 @@ export const updateRawData = (data: any) => {
             })
             data[i].Blocks = [...data[i].Blocks, data[i + 1]]
             data.splice(pointerIdx + 1, 1)
+        } else if (data[i].type === Nodes.CONDITION_NODE) {
+            if (data[i].Blocks) {
+                data[i].Blocks[0].target = `${i}-${0}`
+            }
+
         } else {
             pointerIdx = undefined
             counter = 0
         }
+
     }
 
 

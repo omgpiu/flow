@@ -1,5 +1,5 @@
 import { BIG_DATA } from "../data";
-import { Nodes } from "../core/block-schema/components";
+import { Nodes } from "../core/components";
 import { updateRawData } from "./update-raw-data";
 
 
@@ -57,11 +57,9 @@ function recursiveCreateNodes({ tree, IDX, nodes, edges, cache }: any): any {
 
 
                 if (splitedID.length > 2 && Number(splitedID[idxInArrayToTake]) === 0) {
-                    console.log(idx, 'idx')
                     if (cache[idx] === undefined) {
                         cache[idx] = 1
                     } else {
-                        console.log(cache, 'cache')
                         complexSourceId = `${splitedID[0]}-${cache[idx]}-${IDX}`
                         cache[idx] += 1
                     }
@@ -82,7 +80,12 @@ function recursiveCreateNodes({ tree, IDX, nodes, edges, cache }: any): any {
                 if (tree.type === Nodes.TRANSITION_NODE) {
                     sourceHandleId = 'b'
                 }
-                if (tree.type === Nodes.CONDITION_NODE) {
+
+                if (tree?.type === Nodes.CONDITION_NODE) {
+                    cache[targetId + Nodes.CONDITION_NODE] = targetId
+                }
+
+                if (cache[node.id] !== undefined) {
                     sourceHandleId = 'a'
                 }
 
@@ -120,7 +123,6 @@ function recursiveCreateNodes({ tree, IDX, nodes, edges, cache }: any): any {
 export const desirialiseAPINode = (data: any, IDX?: number, reqNumber?: number) => {
     const targetCache: any = {}
     const updatedNodesTree = updateRawData(data?.Blocks)
-    console.log(updatedNodesTree)
     const accNode: any = []
     const accEdge: any = []
 

@@ -1,5 +1,5 @@
 import { Rect, Viewport } from "reactflow";
-import { Nodes } from "../core/block-schema/components";
+import { Nodes } from "../core/components";
 
 const revertTypeMapper = {
     [Nodes.GET_FILE_NODE]: 'Ask',

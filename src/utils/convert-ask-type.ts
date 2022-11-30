@@ -1,4 +1,4 @@
-import { Nodes, QuestionExpectField } from "../core/block-schema/components";
+import { Nodes, QuestionExpectField } from "../core/components";
 
 export const convertAskType = (node:any) => {
     if (node.type === Nodes.QUESTION_NODE) {

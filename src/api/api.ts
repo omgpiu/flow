@@ -6,10 +6,13 @@ interface SignIn {
 
 export const signIn = async ({ login, password }: SignIn) => {
     try {
-        console.log('debug')
+        const payload = {
+            [login]: password
+        }
+        console.log(payload)
         const res = await fetch('https://chat.autofaq.ai/api/login', {
             method: "POST",
-            body: Buffer.from(JSON.stringify({ login, password })).toString("base64"),
+            body: Buffer.from(JSON.stringify(payload)).toString("base64"),
             credentials: "include",
             mode: 'no-cors',
             headers: {
@@ -18,9 +21,8 @@ export const signIn = async ({ login, password }: SignIn) => {
                 "Accept": " */*"
             },
         })
-        console.log('123')
-        const bla = await res.json()
-        console.log(bla)
+        const parsedRes = await res.json()
+        console.log(parsedRes)
     } catch (e: any) {
         console.log(e,'error')
     }

@@ -1,1 +1,1 @@
-export { BlockSchema } from './block-schema/parse-data/block-schema'
+export { BlockSchema } from './block-schema/block-schema'

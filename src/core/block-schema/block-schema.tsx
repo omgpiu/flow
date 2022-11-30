@@ -30,13 +30,13 @@ import {
     TagNode,
     TransitionNode,
     VariableNode
-} from '../components';
+} from './components';
 
-import '../block-chema.css';
-import { createStressNodes } from "../../utils";
-import { InitialEdges, InitialNodes } from "../../../constants";
-import { myEdges, myNodes } from "./deserialise";
-import { serialiseApiNodes } from "./serialize";
+import './block-chema.css';
+import { createStressNodes } from "../../utils/stress-nodes";
+import { InitialEdges, InitialNodes } from "../../constants";
+import { myEdges, myNodes } from "../../utils/deserialise";
+import { serialiseApiNodes } from "../../utils/serialize";
 
 
 interface RenderProps {

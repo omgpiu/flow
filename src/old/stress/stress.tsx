@@ -8,7 +8,7 @@ import ReactFlow, {
     Background,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
-import { createStressNodes } from "../../core/utils";
+import { createStressNodes } from "../../utils/stress-nodes";
 
 
 const { nodes: initialNodes, edges: initialEdges } = createStressNodes(15, 15);

@@ -17,7 +17,7 @@ export const enum Nodes {
     TAG_NODE = 'Label',
     TRANSITION_NODE = 'Loop',
     CONDITION_NODE = 'If',
-    CHOICE_NODE = 'choiceNode',
+    CHOICE_NODE = 'DPatternChoice',
     VARIABLE_NODE = 'Var'
 }
 

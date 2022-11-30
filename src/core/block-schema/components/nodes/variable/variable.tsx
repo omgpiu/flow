@@ -44,7 +44,7 @@ export const VariableNode = memo(({ id }: Props) => {
 
     const { deleteElements, getNode, setNodes } = useReactFlow();
     //@ts-ignore
-    const value = getNode(id)?.payload?.value
+    const value = getNode(id)?.value
 
     const variableAPI = {
         //@ts-ignore
@@ -59,7 +59,6 @@ export const VariableNode = memo(({ id }: Props) => {
     const [scopeType, setScopeType] = useState()
     const variableName = useRef<any>(null)
     const variableValue = useRef<any>(null)
-
 
     const isOperatorShowRef = useRef<any>(null)
     const nameInOperatorInterface = useRef<any>(null)
@@ -181,7 +180,7 @@ export const VariableNode = memo(({ id }: Props) => {
                     {variable.name}
                 </span>
             </Body>
-            <Handle type="source" position={Position.Bottom}/>
+            <Handle type="source" id='a' position={Position.Bottom}/>
         </Container>
     );
 })

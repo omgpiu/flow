@@ -1,5 +1,5 @@
 import { BIG_DATA } from "../data";
-import { Nodes } from "../core/components";
+import { EDGES, Nodes } from "../core/components";
 import { updateRawData } from "./update-raw-data";
 
 
@@ -12,10 +12,7 @@ function recursiveCreateNodes({ tree, IDX, nodes, edges, cache }: any): any {
     if (!Array.isArray(tree)) {
         if (!tree.skip) {
 
-
             if (tree.type !== undefined) {
-
-
                 count++
                 const { type, pos_x, pos_y, _node, source, Blocks, target, ...rest } = tree
                 if (target) {
@@ -95,9 +92,8 @@ function recursiveCreateNodes({ tree, IDX, nodes, edges, cache }: any): any {
                     "target": targetId,
                     "targetHandle": null,
                     "id": String(IDX) + String(IDX + 1) + idx,
+                    type: [EDGES.BUTTON]
                 }
-
-
                 edges.push(edge)
 
             }
@@ -114,7 +110,6 @@ function recursiveCreateNodes({ tree, IDX, nodes, edges, cache }: any): any {
         recursiveCreateNodes({ tree: tree.Blocks[i], IDX: i, nodes, edges, cache })
 
     }
-
 
     return [nodes, edges]
 }
@@ -138,6 +133,7 @@ export const desirialiseAPINode = (data: any, IDX?: number, reqNumber?: number) 
                 "id": String(IDX) + String(targetCache[el.label].target + 1) + idx,
             })
         }
+
     })
     console.log('accNode :', accNode)
     console.log(accEdge, 'accEdge')

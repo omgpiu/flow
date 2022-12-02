@@ -35,6 +35,8 @@ export const NODES_NAME = {
     [Nodes.CONDITION_NODE]: 'Условие',
     [Nodes.CHOICE_NODE]: 'Выбор',
     [Nodes.VARIABLE_NODE]: 'Переменная'
+}
 
-
+export const enum EDGES {
+    BUTTON='buttonedge'
 }

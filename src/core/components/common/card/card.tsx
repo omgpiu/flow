@@ -1,6 +1,7 @@
 import style from './card.module.css'
 import { ReactNode, useState } from "react";
-import { Modal } from "../modal/modal";
+import { Modal } from "../modal/core/modal";
+import { ModalSettings } from "../modal/modal-settings";
 
 interface HeaderProps {
     title: string
@@ -21,11 +22,11 @@ export const Header = ({ title, children, onSave, onDelete, modalClassName }: He
             className={style.btn}
             onClick={onDelete}>Delete
         </button>
-        <Modal onSave={onSave} handleClose={() => setIsOpen(false)} isOpen={isOpen}
+        <ModalSettings onSave={onSave} handleClose={() => setIsOpen(false)} isOpen={isOpen}
         className={modalClassName}
         >
             {children}
-        </Modal>
+        </ModalSettings>
     </div>
 }
 

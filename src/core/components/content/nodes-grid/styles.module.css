@@ -1,0 +1,70 @@
+.wrap ol {
+    padding-top: 5px;
+    list-style-position: inside;
+    -moz-column-count: 2; /* Firefox */
+    -webkit-column-count: 2; /* Safari and Chrome */
+    column-count: 4;
+    height: 200px;
+    list-style-type: none;
+}
+
+
+.dndflow {
+    height: 30px;
+    padding: 4px;
+    border: 1px solid;
+    border-radius: 2px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 95px;
+    cursor: pointer
+}
+
+
+.file {
+    border-color: blue;
+}
+
+.transition {
+    border-color: peachpuff;
+}
+
+.tag {
+    border-color: green;
+}
+
+.call {
+    border-color: black;
+}
+
+.note {
+    border-color: aqua;
+}
+
+.finish {
+    border-color: blueviolet;
+}
+
+.output {
+    border-color: red;
+}
+
+.message {
+    border-color: green;
+}
+
+.javascript {
+    border-color: goldenrod;
+}
+
+.comment {
+    border-color: deeppink;
+}
+
+
+.question {
+    border-color: orange;
+}
+

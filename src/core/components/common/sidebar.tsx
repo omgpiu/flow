@@ -59,7 +59,6 @@ export const SideBar = memo(({addNode, generateNodes, serializeNodes}: Props) =>
                 {NODES_NAME[Nodes.TRANSITION_NODE]}
             </div>
 
-
             <div className="dndnode javascript" onDragStart={(event) => onDragStart(event, Nodes.JAVASCRIPT_NODE)}
                  draggable>
                 {NODES_NAME[Nodes.JAVASCRIPT_NODE]}

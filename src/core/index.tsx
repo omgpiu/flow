@@ -15,10 +15,12 @@ import 'reactflow/dist/style.css';
 import { v4 as uuidv4 } from 'uuid';
 
 import {
+    ButtonEdge,
     CallNode,
     ChoiceNode,
     CommentNode,
     ConditionNode,
+    EDGES,
     FinishNode,
     GetFileNode,
     JavascriptNode,
@@ -63,9 +65,14 @@ const NODE_TYPES = {
 };
 
 
+const EDGE_TYPES = {
+    [EDGES.BUTTON]: ButtonEdge,
+};
+
+
 const getId = () => uuidv4();
 
-const Render = ({initialNodes, initialEdges}: RenderProps) => {
+const Render = ({ initialNodes, initialEdges }: RenderProps) => {
     //states
     //@ts-ignore
     const [nodes, setNodes, onNodesChange] = useNodesState(myNodes);
@@ -199,6 +206,7 @@ const Render = ({initialNodes, initialEdges}: RenderProps) => {
                     onDrop={onDrop}
                     onDragOver={onDragOver}
                     nodeTypes={NODE_TYPES}
+                    edgeTypes={EDGE_TYPES}
                     fitView
                 >
                     <Controls/>

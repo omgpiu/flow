@@ -1,4 +1,4 @@
-import { CHOICE_VARIANT,FLAT_VARIANT } from "./raw-data";
+import { CHOICE_VARIANT, FLAT_VARIANT, MANY_CHOICES, MANY_IF, TRY } from "./raw-data";
 
 
 export const index = {
@@ -116,6 +116,9 @@ export const edgesData = [
 
 
 export const BIG_DATA = {
-    // "Blocks":CHOICE_VARIANT
+    // "Blocks":TRY
     "Blocks":FLAT_VARIANT
+    // "Blocks":MANY_IF
+    // "Blocks":MANY_CHOICES
+
 }

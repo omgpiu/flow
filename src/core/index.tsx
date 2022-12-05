@@ -27,11 +27,13 @@ import {
     MessageNode,
     Nodes,
     NoteNode,
+    PlaceholderNode,
     QuestionNode,
     SideBar,
     TagNode,
     TransitionNode,
-    VariableNode
+    VariableNode,
+    WorkflowNode
 } from './components';
 
 import './block-chema.css';
@@ -39,6 +41,7 @@ import { createStressNodes } from "../utils/stress-nodes";
 import { InitialEdges, InitialNodes } from "../constants";
 import { myEdges, myNodes } from "../utils/deserialise";
 import { serialiseApiNodes } from "../utils/serialize";
+import useLayout from "../api/nodes/src/hooks/useLayout";
 
 
 interface RenderProps {
@@ -61,6 +64,8 @@ const NODE_TYPES = {
     [Nodes.CONDITION_NODE]: ConditionNode,
     [Nodes.CHOICE_NODE]: ChoiceNode,
     [Nodes.VARIABLE_NODE]: VariableNode,
+    "placeholder": PlaceholderNode,
+    "workflow": WorkflowNode,
 
 };
 
@@ -71,8 +76,11 @@ const EDGE_TYPES = {
 
 
 const getId = () => uuidv4();
-
+const fitViewOptions = {
+    padding: 0.95,
+};
 const Render = ({ initialNodes, initialEdges }: RenderProps) => {
+    useLayout();
     //states
     //@ts-ignore
     const [nodes, setNodes, onNodesChange] = useNodesState(myNodes);
@@ -208,6 +216,8 @@ const Render = ({ initialNodes, initialEdges }: RenderProps) => {
                     nodeTypes={NODE_TYPES}
                     edgeTypes={EDGE_TYPES}
                     fitView
+                    fitViewOptions={fitViewOptions}
+                    proOptions={proOptions}
                 >
                     <Controls/>
                     <MiniMap/>

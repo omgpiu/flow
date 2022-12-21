@@ -6,7 +6,10 @@
   "dependencies": {
     "antd": "^4.24.2",
     "buffer": "^6.0.3",
+    "classnames": "^2.3.2",
     "clsx": "^1.2.1",
+    "d3-hierarchy": "^3.1.2",
+    "d3-timer": "^3.0.1",
     "js-cookie": "3.0.1",
     "process": "^0.11.10",
     "react": "^18.2.0",
@@ -14,9 +17,7 @@
     "react-scripts": "5.0.1",
     "reactflow": "11.3.2",
     "stream-browserify": "^3.0.0",
-    "uuid": "^9.0.0",
-    "d3-hierarchy": "latest",
-    "d3-timer": "latest"
+    "uuid": "^9.0.0"
   },
   "scripts": {
     "predeploy": "npm run build",
@@ -49,6 +50,7 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@types/d3": "latest",
     "@types/jest": "^27.5.2",
     "@types/node": "^16.18.2",
     "@types/react": "^18.0.24",
@@ -56,7 +58,6 @@
     "@types/uuid": "^8.3.4",
     "gh-pages": "^4.0.0",
     "react-app-rewired": "^2.2.1",
-    "typescript": "^4.8.4",
-    "@types/d3": "latest"
+    "typescript": "^4.8.4"
   }
 }

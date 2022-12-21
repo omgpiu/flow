@@ -18,7 +18,9 @@ export const enum Nodes {
     TRANSITION_NODE = 'Loop',
     CONDITION_NODE = 'If',
     CHOICE_NODE = 'DPatternChoice',
-    VARIABLE_NODE = 'Var'
+    VARIABLE_NODE = 'Var',
+    PLACEHOLDER='placeholder',
+    WORK_FLOW='workflow'
 }
 
 export const NODES_NAME = {
@@ -34,7 +36,10 @@ export const NODES_NAME = {
     [Nodes.TRANSITION_NODE]: 'Переход',
     [Nodes.CONDITION_NODE]: 'Условие',
     [Nodes.CHOICE_NODE]: 'Выбор',
-    [Nodes.VARIABLE_NODE]: 'Переменная'
+    [Nodes.VARIABLE_NODE]: 'Переменная',
+    [Nodes.PLACEHOLDER]:'Placehoder',
+    [Nodes.WORK_FLOW]:'Workflow',
+
 }
 
 export const enum EDGES {

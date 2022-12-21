@@ -38,7 +38,7 @@ import {
 } from './components';
 
 import './block-chema.css';
-import { createStressNodes, myEdges, myNodes, serialiseApiNodes } from "../utils";
+import { createStressNodes, serialiseApiNodes } from "../utils";
 import { InitialEdges, InitialNodes } from "../constants";
 import useLayout from "./lib/hooks/useLayout";
 
@@ -64,10 +64,37 @@ const NODE_TYPES = {
     [Nodes.CONDITION_NODE]: ConditionNode,
     [Nodes.CHOICE_NODE]: ChoiceNode,
     [Nodes.VARIABLE_NODE]: VariableNode,
-    "placeholder": PlaceholderNode,
-    "workflow": WorkflowNode,
+    [Nodes.PLACEHOLDER]: PlaceholderNode,
+    [Nodes.WORK_FLOW]: WorkflowNode,
 
 };
+
+
+
+const defaultNodes = [
+    {
+        id: '1',
+        data: { label: '🌮 Taco' },
+        position: { x: 0, y: 0 },
+        type: 'workflow',
+    },
+    {
+        id: '2',
+        data: { label: '+' },
+        position: { x: 0, y: 150 },
+        type: 'placeholder',
+    },
+];
+
+// initial setup: connect the workflow node to the placeholder node with a placeholder edge
+const defaultEdges= [
+    {
+        id: '1=>2',
+        source: '1',
+        target: '2',
+        type: 'placeholder',
+    },
+];
 
 
 const EDGE_TYPES = {
@@ -83,9 +110,9 @@ const Render = ({ initialNodes, initialEdges }: RenderProps) => {
     useLayout();
     //states
     //@ts-ignore
-    const [nodes, setNodes, onNodesChange] = useNodesState(myNodes);
+    const [nodes, setNodes, onNodesChange] = useNodesState(defaultNodes);
     //@ts-ignore
-    const [edges, setEdges, onEdgesChange] = useEdgesState(myEdges);
+    const [edges, setEdges, onEdgesChange] = useEdgesState(defaultEdges);
 
     const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
     //refs

@@ -20,14 +20,14 @@ import {
     CallNode,
     ChoiceNode,
     CommentNode,
-    ConditionNode,
+    ConditionNode, CustomEdge,
     EDGES,
     FinishNode,
     GetFileNode,
     JavascriptNode,
     MessageNode,
     Nodes,
-    NoteNode,
+    NoteNode, PlaceholderEdge,
     PlaceholderNode,
     QuestionNode,
     SideBar,
@@ -97,10 +97,16 @@ const defaultEdges= [
 ];
 
 
-const EDGE_TYPES = {
-    [EDGES.BUTTON]: ButtonEdge,
-};
+// const EDGE_TYPES = {
+//     // [EDGES.BUTTON]: ButtonEdge,
+//     'placeholder': CustomEdge,
+// };
 
+
+export const edgeTypes = {
+    placeholder: PlaceholderEdge,
+    workflow: CustomEdge,
+};
 
 const getId = () => uuidv4();
 const fitViewOptions = {
@@ -241,7 +247,7 @@ const Render = ({ initialNodes, initialEdges }: RenderProps) => {
                     onDrop={onDrop}
                     onDragOver={onDragOver}
                     nodeTypes={NODE_TYPES}
-                    edgeTypes={EDGE_TYPES}
+                    edgeTypes={edgeTypes}
                     fitView
                     fitViewOptions={fitViewOptions}
                     proOptions={proOptions}

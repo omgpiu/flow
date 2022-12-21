@@ -3,12 +3,12 @@ import { Handle, Position, NodeProps } from 'reactflow';
 import cx from 'classnames';
 
 import styles from './NodeTypes.module.css';
-import useNodeClickHandler from '../../../../api/nodes/src/hooks/useNodeClick';
+import useNodeClick from "../../../lib/hooks/useNodeClick";
 
 export const WorkflowNode = memo(({ id, data }: NodeProps) => {
   // see the hook implementation for details of the click handler
   // calling onClick adds a child node to this node
-  const onClick = useNodeClickHandler(id);
+  const onClick = useNodeClick(id);
 
   return (
     <div onClick={onClick} className={cx(styles.node)} title="click to add a child node">

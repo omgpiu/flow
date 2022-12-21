@@ -6,6 +6,7 @@ import ReactFlow, {
     Controls,
     getRectOfNodes,
     MiniMap,
+    ProOptions,
     ReactFlowProvider,
     useEdgesState,
     useNodesState,
@@ -37,12 +38,11 @@ import {
 } from './components';
 
 import './block-chema.css';
-import { createStressNodes } from "../utils/stress-nodes";
+import { createStressNodes, myEdges, myNodes, serialiseApiNodes } from "../utils";
 import { InitialEdges, InitialNodes } from "../constants";
-import { myEdges, myNodes } from "../utils/deserialise";
-import { serialiseApiNodes } from "../utils/serialize";
-import useLayout from "../api/nodes/src/hooks/useLayout";
+import useLayout from "./lib/hooks/useLayout";
 
+const proOptions: ProOptions = { account: 'paid-pro', hideAttribution: true };
 
 interface RenderProps {
     initialNodes: InitialNodes

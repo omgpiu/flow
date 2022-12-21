@@ -3,7 +3,7 @@ import { Handle, Position, NodeProps } from 'reactflow';
 import cx from 'classnames';
 
 import styles from './NodeTypes.module.css';
-import usePlaceholderClick from '../../../../api/nodes/src/hooks/usePlaceholderClick';
+import usePlaceholderClick from "../../../lib/hooks/usePlaceholderClick";
 
 export const PlaceholderNode = memo(({ id, data }: NodeProps) => {
   // see the hook implementation for details of the click handler

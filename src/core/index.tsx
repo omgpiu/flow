@@ -227,7 +227,7 @@ const Render = ({ initialNodes, initialEdges }: RenderProps) => {
 
     return (
         <div className="dndflow">
-            <SideBar addNode={onAdd} generateNodes={generateNodes} serializeNodes={saveInitialValues}/>
+            {/*<SideBar addNode={onAdd} generateNodes={generateNodes} serializeNodes={saveInitialValues}/>*/}
             <div className="reactflow-wrapper" ref={reactFlowWrapper}>
                 <ReactFlow
                     nodes={nodes}

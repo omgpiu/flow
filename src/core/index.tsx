@@ -16,21 +16,20 @@ import 'reactflow/dist/style.css';
 import { v4 as uuidv4 } from 'uuid';
 
 import {
-    ButtonEdge,
     CallNode,
     ChoiceNode,
     CommentNode,
-    ConditionNode, CustomEdge,
-    EDGES,
+    ConditionNode,
+    CustomEdge,
     FinishNode,
     GetFileNode,
     JavascriptNode,
     MessageNode,
     Nodes,
-    NoteNode, PlaceholderEdge,
+    NoteNode,
+    PlaceholderEdge,
     PlaceholderNode,
     QuestionNode,
-    SideBar,
     TagNode,
     TransitionNode,
     VariableNode,
@@ -118,8 +117,10 @@ const Render = ({ initialNodes, initialEdges }: RenderProps) => {
     //@ts-ignore
     const [nodes, setNodes, onNodesChange] = useNodesState(defaultNodes);
     //@ts-ignore
-    const [edges, setEdges, onEdgesChange] = useEdgesState(defaultEdges);
+    const [edges, setEdges, onEdgesChange] = useEdgesState(defaultEdges)
 
+    console.log(nodes, 'nodes')
+    console.log(edges, 'edges')
     const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
     //refs
     const reactFlowWrapper = useRef<any>(null);

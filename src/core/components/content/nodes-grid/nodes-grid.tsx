@@ -10,7 +10,7 @@ interface Props {
 
 const Buttons = ({ children, style, addNode }: any) => {
     return <button className={clsx(styles[style], styles.dndflow)}
-                   onClick={() => addNode(children)}>{children}</button>
+                   onClick={addNode}>{children}</button>
 
 }
 
@@ -27,7 +27,7 @@ export const NodesGrid = memo(({ addNode, className }: Props) => {
     return (
         <div className={styles.wrap}>
             <ol>
-                {LEFT_COLUMN.concat(RIGHT_COLUMN).map(el => <Buttons key={el.type} style={el.style} addNode={addNode}>
+                {LEFT_COLUMN.concat(RIGHT_COLUMN).map(el => <Buttons key={el.type} style={el.style} addNode={addNode} >
                         {el.type}
                     </Buttons>
                 )}

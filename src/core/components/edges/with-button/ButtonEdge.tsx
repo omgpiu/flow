@@ -38,8 +38,8 @@ export function ButtonEdge({
         const currentEdge = getEdge(id)
         const startNode = getNode(currentEdge!.source)
         const finishNode = getNode(currentEdge!.target)
-        console.log(startNode)
-        console.log(finishNode)
+        // console.log(startNode)
+        // console.log(finishNode)
     }
 
 

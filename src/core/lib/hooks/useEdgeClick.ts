@@ -1,6 +1,6 @@
 import { EdgeProps, useReactFlow } from 'reactflow';
 
-import { uuid, randomLabel } from '../utils';
+import { randomLabel, uuid } from '../utils';
 
 // this hook implements the logic for clicking the button on a workflow edge
 // on edge click: create a node in between the two nodes that are connected by the edge
@@ -10,7 +10,7 @@ function useEdgeClick(id: EdgeProps['id']) {
   const handleEdgeClick = () => {
     // first we retrieve the edge object to get the source and target id
     const edge = getEdge(id);
-
+    console.log(edge, 'edge')
     if (!edge) {
       return;
     }

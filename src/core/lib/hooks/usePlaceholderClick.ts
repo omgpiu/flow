@@ -1,16 +1,17 @@
 import { NodeProps, useReactFlow } from 'reactflow';
 
-import { uuid, randomLabel } from '../utils';
+import { randomLabel, uuid } from '../utils';
+import { useRef } from "react";
 
 // this hook implements the logic for clicking a placeholder node
 // on placeholder node click: turn the placeholder and connecting edge into a workflow node
 export function usePlaceholderClick(id: NodeProps['id']) {
   const { getNode, setNodes, setEdges } = useReactFlow();
-
-  const onClick = () => {
+  const refType = useRef('')
+  const onClick = (type: string) => {
     // we need the parent node object for getting its position
     const parentNode = getNode(id);
-
+    refType.current = type
     if (!parentNode) {
       return;
     }
@@ -43,7 +44,7 @@ export function usePlaceholderClick(id: NodeProps['id']) {
           if (node.id === id) {
             return {
               ...node,
-              type: 'workflow',
+              type: refType.current,
               data: { label: randomLabel() },
             };
           }

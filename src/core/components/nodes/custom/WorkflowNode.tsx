@@ -12,7 +12,7 @@ export const WorkflowNode = memo(({ id, data }: NodeProps) => {
     // calling onClick adds a child node to this node
     const onClick = useNodeClick(id);
     const [isOpen, setIsOpen] = useState(false)
-    console.log(isOpen, 'isOpen')
+    // console.log(isOpen, 'isOpen')
     return (
         <div className={cx(styles.node)} title="click to add a child node">
 

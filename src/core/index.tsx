@@ -120,7 +120,7 @@ const Render = ({ initialNodes, initialEdges }: RenderProps) => {
     const [edges, setEdges, onEdgesChange] = useEdgesState(defaultEdges)
 
     console.log(nodes, 'nodes')
-    console.log(edges, 'edges')
+    // console.log(edges, 'edges')
     const [reactFlowInstance, setReactFlowInstance] = useState<any>(null);
     //refs
     const reactFlowWrapper = useRef<any>(null);
@@ -228,7 +228,7 @@ const Render = ({ initialNodes, initialEdges }: RenderProps) => {
         // localStorage.setItem('nodes', serizNodes)
         // localStorage.setItem('edges', serizEdges)
         // const serialisedNodes = serialiseApiNodes(nodes, edges, getViewport())
-        console.log(serialiseApiNodes(nodes, edges, getViewport(),getRectOfNodes(nodes)), 'toAPi')
+        // console.log(serialiseApiNodes(nodes, edges, getViewport(),getRectOfNodes(nodes)), 'toAPi')
         // localStorage.setItem('API', JSON.stringify((serialisedNodes)))
     }, [nodes, edges])
 

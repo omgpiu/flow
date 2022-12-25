@@ -18,8 +18,6 @@ export const signIn = async ({ login, password }: SignIn) => {
             },
         })
         const parsedRes = await res.json()
-        console.log(parsedRes, 'res')
-        console.log(document.cookie)
     } catch (e: any) {
         console.log(e, 'error')
         console.log(e.message)

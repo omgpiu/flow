@@ -135,8 +135,7 @@ export const desirialiseAPINode = (data: any, IDX?: number, reqNumber?: number) 
         }
 
     })
-    console.log('accNode :', accNode)
-    console.log(accEdge, 'accEdge')
+
     return [accNode, accEdge]
 }
 

@@ -1,7 +1,7 @@
-import React from 'react';
-import { getBezierPath, EdgeProps } from 'reactflow';
+import React from "react";
+import { getBezierPath, EdgeProps } from "reactflow";
 
-import styles from './EdgeTypes.module.css';
+import styles from "./EdgeTypes.module.css";
 
 // the placeholder edges do not have a special functionality, only used as a visual
 export function PlaceholderEdge({
@@ -24,5 +24,13 @@ export function PlaceholderEdge({
     targetPosition,
   });
 
-  return <path id={id} style={style} className={styles.placeholderPath} d={edgePath} markerEnd={markerEnd} />;
+  return (
+    <path
+      id={id}
+      style={style}
+      className={styles.placeholderPath}
+      d={edgePath}
+      markerEnd={markerEnd}
+    />
+  );
 }

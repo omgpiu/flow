@@ -1,10 +1,10 @@
-import React from 'react';
-import { EdgeProps, getBezierPath } from 'reactflow';
-import useEdgeClick from '../../../lib/hooks/useEdgeClick';
+import React from "react";
+import { EdgeProps, getBezierPath } from "reactflow";
+import useEdgeClick from "../../../lib/hooks/useEdgeClick";
 
-import styles from './EdgeTypes.module.css';
+import styles from "./EdgeTypes.module.css";
 
-export  function CustomEdge({
+export function CustomEdge({
   id,
   sourceX,
   sourceY,
@@ -30,9 +30,24 @@ export  function CustomEdge({
 
   return (
     <>
-      <path id={id} style={style} className={styles.edgePath} d={edgePath} markerEnd={markerEnd} />
+      <path
+        id={id}
+        style={style}
+        className={styles.edgePath}
+        d={edgePath}
+        markerEnd={markerEnd}
+      />
       <g transform={`translate(${edgeCenterX}, ${edgeCenterY})`}>
-        <rect onClick={onClick} x={-10} y={-10} width={20} ry={4} rx={4} height={20} className={styles.edgeButton} />
+        <rect
+          onClick={onClick}
+          x={-10}
+          y={-10}
+          width={20}
+          ry={4}
+          rx={4}
+          height={20}
+          className={styles.edgeButton}
+        />
         <text className={styles.edgeButtonText} y={5} x={-4}>
           +
         </text>

@@ -1,29 +1,27 @@
 interface SignIn {
-    login: string
-    password: string
+  login: string;
+  password: string;
 }
-
 
 export const signIn = async ({ login, password }: SignIn) => {
-    try {
-        const res = await fetch('https://chat.autofaq.ai/api/login', {
-            method: "POST",
-            body: Buffer.from(`${login}:${password}`).toString("base64"),
-            credentials: "include",
-            mode: 'no-cors',
-            headers: {
-                "Content-Type": "text/plain",
-                'Access-Control-Allow-Origin': '*',
-                "Accept": " */*"
-            },
-        })
-        const parsedRes = await res.json()
-    } catch (e: any) {
-        console.log(e, 'error')
-        console.log(e.message)
-    }
-
-}
+  try {
+    const res = await fetch("https://chat.autofaq.ai/api/login", {
+      method: "POST",
+      body: Buffer.from(`${login}:${password}`).toString("base64"),
+      credentials: "include",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "text/plain",
+        "Access-Control-Allow-Origin": "*",
+        Accept: " */*",
+      },
+    });
+    const parsedRes = await res.json();
+  } catch (e: any) {
+    console.log(e, "error");
+    console.log(e.message);
+  }
+};
 
 // function loadDocumentScenario(callback:any) {
 //     $(".save-document").attr("disabled", true);

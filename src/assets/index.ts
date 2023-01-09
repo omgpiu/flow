@@ -1,1 +1,1 @@
-export { default as waterWebp } from  './pictures/water.webp'
+export { default as waterWebp } from "./pictures/water.webp";

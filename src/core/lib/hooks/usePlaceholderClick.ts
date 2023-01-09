@@ -1,23 +1,23 @@
-import { NodeProps, useReactFlow } from 'reactflow';
+import { NodeProps, useReactFlow } from "reactflow";
 
-import { randomLabel, uuid } from '../utils';
+import { v4 as uuidv4 } from "uuid";
 import { useRef } from "react";
 
 // this hook implements the logic for clicking a placeholder node
 // on placeholder node click: turn the placeholder and connecting edge into a workflow node
-export function usePlaceholderClick(id: NodeProps['id']) {
+export function usePlaceholderClick(id: NodeProps["id"]) {
   const { getNode, setNodes, setEdges } = useReactFlow();
-  const refType = useRef('')
+  const refType = useRef("");
   const onClick = (type: string) => {
     // we need the parent node object for getting its position
     const parentNode = getNode(id);
-    refType.current = type
+    refType.current = type;
     if (!parentNode) {
       return;
     }
 
     // create a unique id for the placeholder node that will be added as a child of the clicked node
-    const childPlaceholderId = uuid();
+    const childPlaceholderId = uuidv4();
 
     // create a placeholder node that will be added as a child of the clicked node
     const childPlaceholderNode = {
@@ -25,8 +25,8 @@ export function usePlaceholderClick(id: NodeProps['id']) {
       // the placeholder is placed at the position of the clicked node
       // the layout function will animate it to its new position
       position: { x: parentNode.position.x, y: parentNode.position.y },
-      type: 'placeholder',
-      data: { label: '+' },
+      type: "placeholder",
+      data: { label: "+" },
     };
 
     // we need a connection from the clicked node to the new placeholder
@@ -34,7 +34,7 @@ export function usePlaceholderClick(id: NodeProps['id']) {
       id: `${parentNode.id}=>${childPlaceholderId}`,
       source: parentNode.id,
       target: childPlaceholderId,
-      type: 'placeholder',
+      type: "placeholder",
     };
 
     setNodes((nodes) =>
@@ -45,7 +45,7 @@ export function usePlaceholderClick(id: NodeProps['id']) {
             return {
               ...node,
               type: refType.current,
-              data: { label: randomLabel() },
+              data: { label: "label" },
             };
           }
           return node;
@@ -61,7 +61,7 @@ export function usePlaceholderClick(id: NodeProps['id']) {
           if (edge.target === id) {
             return {
               ...edge,
-              type: 'workflow',
+              type: "workflow",
             };
           }
           return edge;

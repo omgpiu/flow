@@ -2,57 +2,68 @@ import { Rect, Viewport } from "reactflow";
 import { Nodes } from "../core/components";
 
 const revertTypeMapper = {
-    [Nodes.GET_FILE_NODE]: 'Ask',
-    [Nodes.CHOICE_NODE]: 'Ask',
+  [Nodes.GET_FILE_NODE]: "Ask",
+  [Nodes.CHOICE_NODE]: "Ask",
+};
+export const serialiseApiNodes = (
+  nodes: any,
+  edges: any,
+  viewPort: Viewport,
+  rect: Rect
+) => {
+  const serilNodes: any = [];
+  const positionBlock: any = [];
 
-}
-export const serialiseApiNodes = (nodes: any, edges: any, viewPort: Viewport, rect: Rect) => {
+  for (let i = 0; i < nodes.length; i++) {
+    const {
+      type: nodeType,
+      position,
+      id,
+      selected,
+      dragging,
+      height,
+      width,
+      data,
+      ...rest
+    } = nodes[i];
+    //@ts-ignore
+    const type = revertTypeMapper[nodeType] ?? nodeType;
 
-    const serilNodes: any = []
-    const positionBlock: any = []
+    serilNodes.push({
+      pos_x: position.x,
+      pos_y: position.y,
+      type,
+      ...rest,
+    });
 
-    for (let i = 0; i < nodes.length; i++) {
+    positionBlock.push({
+      type,
+      pos_x: position.x,
+      pos_y: position.y,
+    });
+  }
 
-        const { type: nodeType, position, id, selected, dragging, height, width, data, ...rest } = nodes[i]
-        //@ts-ignore
-        const type = revertTypeMapper[nodeType] ?? nodeType
+  const meta = {
+    version: 0.1,
+    flow: {
+      Blocks: positionBlock,
+      view_zoom: viewPort.zoom,
+      view_pos_x: viewPort.x,
+      view_pos_y: viewPort.y,
+      canvas_x: rect.x,
+      canvas_y: rect.y,
+      connectionStyle: "quadratisch_praktisch_gut",
+    },
+  };
 
-        serilNodes.push({
-            "pos_x": position.x,
-            "pos_y": position.y,
-            type,
-            ...rest,
-        })
+  const lastElement = {
+    text: `UI_METAINFO:${JSON.stringify(meta)}`,
+    type: "CodeComment",
+  };
 
-        positionBlock.push({
-            type,
-            "pos_x": position.x,
-            "pos_y": position.y
-        })
+  serilNodes.push(lastElement);
 
-    }
-
-    const meta = {
-        version: 0.1,
-        flow: {
-            'Blocks': positionBlock,
-            view_zoom: viewPort.zoom,
-            view_pos_x: viewPort.x,
-            view_pos_y: viewPort.y,
-            canvas_x: rect.x,
-            canvas_y: rect.y,
-            connectionStyle: 'quadratisch_praktisch_gut'
-        }
-    }
-
-    const lastElement = {
-        text: `UI_METAINFO:${JSON.stringify(meta)}`,
-        type: 'CodeComment'
-    }
-
-    serilNodes.push(lastElement)
-
-    return {
-        "Blocks": serilNodes,
-    }
-}
+  return {
+    Blocks: serilNodes,
+  };
+};
